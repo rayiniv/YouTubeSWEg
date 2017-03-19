@@ -17,6 +17,11 @@ video_playlist_table = Table('video_playlist', Base.metadata,
     Column('videos_id', Integer, ForeignKey('video.id'))
 )
 
+channel_category_table = Table('channel_category', Base.metadata,
+    Column('categories_id', Integer, ForeignKey('category.id')),
+    Column('channels_id', Integer, ForeignKey('channel.id'))
+)
+
 class Video(Base):
 	__tablename__ = "video"
 	id = Column(Integer, primary_key = True)
@@ -42,6 +47,9 @@ class Channel(Base):
 	view_count = Column(BigInteger, nullable = False)
 	subscriber_count = Column(BigInteger, nullable = False)
 
+	videos = relationship("Video", back_populates = "channel")
+	playlists = relationship("Playlist", back_populates = "channel")
+
 class Category(Base):
 	__tablename__ = "category"
 	id = Column(Integer, primary_key = True)
@@ -50,6 +58,10 @@ class Category(Base):
 	latest_published_date = Column(DateTime, default = None)
 	num_videos = Column(Integer, nullable = False)
 	assignable = Column(Boolean, unique = False, default = True)
+
+	videos = relationship("Video", secondary = video_category_table, back_populates = "categories")
+
+	channels = relationship("Channel", secondary = channel_category_table)	
 
 class Playlist(Base):
 	__tablename__ = "playlist"
