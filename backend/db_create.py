@@ -78,5 +78,5 @@ class Playlist(Base):
 
 	videos = relationship("Video", secondary = video_playlist_table)
 
-engine = create_engine('sqlite:///sqlalchemy_example.db')
+engine = create_engine('sqlite:///youtubesweg.db')
 Base.metadata.create_all(engine)
