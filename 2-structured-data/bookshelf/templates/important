@@ -1,0 +1,1 @@
+./cloud_sql_proxy -instances="youtubesweg-162104:us-central1:library"=tcp:3306
