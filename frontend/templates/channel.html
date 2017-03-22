@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>YouTubeSWEg</title>
+  <link rel=icon href="https://www.youtube.com/yts/img/favicon_144-vflWmzoXw.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
+  </style>
+
+  <link href= "{{ url_for('static', filename='youtubesweg.css') }}" rel= "stylesheet">
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Base</title>  
+
+<nav class="navbar navbar-custom">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse p-2" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class><a href="/video">Videos</a></li>
+          <li class><a href="/channel">Channels</a></li>
+        <li class="navbar-header"><a class="navbar-brand" href="/">YouTubeSWEg</a>
+          <li><a href="/category">Categories</a></li>
+          <li><a href="/playlist">Playlists</a></li>
+      </ul>
+
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+</head>
+<body>
+
+<div align="center" class="row">
+
+  {% for item in channel_data %}
+  <div>
+    <h3>{{headers[loop.index - 1]}}</h3>
+    <p>
+      {% if item is not string %}
+        <a href={{ item[1] }} > {{ item[0] }} </a>
+      {% else %}
+        {% if 'jpg' in item %}
+          <img src={{item}}>
+        {% else %}
+          {{item}}
+        {% endif %}
+      {% endif %}
+    </p>
+  </div>
+  {% endfor %}
+
+  <div class="col-xs-4 col-xs-offset-2">
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Videos</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for video in channel_video_list %}
+      <tr>
+          <td> <a href={{ video[1] }} > {{ video[0] }} </a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    </table>
+  </div>
+
+  <div class="col-xs-4">
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Playlists</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for playlist in channel_playlist_list %}
+      <tr>
+          <td> <a href={{ playlist[1] }} > {{ playlist[0] }} </a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    </table>
+  </div>
+
+
+
+</div>
+
+
+
+</body>
+</html>

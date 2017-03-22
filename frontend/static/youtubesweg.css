@@ -50,9 +50,6 @@ header img {
   font-weight: 900;
   font-size: 18px;
   border: none;
-  text-align: center;
-  float: none;
-  padding-left: 200px;
 }
 
 .navbar-custom .navbar-brand {
@@ -143,6 +140,16 @@ header img {
   .featurette-heading {
     margin-top: 120px;
   }
+}
+
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
 }
 
 .carousel {
