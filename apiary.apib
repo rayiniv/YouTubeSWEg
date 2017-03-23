@@ -7,9 +7,9 @@ RESTful API to expose data regarding YouTube videos presented from youtubesweg.m
 
 ## Video [/video/{?id,channel_id,category_id}]
 
-### List All Videos [GET]
+### List Videos [GET]
 
-Returns all videos from the website. If no optional parameters are provided, all the videos will be returned.
+Returns videos from the website. If no optional parameters are provided, all the videos will be returned.
 
 Note: the channel_id field and categories field both contain integer values to indicate the channel 
 or category respectively. Query the Channel or Category resource again with the ID in order to receive 
@@ -64,9 +64,9 @@ the respective object.
         
 ## Channel [/channel/{?id,country}]
 
-### List All Channels [GET]
+### List Channels [GET]
 
-Returns all channels from the website. If no optional parameters are provided, all the channels will be returned.
+Returns channels from the website. If no optional parameters are provided, all the channels will be returned.
 
 Note: the videos field and playlists field both contain an array of integer values to 
 indicate the videos or playlists respectively. Query the Video or Playlist 
@@ -109,9 +109,9 @@ resource again with the ID in order to receive the respective object.
         
 ## Category [/category/{?id,channel_id}]
 
-### List All Categories [GET]
+### List Categories [GET]
 
-Returns all categories from the website. If no optional parameters are provided, all the categories will be returned.
+Returns categories from the website. If no optional parameters are provided, all the categories will be returned.
 
 Note: the videos field and channels field both contain an array of integer values to 
 indicate the videos or channels respectively. Query the Video or Channel 
@@ -150,9 +150,9 @@ resource again with the ID in order to receive the respective object.
         
 ## Playlist [/playlist/{?id,video_id}]
 
-### List All Playlists [GET]
+### List Playlists [GET]
 
-Returns all playlists from the website. If no optional parameters are provided, all the playlists will be returned.
+Returns playlists from the website. If no optional parameters are provided, all the playlists will be returned.
 
 Note: the channel_id field and videos field both contain integer values to 
 indicate the channel or videos respectively. Query the Channel or Video 
