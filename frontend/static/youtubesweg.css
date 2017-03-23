@@ -53,6 +53,15 @@ header img {
   border: none;
 }
 
+.navbar.center .navbar-inner {
+    text-align: center;
+}
+
+.navbar.center .navbar-inner .nav {
+    display:inline-block;
+    float: none;
+}
+
 .navbar-default .navbar-brand {
   font-weight: 900;
   font-size: 21px;
@@ -113,25 +122,6 @@ header img {
 .navbar-default .navbar-toggle:hover {
   background-color: #cc181e;
 }
-
-/*.navbar-custom .navbar-brand {
-  color: white;
-  background: #e52d27;
-}*/
-/*.navbar-custom .navbar-brand:hover,
-.navbar-custom .navbar-brand:focus,
-.navbar-custom .navbar-brand:active,
-.navbar-custom .navbar-brand.active {
-  color: white;
-}*/
-
-/*.navbar-custom .navbar-brand:active,
-.navbar-custom .navbar-nav a:active 
-.navbar-custom .navbar-nav li:active a:hover,
-.navbar-custom .navbar-nav li:active a:focus {
-  color: white;
-  background: #e52d27;
-}*/
 
 @media (min-width: : 835px) {
   /* Navbar positioning foo */

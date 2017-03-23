@@ -19,18 +19,18 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Base</title>  
 
-  <nav id="navMenu"></nav>
+</head>
+<body>
 
-  <script type="text/javascript">
+<nav id="navMenu"></nav>
+
+<script type="text/javascript">
    $(document).ready(function () {
       $(".nav li").removeClass("active");//this will remove the active class from  
     });
-  </script>
+</script>
 
-  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-
-</head>
-<body>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
 <section class="block">
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
