@@ -34,7 +34,8 @@ class Video(Base):
 	channel_id = Column(Integer, ForeignKey('channel.id'))
 	channel = relationship("Channel", back_populates="videos")
 
-	categories = relationship("Category", secondary = video_category_table, back_populates = "videos")
+	category_id = Column(Integer, ForeignKey('category.id'))
+	categories = relationship("Category", back_populates = "videos")
 
 class Channel(Base):
 	__tablename__ = "channel"
@@ -59,7 +60,7 @@ class Category(Base):
 	num_videos = Column(Integer, nullable = False)
 	assignable = Column(Boolean, unique = False, default = True)
 
-	videos = relationship("Video", secondary = video_category_table, back_populates = "categories")
+	videos = relationship("Video", back_populates = "categories")
 
 	channels = relationship("Channel", secondary = channel_category_table)	
 
