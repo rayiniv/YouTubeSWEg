@@ -239,3 +239,15 @@ div#maincontent {
  padding-top: 3rem;
  padding-bottom: 3rem;
 }
+
+div.row {
+ border: 1px groove;
+}
+
+.row .col-md-2 {
+ padding: 5px;
+}
+
+.wrap {
+  word-wrap: break-word;
+}
