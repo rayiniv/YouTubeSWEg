@@ -1,1 +1,3 @@
 .DS_Store
+*.DS_Store
+/backend/db_create.pyc
