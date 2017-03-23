@@ -16,11 +16,11 @@ document.getElementById("navMenu").innerHTML =
       '<!-- Collect the nav links, forms, and other content for toggling -->' +
       '<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">' +
         '<ul class="nav navbar-nav">' +
-          '<li class=active" id="video"><a href="video.html">Videos</a></li>' +
-          '<li id="channel"><a href="channel.html">Channels</a></li>' +
-          '<li id="category"><a href="/category">Categories</a></li>' +
-          '<li id="playlist"><a href="/playlist">Playlists</a></li>' +
-          '<li id="about"><a href="/about">About</a></li>' +
+          '<li class=active" id="Videos"><a href="/video">Videos</a></li>' +
+          '<li id="Channels"><a href="/channel">Channels</a></li>' +
+          '<li id="Categories"><a href="/category">Categories</a></li>' +
+          '<li id="Playlists"><a href="/playlist">Playlists</a></li>' +
+          '<li id="About"><a href="/about">About</a></li>' +
 
         '</ul>' +
         '<ul class="nav navbar-nav navbar-right">' +
