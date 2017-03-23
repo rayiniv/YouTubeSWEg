@@ -53,15 +53,6 @@ header img {
   border: none;
 }
 
-.navbar.center .navbar-inner {
-    text-align: center;
-}
-
-.navbar.center .navbar-inner .nav {
-    display:inline-block;
-    float: none;
-}
-
 .navbar-default .navbar-brand {
   font-weight: 900;
   font-size: 21px;
@@ -248,7 +239,6 @@ div#maincontent {
  padding-top: 3rem;
  padding-bottom: 3rem;
 }
-}
 
 div.row {
  border: 1px groove;
@@ -261,4 +251,3 @@ div.row {
 .wrap {
   word-wrap: break-word;
 }
-

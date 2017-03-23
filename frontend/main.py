@@ -224,7 +224,7 @@ def about():
 
 @app.route('/test')
 def test():
-    return render_template('test.html', title='test')
+    return render_template('test.html', title='test')    
 
 
 @app.route('/video/<num>')

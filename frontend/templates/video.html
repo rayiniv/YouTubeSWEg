@@ -8,6 +8,13 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
+  </style>
 
   <link href= "{{ url_for('static', filename='youtubesweg.css') }}" rel= "stylesheet">
 
@@ -19,22 +26,22 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Base</title>  
 
+  <nav id="navMenu"></nav>
+  <script type="text/javascript">
+   $(document).ready(function () {
+      $(".nav li").removeClass("active");//this will remove the active class from  
+      $('#Videos').addClass('active');
+    });
+  </script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
 </head>
 <body>
 
-<nav id="navMenu"></nav>
-
-<script type="text/javascript">
-   $(document).ready(function () {
-      $(".nav li").removeClass("active");//this will remove the active class from  
-    });
-</script>
-
-<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 <div align="center" class="row">
-  
-  <iframe width="560" height="315" src={{video_link}} frameborder="0" allowfullscreen></iframe>
-
+  <div>
+    <iframe width="560" height="315" src={{video_link}} frameborder="0" allowfullscreen></iframe>
+  </div>
 
   {% for item in video_data %}
   <div>
