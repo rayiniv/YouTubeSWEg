@@ -2,10 +2,10 @@
 
 FILES :=                              \
     frontend/main.py                  \
-    backend/appengine_config.py       \
-    backend/db_create.py              \
-    backend/db_insert                 \
-    backend/tests.py                  
+    app/appengine_config.py       \
+    app/db_create.py              \
+    app/db_insert                 \
+    app/tests.py                  
 
 ifeq ($(shell uname), Darwin)          # Apple
     PYTHON   := python3.5
@@ -40,22 +40,26 @@ endif
 .pylintrc:
 	$(PYLINT) --disable=locally-disabled --reports=no --generate-rcfile > $@
 
-YouTubeSWEg.log:
-	git log > YouTubeSWEg.log
+IDB1.log:
+	git log > IDB1.log
+
+IDB1.html: app/models.py
+	pydoc3 -w app/models.py
+	mv models.html IDB1.html	
 
 pylint: .pylintrc
 	-$(PYLINT) frontend/main.py
 	-$(PYLINT) frontend/appengine_config.py
-	-$(PYLINT) backend/db_create.py
-	-$(PYLINT) backend/db_insert.py
-	-$(PYLINT) backend/tests.py  
+	-$(PYLINT) app/models.py
+	-$(PYLINT) app/db_insert.py
+	-$(PYLINT) app/tests.py  
 
 format:
 	$(AUTOPEP8) -i frontend/main.py
 	$(AUTOPEP8) -i frontend/appengine_config.py
-	$(AUTOPEP8) -i backend/db_create.py
-	$(AUTOPEP8) -i backend/db_insert.py
-	$(AUTOPEP8) -i backend/tests.py  
+	$(AUTOPEP8) -i app/models.py
+	$(AUTOPEP8) -i app/db_insert.py
+	$(AUTOPEP8) -i app/tests.py  
 
 config:
 	git config -l

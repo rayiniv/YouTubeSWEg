@@ -1,0 +1,293 @@
+commit 080fb8db1c405fa9df853643058ed2c557ceb2ce
+Merge: 7e1fd0b 0aba078
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Mar 23 03:58:55 2017 -0500
+
+    Merge branch 'master' of https://github.com/rayiniv/YouTubeSWEg
+
+commit 7e1fd0b347af8b7f3f400894ee1667e16941eebd
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Mar 23 03:58:43 2017 -0500
+
+    finished about page. fixed #18 fixed #19 fixed #17.
+
+commit 0aba07854d80a3057887d832a2400f0b9c20cfee
+Author: zaldaroga <zaldaroga@yahoo.com>
+Date:   Thu Mar 23 08:17:15 2017 +0000
+
+    Fixed makefile to run pylint on all python files
+
+commit a9948547b59491c60f5f16a9090df52e26efaea0
+Merge: 66e743d f217bf5
+Author: Zal Daroga <zaldaroga@yahoo.com>
+Date:   Thu Mar 23 03:06:55 2017 -0500
+
+    Merge branch 'master' of https://github.com/rayiniv/YouTubeSWEg
+
+commit 66e743de5120ec51ee17350f8517ef6a6a308f94
+Author: Zal Daroga <zaldaroga@yahoo.com>
+Date:   Thu Mar 23 03:06:43 2017 -0500
+
+    Added makefile for pylint and autopep8
+
+commit f217bf521c1e0504b2644540b1746c9300c10c26
+Author: Vinay Rayini <rayiniv@hotmail.com>
+Date:   Thu Mar 23 02:28:05 2017 -0500
+
+    Updated API descriptions
+
+commit d12df7b8c0b424dbf58149f0364a27abb68f4865
+Author: Shaayaan Sayed <shaayaansayed@wireless-10-145-106-184.public.utexas.edu>
+Date:   Thu Mar 23 01:42:01 2017 -0500
+
+    uml diagram
+
+commit 906486dda822352c8386ebf4714de387be597e76
+Author: Zal Daroga <zaldaroga@yahoo.com>
+Date:   Thu Mar 23 01:33:37 2017 -0500
+
+    Updated README.md
+
+commit ba43cb72fd14cca5211ddadce8b88b070ea7596f
+Merge: 8b558b5 aac3c59
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Mar 23 00:24:25 2017 -0500
+
+    Merge branch 'master' of https://github.com/rayiniv/YouTubeSWEg
+
+commit 8b558b50930a720eddd344d21e5e1b06ffa4c624
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Mar 23 00:24:23 2017 -0500
+
+    changed some slight stuff
+
+commit aac3c596b971d5145cacfd69cba305b443c01f90
+Author: Pradyumn Pagadala <pradyumn@utexas.edu>
+Date:   Thu Mar 23 00:22:42 2017 -0500
+
+    removed unnessecary CSS
+
+commit ad4cb1e986ec5f17ddb085d4c880f5d7da880c07
+Author: Vinay Rayini <rayiniv@hotmail.com>
+Date:   Thu Mar 23 00:18:39 2017 -0500
+
+    Fixed video to category relationship in DB
+
+commit d2449aa17e99b990c04f9dc8af55305e25d02db4
+Author: Pradyumn Pagadala <Prad@wireless-10-147-250-110.public.utexas.edu>
+Date:   Thu Mar 23 00:13:44 2017 -0500
+
+    fixed splash page and css
+
+commit a93ce1453da749c393672a115d2ef8ace1a4da33
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Wed Mar 22 23:22:16 2017 -0500
+
+    fixed navbar active tabs
+
+commit c44bac32172420a17afa9ac9c2848300ad37ed09
+Merge: 58016e9 c6f870b
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Wed Mar 22 22:50:02 2017 -0500
+
+    fixed merge conflicts
+
+commit 58016e93c6c9a5016cef8d3ed74926679d22256d
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Wed Mar 22 22:42:01 2017 -0500
+
+    started about page. fixed #16
+
+commit c6f870b9139b6751ea2d28d40d05029eba578cef
+Author: Voulgaropoulos, Nicole <nvoulgaropoulos@consultant.underarmour.com>
+Date:   Wed Mar 22 22:10:15 2017 -0500
+
+    active navbar
+
+commit ee4f98c7165287768dc0394776eb4c23f70f29a2
+Author: Vinay Rayini <rayiniv@hotmail.com>
+Date:   Wed Mar 22 21:21:49 2017 -0500
+
+    Updated tests
+
+commit 900b3f9e0deb0e271e15dceba563e4517b5f1cbc
+Merge: 20fad4d 191d982
+Author: Vinay Rayini <rayiniv@hotmail.com>
+Date:   Wed Mar 22 21:19:58 2017 -0500
+
+    Merge branch 'master' of https://github.com/rayiniv/YouTubeSWEg
+
+commit 20fad4d5c691b9a11d7c7f52740132a084420252
+Author: Vinay Rayini <rayiniv@hotmail.com>
+Date:   Wed Mar 22 21:19:25 2017 -0500
+
+    Added unit tests
+
+commit 191d982fef79abd12c96e0fc1b0323dc80cce3bb
+Author: Voulgaropoulos, Nicole <nvoulgaropoulos@consultant.underarmour.com>
+Date:   Wed Mar 22 20:36:31 2017 -0500
+
+    fixed stylesheet link
+
+commit c9f256ef30acbff243d8a3e4630a598a76b812b7
+Author: Vinay Rayini <rayiniv@hotmail.com>
+Date:   Wed Mar 22 19:54:42 2017 -0500
+
+    fixing travis integration
+
+commit b2a3261fd96b9ea1800e8548ef1380398dcaf426
+Author: Vinay Rayini <rayiniv@hotmail.com>
+Date:   Wed Mar 22 19:48:37 2017 -0500
+
+    testing travis integration
+
+commit eeab789659cfa0ae124c19a591974a517d27c5f7
+Author: Vinay Rayini <rayiniv@hotmail.com>
+Date:   Wed Mar 22 19:45:28 2017 -0500
+
+    fixing travis file
+
+commit f0f42787d1048449858705cead91e2850a7b85e5
+Author: Vinay Rayini <rayiniv@hotmail.com>
+Date:   Wed Mar 22 19:42:42 2017 -0500
+
+    Added .travis.yml file. Fixed #15
+
+commit 7ddfdf69e55f7f5fda4b2eac215d48208731083c
+Author: Voulgaropoulos, Nicole <nvoulgaropoulos@consultant.underarmour.com>
+Date:   Wed Mar 22 18:40:03 2017 -0500
+
+    jank active tabs
+
+commit 5cce30b1cc8f34b5702d8db108cb194fd796b893
+Author: Voulgaropoulos, Nicole <nvoulgaropoulos@consultant.underarmour.com>
+Date:   Wed Mar 22 18:18:25 2017 -0500
+
+    updated navbar
+
+commit c3b781e4b6768ad040a457c7f61e137078cef014
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Wed Mar 22 00:37:49 2017 -0500
+
+    added pages using jinja2 and flask
+
+commit cc66857129b24490ff312159b9023b7fae3784bf
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Wed Mar 22 00:35:49 2017 -0500
+
+    hardcoded pages using jinja2 and flask
+
+commit 8851784cf464cc230c06057932665741cd48022f
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Tue Mar 21 20:18:36 2017 -0500
+
+    refactored bookshelf tutorial code. fixed #7
+
+commit 6194619b57da41d80c6588b4531db81edb42e2ed
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Tue Mar 21 20:17:13 2017 -0500
+
+    got carousel working
+
+commit 2ae1c58fc2214f400da2641251d2336be97855be
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Mon Mar 20 21:33:44 2017 -0500
+
+    put starter cloud code
+
+commit 830c7832692739be8a8ef61e53897edae57c94b4
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Mon Mar 20 18:17:25 2017 -0500
+
+    added google cloud starter code
+
+commit 756da055262d3f139f4d797e6873d702eaac732f
+Merge: f4a2612 02d4370
+Author: Voulgaropoulos, Nicole <nvoulgaropoulos@consultant.underarmour.com>
+Date:   Mon Mar 20 00:28:18 2017 -0500
+
+    Merge remote-tracking branch 'origin/nicoleDev'
+
+commit 02d4370b2da416c294668e75eb2ba52ba998c5d2
+Author: Voulgaropoulos, Nicole <nvoulgaropoulos@consultant.underarmour.com>
+Date:   Mon Mar 20 00:27:12 2017 -0500
+
+    bootstrap and navbar
+
+commit f4a2612ac34d0136bd2bfeb36629da4ccceec36d
+Author: vinay rayini <rayiniv@hotmail.com>
+Date:   Sat Mar 18 21:40:21 2017 -0500
+
+    Added code to insert model instances to database. Insertion code intended for testing at the moment.
+
+commit 656901bb677b74849ee3a64464ae14b72a163dcc
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Sat Mar 18 21:35:40 2017 -0500
+
+    added relationship code for channel and category as well as association table.
+
+commit 1cb440523b3d2ccbcd877e257001763556feb4af
+Author: vinay rayini <rayiniv@hotmail.com>
+Date:   Sat Mar 18 21:33:44 2017 -0500
+
+    Added Playlist model and added relationships for video/category and video/playlist
+
+commit 1f74aeb724d0b06f662df3a1d09b1b3ae8228961
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Sat Mar 18 21:30:28 2017 -0500
+
+    added channel and category models.
+
+commit eeafad02fa2c0d9f6492b19eb6c8041a60e66e16
+Author: vinay rayini <rayiniv@hotmail.com>
+Date:   Sat Mar 18 21:27:51 2017 -0500
+
+    Added Video Model
+
+commit e8b7ee749a60af8674ea8c3371b7567d28c103e2
+Author: Vinay Rayini <rayiniv@hotmail.com>
+Date:   Sat Mar 18 02:41:26 2017 -0500
+
+    Added some additional optional parameters to models
+
+commit c8b72ea2e65e88e2852b20c84685b7d63744f263
+Author: Vinay Rayini <rayiniv@hotmail.com>
+Date:   Sat Mar 18 02:40:57 2017 -0500
+
+    Added some additional optional parameters to models
+
+commit 7f1220ef70c0a668011e5ae7e544e30b73cc84aa
+Author: Vinay Rayini <rayiniv@hotmail.com>
+Date:   Sat Mar 18 02:24:59 2017 -0500
+
+    Updated RESTful API to include optional parameters for all models
+
+commit f43bfaed9106398492927db377a0c12a0432b578
+Author: Vinay Rayini <rayiniv@hotmail.com>
+Date:   Sat Mar 18 02:15:01 2017 -0500
+
+    Designed 4 main resources in the RESTful API (Video, Channel, Category, and Playlist)
+
+commit 925d23fe90f287a45489602dbc92fa8df281f3b3
+Author: Vinay Rayini <rayiniv@hotmail.com>
+Date:   Sat Mar 18 00:25:16 2017 -0500
+
+    Linking apiary to repository
+
+commit da383ebe33d50a00ccbea15fc920c316fff95268
+Author: Voulgaropoulos, Nicole <nvoulgaropoulos@consultant.underarmour.com>
+Date:   Thu Mar 9 20:00:48 2017 -0600
+
+    Stay (boot)strapped
+
+commit e41377ca6891185b99a80bb3b5c765ee2e7828dc
+Author: Hamza Muhammad <hamzam@cs.utexas.edu>
+Date:   Thu Mar 9 19:51:00 2017 -0600
+
+    Added frontend and backend folders
+
+commit 93368f8cd638106b4bd1b0775e1a6ee82c6cf098
+Author: Vinay Rayini <rayiniv@hotmail.com>
+Date:   Thu Mar 9 19:45:35 2017 -0600
+
+    Initial commit
