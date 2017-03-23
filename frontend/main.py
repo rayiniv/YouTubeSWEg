@@ -165,8 +165,6 @@ playlists = [playlist1, playlist2, playlist3]
 def splash_page():
     return render_template('splash_page.html')
 
-
-
 @app.route('/video')
 def video():
     return render_template('model.html', title="Videos", table_headers=video_headers, data=videos)
@@ -182,6 +180,10 @@ def category():
 @app.route('/playlist')
 def playlist():
     return render_template('model.html', title="Playlists", table_headers=playlist_headers, data=playlists)
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 
 
