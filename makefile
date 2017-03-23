@@ -44,11 +44,11 @@ YouTubeSWEg.log:
 	git log > YouTubeSWEg.log
 
 pylint: .pylintrc
-	$(PYLINT) frontend/main.py
-	$(PYLINT) frontend/appengine_config.py
-	$(PYLINT) backend/db_create.py
-	$(PYLINT) backend/db_insert.py
-	$(PYLINT) backend/tests.py  
+	-$(PYLINT) frontend/main.py
+	-$(PYLINT) frontend/appengine_config.py
+	-$(PYLINT) backend/db_create.py
+	-$(PYLINT) backend/db_insert.py
+	-$(PYLINT) backend/tests.py  
 
 format:
 	$(AUTOPEP8) -i frontend/main.py
