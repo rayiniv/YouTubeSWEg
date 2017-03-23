@@ -60,6 +60,7 @@
       {% endfor %}
       </div>
       {% for data_item in data %}
+      <div clas="box">
       <div class = "row">
           {% for item in data_item %}
             {% if title == "Playlists" and (loop.index == 2 or loop.index == 3) %}
@@ -80,6 +81,7 @@
             </div>
           {% endfor %}
       </div>
+    </div>
       {% endfor %}
 </div>
 

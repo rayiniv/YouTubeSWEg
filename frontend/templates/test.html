@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Example of Bootstrap 3 Two Column Grid Layouts for Tablets and Desktops</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link href= "{{ url_for('static', filename='youtubesweg.css') }}" rel= "stylesheet">
+<style>
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
+  </style>
+<!-- /*<style type="text/css">
+    /* Some custom styles to beautify this example */
+    .demo-content{
+        padding: 15px;
+        font-size: 18px;
+        min-height: 300px;
+        background: #dbdfe5;
+        margin-bottom: 10px;
+    }
+    .demo-content.bg-alt{
+        background: #abb1b8;
+    }
+</style>*/ -->
+
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Base</title>  
+
+  <nav id="navMenu"></nav>
+  <script type="text/javascript">
+   $(document).ready(function () {
+      $(".nav li").removeClass("active");//this will remove the active class from  
+      $('#{{title}}').addClass('active');      
+    });
+  </script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</head>
+<body>
+    <div class="container">
+        <!--Row with two equal columns-->
+        <div class="row">
+            <div class="col-sm-4">
+                .col-sm-6
+            </div>
+            <div class="col-sm-4">
+                .col-sm-6
+            </div>
+            <div class="col-sm-4">
+                .col-sm-6
+            </div>
+        </div>
+        <hr>
+        
+    </div>
+</body>
+</html>
