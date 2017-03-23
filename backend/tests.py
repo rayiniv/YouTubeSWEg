@@ -1,14 +1,14 @@
 from db_create import Video, Channel, Category, Playlist, Base
 from sqlalchemy import create_engine
+from io import StringIO
+from unittest import main, TestCase
+from sqlalchemy.orm import sessionmaker
+
 engine = create_engine('sqlite:///youtubesweg.db')
 Base.metadata.bind = engine
-from sqlalchemy.orm import sessionmaker
 DBSession = sessionmaker()
 DBSession.bind = engine
 session = DBSession()
-
-from io import StringIO
-from unittest import main, TestCase
 
 class TestYoutubesweg (TestCase):
 
