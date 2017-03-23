@@ -123,6 +123,25 @@ header img {
   background-color: #cc181e;
 }
 
+/*.navbar-custom .navbar-brand {
+  color: white;
+  background: #e52d27;
+}*/
+/*.navbar-custom .navbar-brand:hover,
+.navbar-custom .navbar-brand:focus,
+.navbar-custom .navbar-brand:active,
+.navbar-custom .navbar-brand.active {
+  color: white;
+}*/
+
+/*.navbar-custom .navbar-brand:active,
+.navbar-custom .navbar-nav a:active 
+.navbar-custom .navbar-nav li:active a:hover,
+.navbar-custom .navbar-nav li:active a:focus {
+  color: white;
+  background: #e52d27;
+}*/
+
 @media (min-width: : 835px) {
   /* Navbar positioning foo */
   .navbar-wrapper {
@@ -228,4 +247,17 @@ div#maincontent {
  min-height: 50rem; /* Can be removed; just added for demo purposes */
  padding-top: 3rem;
  padding-bottom: 3rem;
+}
+}
+
+div.row {
+ border: 1px groove;
+}
+
+.row .col-md-2 {
+ padding: 5px;
+}
+
+.wrap {
+  word-wrap: break-word;
 }

@@ -42,33 +42,40 @@
       </span>
     </div><!-- /input-group -->
   </div><!-- /.col-lg-6 -->
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        {% for table_header in table_headers %}
-          <th>{{table_header}}&#9650;</th>  
-        {% endfor %}    
-      </tr>
-    </thead>
-    <tbody>
-      {% for data_item in data %}
-      <tr>
-        {% for item in data_item %}
-
-          {% if item is not string %}
-              <td> <a href={{ item[1] }} > {{ item[0] }} </a></td>
-          {% else %}
-            {% if 'jpg' in item %}
-              <td><img src={{item}}></td>
-            {% else %}
-              <td>{{item}}</td>
-            {% endif %}
-          {% endif %}
-        {% endfor %}
-      </tr>
+  <br> </br>
+      <div class = "row">
+      {% for table_header in table_headers %}
+      {% if title == "Playlists" and (loop.index == 2 or loop.index == 3) %}
+        <div class = "col-md-3">
+        {% else %}
+        <div class = "col-md-2">
+        {% endif %}
+          <h3>{{table_header}}</h3>
+      </div>
       {% endfor %}
-    </tbody>
-  </table>
+      </div>
+      {% for data_item in data %}
+      <div class = "row">
+          {% for item in data_item %}
+            {% if title == "Playlists" and (loop.index == 2 or loop.index == 3) %}
+              <div class = "col-md-3">
+              {% else %}
+              <div class = "col-md-2">
+              {% endif %}
+            {% if item is not string %}
+                <div class = "wrap"> <a href={{ item[1] }} > {{ item[0] }} </a> </div>
+            {% else %}
+              {% if 'jpg' in item %}
+                <img src={{item}}>
+                <br></br>
+              {% else %}
+                <div class = "wrap"> {{item}} </div>
+              {% endif %}
+            {% endif %}
+            </div>
+          {% endfor %}
+      </div>
+      {% endfor %}
 </div>
 
 </body>
