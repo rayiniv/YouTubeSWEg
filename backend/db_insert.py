@@ -16,7 +16,7 @@ new_playlist = Playlist(title = "playlist title", description = "playlist descri
 # Link channel to video
 new_video.channel = new_channel
 # Link category to video
-new_video.categories.append(new_category)
+new_video.categories = new_category
 
 # Link video to channel
 new_channel.videos.append(new_video)
