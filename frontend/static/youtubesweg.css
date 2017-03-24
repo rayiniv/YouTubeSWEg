@@ -45,18 +45,26 @@ header img {
 
 .navbar-default {
   background: #e52d27;
-  /*font-family: Arial, sans-serif;*/
-  /*text-transform: uppercase;*/
   margin-bottom: 0;
   font-weight: 900;
   font-size: 18px;
   border: none;
+  border-radius: 0px;
+}
+
+.navbar.center .navbar-inner {
+    text-align: center;
+}
+
+.navbar.center .navbar-inner .nav {
+    display:inline-block;
+    float: none;
 }
 
 .navbar-default .navbar-brand {
   font-weight: 900;
   font-size: 21px;
-  float: right;
+  float: center;
   text-align: center;
 }
 .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
@@ -80,13 +88,18 @@ header img {
 .navbar-default .navbar-nav li a {
   padding-right: 25px;
   padding-left: 25px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   color: white;
+  border-radius: 4px; 
 }
 
 .navbar-default .navbar-brand {
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 5px;
+  padding-left: 5px;
+  margin-top: 5px;
   color: white;
+  border-radius: 4px; 
 }
 
 .navbar-default .navbar-nav>.active>a, 
@@ -113,25 +126,6 @@ header img {
 .navbar-default .navbar-toggle:hover {
   background-color: #cc181e;
 }
-
-/*.navbar-custom .navbar-brand {
-  color: white;
-  background: #e52d27;
-}*/
-/*.navbar-custom .navbar-brand:hover,
-.navbar-custom .navbar-brand:focus,
-.navbar-custom .navbar-brand:active,
-.navbar-custom .navbar-brand.active {
-  color: white;
-}*/
-
-/*.navbar-custom .navbar-brand:active,
-.navbar-custom .navbar-nav a:active 
-.navbar-custom .navbar-nav li:active a:hover,
-.navbar-custom .navbar-nav li:active a:focus {
-  color: white;
-  background: #e52d27;
-}*/
 
 @media (min-width: : 835px) {
   /* Navbar positioning foo */
