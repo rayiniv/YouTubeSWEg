@@ -240,9 +240,9 @@ div#maincontent {
  padding-bottom: 3rem;
 }
 
-div.row {
+/*div.row {
  border: 1px groove;
-}
+}*/
 
 .row .col-md-2 {
  padding: 5px;
@@ -250,4 +250,13 @@ div.row {
 
 .wrap {
   word-wrap: break-word;
+}
+
+.col-sm-4 {
+   border: 1px groove;
+   min-height: 500px;
+}
+
+.portfolio-item {
+    margin-bottom: 25px;
 }

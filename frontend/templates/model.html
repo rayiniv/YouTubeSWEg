@@ -1,30 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>YouTubeSWEg</title>
-  <link rel=icon href="https://www.youtube.com/yts/img/favicon_144-vflWmzoXw.png">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <style>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YouTubeSWEg</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://use.fontawesome.com/0dcf352150.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link href= "{{ url_for('static', filename='youtubesweg.css') }}" rel= "stylesheet">
+<style>
   .carousel-inner > .item > img,
   .carousel-inner > .item > a > img {
       width: 70%;
       margin: auto;
   }
   </style>
+<!-- /*<style type="text/css">
+    /* Some custom styles to beautify this example */
+    .demo-content{
+        padding: 15px;
+        font-size: 18px;
+        min-height: 300px;
+        background: #dbdfe5;
+        margin-bottom: 10px;
+    }
+    .demo-content.bg-alt{
+        background: #abb1b8;
+    }
+</style>*/ -->
 
-  <link href= "{{ url_for('static', filename='youtubesweg.css') }}" rel= "stylesheet">
-
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Base</title>  
+    <title>{{title}}</title>  
 
   <nav id="navMenu"></nav>
   <script type="text/javascript">
@@ -36,52 +50,232 @@
   <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
 </head>
+<body>
+  <!-- Page Content -->
+    <div class="container">
 
-<div class="container">
-  <h2>YouTube {{title}}</h2>
-    <div class="col-lg-6">
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="Search for...">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
-      </span>
-    </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
-  <br> </br>
-      <div class = "row">
-      {% for table_header in table_headers %}
-      {% if title == "Playlists" and (loop.index == 2 or loop.index == 3) %}
-        <div class = "col-md-3">
-        {% else %}
-        <div class = "col-md-2">
-        {% endif %}
-          <h3>{{table_header}}</h3>
-      </div>
-      {% endfor %}
-      </div>
-      {% for data_item in data %}
-      <div class = "row">
-          {% for item in data_item %}
-            {% if title == "Playlists" and (loop.index == 2 or loop.index == 3) %}
-              <div class = "col-md-3">
-              {% else %}
-              <div class = "col-md-2">
-              {% endif %}
-            {% if item is not string %}
-                <div class = "wrap"> <a href={{ item[1] }} > {{ item[0] }} </a> </div>
-            {% else %}
-              {% if 'jpg' in item %}
-                <img src={{item}}>
-                <br></br>
-              {% else %}
-                <div class = "wrap"> {{item}} </div>
-              {% endif %}
-            {% endif %}
+        <!-- Page Header -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header text-center">{{title}}
+                </h1>
             </div>
-          {% endfor %}
-      </div>
-      {% endfor %}
-</div>
+        </div>
 
+        <div class="row">
+          &nbsp&nbsp&nbsp&nbsp
+          {% for table_header in table_headers %}
+            <button type="button" class="btn btn-danger btn-sm" text="">{{table_header}}<i class="fa fa-chevron-down" aria-hidden="true"></i></button>
+
+          {% endfor %}
+        </div>
+
+        
+          {% if title == "Videos" %}
+            <div class="row">
+            &nbsp&nbsp&nbsp&nbsp
+            <h4>&nbsp&nbsp&nbspChannel</h4>
+            &nbsp&nbsp&nbsp&nbsp
+            <div class="btn-group" data-toggle="buttons">
+              <label class="btn btn-primary btn-sm">
+                <input type="checkbox" checked autocomplete="off"> 21 Savage
+              </label>
+              <label class="btn btn-primary btn-sm">
+                <input type="checkbox" autocomplete="off"> Khan Academy
+              </label>
+              <label class="btn btn-primary btn-sm">
+                <input type="checkbox" autocomplete="off"> ESPN
+              </label>              
+            </div>
+
+            <h4>&nbsp&nbsp&nbspCategory</h4>
+             &nbsp&nbsp&nbsp&nbsp
+            <div class="btn-group" data-toggle="buttons">
+              <label class="btn btn-primary btn-sm">
+                <input type="checkbox" checked autocomplete="off"> Music
+              </label>
+              <label class="btn btn-primary btn-sm">
+                <input type="checkbox" autocomplete="off"> Education
+              </label>
+              <label class="btn btn-primary btn-sm">
+                <input type="checkbox" autocomplete="off"> Sports
+              </label>              
+            </div>
+          </div>
+          {% endif %}
+        
+
+        
+          {% if title == "Channels" %}
+            <div class="row">
+            &nbsp&nbsp&nbsp&nbsp
+            <h4>&nbsp&nbsp&nbspView Count</h4>
+            &nbsp&nbsp&nbsp&nbsp
+            <div class="btn-group" data-toggle="buttons">
+              <label class="btn btn-primary btn-sm">
+                <input type="checkbox" checked autocomplete="off"> &lt 5,000
+              </label>
+              <label class="btn btn-primary btn-sm">
+                <input type="checkbox" autocomplete="off"> 5,000 - 5,000,000
+              </label>
+              <label class="btn btn-primary btn-sm">
+                <input type="checkbox" autocomplete="off"> &gt 5,000,000
+              </label>              
+            </div>
+
+            <h4>&nbsp&nbsp&nbspSubscriber Count</h4>
+            &nbsp&nbsp&nbsp&nbsp
+            <div class="btn-group" data-toggle="buttons">
+              <label class="btn btn-primary btn-sm">
+                <input type="checkbox" checked autocomplete="off"> &lt 1,000
+              </label>
+              <label class="btn btn-primary btn-sm">
+                <input type="checkbox" autocomplete="off"> 1,000 - 1,000,000
+              </label>
+              <label class="btn btn-primary btn-sm">
+                <input type="checkbox" autocomplete="off"> &gt 1,000,000
+              </label>              
+            </div>
+          </div>
+          {% endif %}
+        
+
+        
+          {% if title == "Categories" %}
+            <div class="row">
+            &nbsp&nbsp&nbsp&nbsp
+            <h4>&nbsp&nbsp&nbspChannels</h4>
+            &nbsp&nbsp&nbsp&nbsp
+            <div class="btn-group" data-toggle="buttons">
+              <label class="btn btn-primary btn-sm">
+                <input type="checkbox" checked autocomplete="off"> 21 Savage
+              </label>
+              <label class="btn btn-primary btn-sm">
+                <input type="checkbox" autocomplete="off"> Khan Academy
+              </label>
+              <label class="btn btn-primary btn-sm">
+                <input type="checkbox" autocomplete="off"> ESPN
+              </label>              
+            </div>
+
+            <h4>&nbsp&nbsp&nbspVideo Count</h4>
+            &nbsp&nbsp&nbsp&nbsp
+            <div class="btn-group" data-toggle="buttons">
+              <label class="btn btn-primary btn-sm">
+                <input type="checkbox" checked autocomplete="off"> &lt 50
+              </label>
+              <label class="btn btn-primary btn-sm">
+                <input type="checkbox" autocomplete="off"> 50 - 100
+              </label>
+              <label class="btn btn-primary btn-sm">
+                <input type="checkbox" autocomplete="off"> &gt 100
+              </label>              
+            </div>
+          </div>
+          {% endif %}
+        
+
+        
+          {% if title == "Playlists" %}
+            <div class="row">
+            &nbsp&nbsp&nbsp&nbsp
+            <h4>&nbsp&nbsp&nbspChannel</h4>
+            &nbsp&nbsp&nbsp&nbsp
+            <div class="btn-group" data-toggle="buttons">
+              <label class="btn btn-primary btn-sm">
+                <input type="checkbox" checked autocomplete="off"> 21 Savage
+              </label>
+              <label class="btn btn-primary btn-sm">
+                <input type="checkbox" autocomplete="off"> Khan Academy
+              </label>
+              <label class="btn btn-primary btn-sm">
+                <input type="checkbox" autocomplete="off"> ESPN
+              </label>              
+            </div>
+
+            <h4>&nbsp&nbsp&nbspVideo Count</h4>
+            &nbsp&nbsp&nbsp&nbsp
+            <div class="btn-group" data-toggle="buttons">
+              <label class="btn btn-primary btn-sm">
+                <input type="checkbox" checked autocomplete="off"> &lt 50
+              </label>
+              <label class="btn btn-primary btn-sm">
+                <input type="checkbox" autocomplete="off"> 50 - 100
+              </label>
+              <label class="btn btn-primary btn-sm">
+                <input type="checkbox" autocomplete="off"> &gt 100
+              </label>              
+            </div>
+          </div>
+          {% endif %}
+        
+
+
+
+        <br />
+        <!-- Projects Row -->
+        <div class="row">
+            {% for data_item in data %}
+            <div class="col-md-4">
+              <div class="panel panel-default" style="padding: 8px">
+              {% for table_header in table_headers %}
+                {% if loop.index == 1 %}
+                  <h3><div class = "wrap"> <a href={{ data_item[0][1] }} > {{ data_item[0][0] }} </a> </div></h3>
+                {% else %}
+                  <b>{{table_header}}</b><br />
+                    {% if data_item[loop.index - 1] is not string %}
+                    <div class = "wrap"> <a href={{ data_item[loop.index - 1][1] }} > {{ data_item[loop.index - 1][0] }} </a> </div>
+                    {% else %}
+                      {% if 'jpg' in data_item[loop.index - 1] %}
+                        <img src={{data_item[loop.index - 1]}}>
+                        <br></br>
+                      {% else %}
+                        <div class = "wrap"> {{data_item[loop.index - 1]}} </div>
+                      {% endif %}
+                    {% endif %}   
+                  <br />
+                {% endif %}
+              {% endfor %}
+            </div>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- /.row -->
+        <hr>
+
+        <!-- Pagination -->
+        <div class="row text-center">
+            <div class="col-lg-12">
+                <ul class="pagination">
+                    <li>
+                        <a href="#">&laquo;</a>
+                    </li>
+                    <li class="active">
+                        <a href="#">1</a>
+                    </li>
+                    <li>
+                        <a href="#">2</a>
+                    </li>
+                    <li>
+                        <a href="#">3</a>
+                    </li>
+                    <li>
+                        <a href="#">4</a>
+                    </li>
+                    <li>
+                        <a href="#">5</a>
+                    </li>
+                    <li>
+                        <a href="#">&raquo;</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+    </div>
+    <!-- /.container -->
 </body>
 </html>
