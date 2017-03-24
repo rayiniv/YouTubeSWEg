@@ -1,3 +1,96 @@
+commit 9250a133c0543ab8b9f58697f504d59d24cfa032
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Mar 23 20:11:37 2017 -0500
+
+    updated about page
+
+commit 94bb551ab12336196779ce76de32f3b7665f7674
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Mar 23 19:36:30 2017 -0500
+
+    Fixed navbar
+
+commit 82546465b479ce6c17a8374ed6577e88cf79e46c
+Author: Voulgaropoulos, Nicole <nvoulgaropoulos@consultant.underarmour.com>
+Date:   Thu Mar 23 19:09:03 2017 -0500
+
+    nicer navbar?
+
+commit 58c1733465c3c5cd1f859942be65d9d0d63c0d1d
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Mar 23 19:01:42 2017 -0500
+
+    updated html pages to use grids
+
+commit a4666efc62bdf605e00c3a548fb498dadbbf22f8
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Mar 23 16:38:05 2017 -0500
+
+    fixed bugs
+
+commit cfa3a069a4868b038aebb004a7d34cf1dd78a9fc
+Merge: 763383a 0a59484
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Mar 23 16:09:05 2017 -0500
+
+    Merge branch 'master' of https://github.com/rayiniv/YouTubeSWEg
+
+commit 763383a4b9130580af9790acc591b6aa1c7a3980
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Mar 23 16:08:48 2017 -0500
+
+    added test grid page
+
+commit 0a5948452233362bc4c188cc0633428da86cc8d4
+Merge: 2e893c8 25ac723
+Author: Pradyumn Pagadala <pradyumn@utexas.edu>
+Date:   Thu Mar 23 15:48:43 2017 -0500
+
+    merged
+
+commit 25ac7230db440c0fa5243c9dcdad67c06c32415b
+Merge: 4f6e637 f70b393
+Author: Zal Daroga <zaldaroga@yahoo.com>
+Date:   Thu Mar 23 14:39:52 2017 -0500
+
+    Merge branch 'master' of https://github.com/rayiniv/YouTubeSWEg
+
+commit 4f6e6376dad9015c65667bb10c0b9255cd012aa9
+Author: Zal Daroga <zaldaroga@yahoo.com>
+Date:   Thu Mar 23 14:39:42 2017 -0500
+
+    Update about page
+
+commit f70b39388bf4a05f92db3187b7a22f3343f0f394
+Author: Nicole <nicolev7007@gmail.com>
+Date:   Thu Mar 23 14:36:02 2017 -0500
+
+    Update about.html
+
+commit c0b9b42eedd0a2d203cdcbccf2450c4d473135cd
+Author: Zal Daroga <zaldaroga@yahoo.com>
+Date:   Thu Mar 23 14:34:09 2017 -0500
+
+    Update picture for Zal
+
+commit 71802e8e4b22fabf8812dca62ba2ac231929f495
+Author: Zal Daroga <zaldaroga@yahoo.com>
+Date:   Thu Mar 23 14:22:35 2017 -0500
+
+    Switched to grid from table
+
+commit 2e893c86b233d810c9660bbace10522f6af8f186
+Author: Pradyumn Pagadala <pradyumn@utexas.edu>
+Date:   Thu Mar 23 13:46:01 2017 -0500
+
+    Moved navbar code from head to body, deleted unused code
+
+commit 960884b2ea3e8110b38d44c4f8d8d43afcf9576f
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Mar 23 04:53:36 2017 -0500
+
+    ran autopep8, pylint, and pydoc
+
 commit 080fb8db1c405fa9df853643058ed2c557ceb2ce
 Merge: 7e1fd0b 0aba078
 Author: hamzamuhammad <hamzamuhammad@utexas.edu>

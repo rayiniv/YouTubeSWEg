@@ -222,10 +222,6 @@ def playlist():
 def about():
     return render_template('about.html')
 
-@app.route('/test')
-def test():
-    return render_template('test.html', title='test', table_headers=playlist_headers, data=playlists)    
-
 
 @app.route('/video/<num>')
 def video_instance(num):
