@@ -45,19 +45,15 @@ header img {
 
 .navbar-default {
   background: #e52d27;
-  /*font-family: Arial, sans-serif;*/
-  /*text-transform: uppercase;*/
   margin-bottom: 0;
-  font-weight: 900;
+  font-weight: normal;
   font-size: 18px;
   border: none;
 }
 
 .navbar-default .navbar-brand {
-  font-weight: 900;
-  font-size: 21px;
-  float: right;
-  text-align: center;
+  font-weight: bold;
+  font-size: 26px;
 }
 .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
   margin-right: 0px;
@@ -178,6 +174,7 @@ header img {
   display: inline-block;
   float: none;
   vertical-align: top;
+
 }
 
 .navbar .navbar-collapse {
