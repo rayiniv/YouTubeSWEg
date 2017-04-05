@@ -23,12 +23,12 @@ or category respectively. Query the Channel or Category resource again with the 
 the respective object.
 
 + Parameters
-    + id (optional) - [Integer] ID of a specific video. If this parameter is provided, only the specific video 
-        indicated by this ID will be returned in the videos array. There will be at most 1 result.
-    + channel_id (optional) - [Integer] ID of a specific channel. If this parameter is provided, only specific videos 
-        present in the channel indicated by this ID will be returned in the videos array. There may be multiple results.
-    + category_id (optional) - [Integer] ID of a specific category. If this parameter is provided, only specific videos
-        present in the category specified by this ID will be returned in the videos array. There may be multiple results.
+    + id (optional) - [Comma separated list of Integers] IDs of videos. If this parameter is provided, only the specific videos 
+        indicated by this parameter will be returned in the videos array.
+    + channel_id (optional) - [Comma separated list of Integers] IDs of channels. If this parameter is provided, only specific videos 
+        present in the channels indicated by this parameter will be returned in the videos array. There may be multiple results.
+    + category_id (optional) - [Comma separated list of Integers] IDs of categories. If this parameter is provided, only specific videos
+        present in the categories specified by this parameter will be returned in the videos array. There may be multiple results.
         
 + Response 200 (application/json)
 
@@ -80,12 +80,10 @@ indicate the videos or playlists respectively. Query the Video or Playlist
 resource again with the ID in order to receive the respective object.
 
 + Parameters
-    + id (optional) - [Integer] ID of a specific channel. If this parameter is provided, only the specific channel 
-        indicated by this ID will be returned in the channels array. There will be at most 1 result.
-    + country (optional) - [String] Country code in the ISO 3166-1 alpha-2 format (ex. US). If this parameter 
-        is provided, only specific channels present in the country indicated by this code will be 
-        returned in the channels array. There may be multiple results.
-    
+    + id (optional) - [Comma separated list of Integers] IDs of channels. If this parameter is provided, only the specific channels 
+        indicated by this parameter will be returned in the channels array.
+    + country (optional) - [Comma separated list of Strings] Country codes in the ISO 3166-1 alpha-2 format (ex. US). If this parameter 
+        is provided, only specific channels present in the countries indicated by this parameter will be  returned in the channels array. There may be multiple results.
 
 + Response 200 (application/json)
 
@@ -131,10 +129,10 @@ indicate the videos or channels respectively. Query the Video or Channel
 resource again with the ID in order to receive the respective object.
 
 + Parameters
-    + id (optional) - [Integer] ID of a specific category. If this parameter is provided, only the specific category 
-        indicated by this ID will be returned in the categories array. There will be at most 1 result.
-    + channel_id (optional) - [Integer] ID of a specific channel. If this parameter is provided, only specific categories 
-        containing videos from the channel indicated by this ID will be returned in the categories array. There may be multiple results.
+    + id (optional) - [Comma separated list of Integers] IDs of categories. If this parameter is provided, only the specific categories 
+        indicated by this parameter will be returned in the categories array.
+    + channel_id (optional) - [Comma separated list of Integers] IDs of channels. If this parameter is provided, only specific categories 
+        containing videos from the channels indicated by this parameter will be returned in the categories array. There may be multiple results.
 
 + Response 200 (application/json)
 
@@ -178,10 +176,10 @@ indicate the channel or videos respectively. Query the Channel or Video
 resource again with the ID in order to receive the respective object.
 
 + Parameters
-    + id (optional) - [Integer] ID of a specific playlist. If this parameter is provided, only the specific playlist 
-        indicated by this ID will be returned in the playlists array. There will be at most 1 result.
-    + video_id (optional) - [Integer] ID of a specific channel. If this parameter is provided, only specific playlists 
-        containing the video indicated by this ID will be returned in the playlists array. There may be multiple results.
+    + id (optional) - [Comma separated list of Integers] IDs of playlists. If this parameter is provided, only the specific playlists 
+        indicated by this parameter will be returned in the playlists array.
+    + video_id (optional) - [Comma separated list of Integers] IDs of videos. If this parameter is provided, only specific playlists 
+        containing the videos indicated by this parameter will be returned in the playlists array. There may be multiple results.
 
 + Response 200 (application/json)
 
