@@ -5,7 +5,7 @@ HOST: http://youtubesweg.me
 
 RESTful API to expose data regarding YouTube videos presented from youtubesweg.me.
 
-## Video [/video/{?id,channel_id,category_id}]
+## Video [/api/video/{?id,channel_id,category_id}]
 
 ### List Videos [GET]
 
@@ -62,7 +62,7 @@ the respective object.
             }
         ]
         
-## Channel [/channel/{?id,country}]
+## Channel [/api/channel/{?id,country}]
 
 ### List Channels [GET]
 
@@ -107,7 +107,7 @@ resource again with the ID in order to receive the respective object.
             }
         ]
         
-## Category [/category/{?id,channel_id}]
+## Category [/api/category/{?id,channel_id}]
 
 ### List Categories [GET]
 
@@ -148,7 +148,7 @@ resource again with the ID in order to receive the respective object.
             }
         ]
         
-## Playlist [/playlist/{?id,video_id}]
+## Playlist [/api/playlist/{?id,video_id}]
 
 ### List Playlists [GET]
 
