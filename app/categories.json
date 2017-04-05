@@ -3,7 +3,7 @@
         {
             "assignable": true, 
             "title": "Sports", 
-            "num_videos": 161, 
+            "num_videos": 150, 
             "channelsThatLink": [
                 "UCC5cl9t6kt1JIf5vLd-LaaA", 
                 "UCiWLfSweyRNmLpgEHekhoAg"
@@ -14,10 +14,9 @@
         {
             "assignable": true, 
             "title": "Music", 
-            "num_videos": 160, 
+            "num_videos": 179, 
             "channelsThatLink": [
-                "UC9YcTIQuhwgoOQqYMKYqW9A", 
-                "UC1_liDR4fRFJgH4HoJeV8cw"
+                "UC9YcTIQuhwgoOQqYMKYqW9A"
             ], 
             "lastest_published_date": "2017-03-30T23:00:06.000Z", 
             "categoryId": "10"
@@ -25,7 +24,7 @@
         {
             "assignable": true, 
             "title": "Comedy", 
-            "num_videos": 196, 
+            "num_videos": 153, 
             "channelsThatLink": [
                 "UCGt7X90Au6BV8rf49BiM6Dg", 
                 "UC8-Th83bH_thdKZDJCrn88g", 
@@ -38,7 +37,7 @@
         {
             "assignable": true, 
             "title": "Entertainment", 
-            "num_videos": 162, 
+            "num_videos": 153, 
             "channelsThatLink": [
                 "UC3XTzVzaHQEd30rQbuvCtTQ", 
                 "UCJ0uqCI0Vqr2Rrt1HseGirg", 
@@ -55,7 +54,7 @@
         {
             "assignable": true, 
             "title": "Film & Animation", 
-            "num_videos": 171, 
+            "num_videos": 167, 
             "channelsThatLink": [
                 "UC3XTzVzaHQEd30rQbuvCtTQ", 
                 "UCCqEeDAUf4Mg0GgEN658tkA", 
@@ -67,9 +66,8 @@
         {
             "assignable": true, 
             "title": "Gaming", 
-            "num_videos": 165, 
+            "num_videos": 168, 
             "channelsThatLink": [
-                "UC6VcWc1rAoWdBCM0JxrRQ3A", 
                 "UCam8T03EOFBsNdR0thrFHdQ", 
                 "UC2t5bjwHdUX4vM2g8TRDq5g", 
                 "UCvqRdlKsE5Q8mf8YXbdIJLw"
@@ -80,7 +78,7 @@
         {
             "assignable": true, 
             "title": "People & Blogs", 
-            "num_videos": 185, 
+            "num_videos": 161, 
             "channelsThatLink": [
                 "UCpko_-a4wgz2u_DgDgd9fqA", 
                 "UCJFp8uSYCjXOMnkUyb3CQ3Q"
@@ -91,7 +89,7 @@
         {
             "assignable": true, 
             "title": "Howto & Style", 
-            "num_videos": 156, 
+            "num_videos": 178, 
             "channelsThatLink": [
                 "UCpko_-a4wgz2u_DgDgd9fqA", 
                 "UCJFp8uSYCjXOMnkUyb3CQ3Q"

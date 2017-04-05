@@ -48,7 +48,7 @@ for channel in channels_dict['items']:
 	for video in videos_dict['items']:
 		if video['channelId'] == channel_id:
 			new_video = Video(title=video['title'], description=video['description'],
-                  thumbnail=video['thumbnail'], tags=video['tags'])
+                  thumbnail=video['thumbnail'], tags=video['tags'], video_url=video['videoId'])
 
 			for category in categories_dict['items']:
 				if video['categoryId'] == category['categoryId']:

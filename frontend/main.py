@@ -215,8 +215,8 @@ def db_testing():
     DBSession.bind = engine
     session = DBSession()
     output = ""
-    for channel in session.query(Channel).all():
-        output += channel.title + "<br />"
+    for video in session.query(Video).all():
+        output += video.video_url + "<br />"
     return output
 
 @app.route('/')

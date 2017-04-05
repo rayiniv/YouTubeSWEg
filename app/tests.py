@@ -10,7 +10,6 @@ from sqlalchemy.orm import sessionmaker
 
 import os
 
-os.path.prepend('../app/')
 engine = create_engine(os.environ['SQLALCHEMY_DATABASE_URI'])
 Base.metadata.bind = engine
 DBSession = sessionmaker()

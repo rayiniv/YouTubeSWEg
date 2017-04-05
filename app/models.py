@@ -45,6 +45,7 @@ class Video(Base):
     description = Column(String(750), nullable=False)
     thumbnail = Column(String(750), nullable=False)
     tags = Column(String(750), nullable=False)
+    video_url = Column(String(750), nullable=False)
 
     channel_id = Column(Integer, ForeignKey('channel.id')) 
     channel = relationship("Channel", back_populates="videos")

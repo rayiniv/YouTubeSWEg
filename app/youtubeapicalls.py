@@ -112,7 +112,16 @@ with open("channel_id_data.txt") as f:
 
 				successful_videos = 0
 				for playlist_item in playlist_video_response.get("items", []):
-					if successful_videos < 5 and playlist_item['snippet']['channelId'] == channel_id:
+
+					playlist_item_id = playlist_item['snippet']['resourceId']['videoId']
+					res = youtube.videos().list(
+						part='snippet',
+						id=playlist_item_id).execute()
+					if len(res.get("items", [])) == 0:
+						continue
+					playlist_item_channel_id = res.get("items", [])[0]['snippet']['channelId']
+
+					if successful_videos < 5 and playlist_item_channel_id == channel_id:
 						successful_videos+=1
 						video_id = playlist_item['snippet']['resourceId']['videoId']
 						video_response = youtube.videos().list(
@@ -125,6 +134,7 @@ with open("channel_id_data.txt") as f:
 
 						video_data = {}
 						video_data['title'] = unicode_parser(video_response_snippet["title"])
+						video_data['videoId'] = video_id
 
 						# words = video_response_snippet["description"].split()
 						# temp = []
