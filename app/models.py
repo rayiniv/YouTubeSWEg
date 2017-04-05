@@ -47,10 +47,10 @@ class Video(Base):
     tags = Column(String(750), nullable=False)
 
     channel_id = Column(Integer, ForeignKey('channel.id')) 
-    channel = relationship("Channel", back_populates="videos") #DONE
+    channel = relationship("Channel", back_populates="videos")
 
     category_id = Column(Integer, ForeignKey('category.id')) 
-    category = relationship("Category", back_populates="videos") #DONE
+    category = relationship("Category", back_populates="videos")
 
 
 class Channel(Base):
@@ -70,8 +70,8 @@ class Channel(Base):
     view_count = Column(BigInteger, nullable=False)
     subscriber_count = Column(BigInteger, nullable=False)
 
-    videos = relationship("Video", back_populates="channel") #DONE
-    playlists = relationship("Playlist", back_populates="channel") #DONE
+    videos = relationship("Video", back_populates="channel")
+    playlists = relationship("Playlist", back_populates="channel")
 
 
 class Category(Base):
@@ -89,9 +89,9 @@ class Category(Base):
     num_videos = Column(Integer, nullable=False)
     assignable = Column(Boolean, unique=False, default=True)
 
-    videos = relationship("Video", back_populates="category") #DONE
+    videos = relationship("Video", back_populates="category")
 
-    channels = relationship("Channel", secondary=channel_category_table) #DONE
+    channels = relationship("Channel", secondary=channel_category_table)
 
 
 class Playlist(Base):
@@ -110,9 +110,9 @@ class Playlist(Base):
     num_items = Column(Integer, default=None)
 
     channel_id = Column(Integer, ForeignKey('channel.id'))
-    channel = relationship("Channel", back_populates="playlists") #DONE
+    channel = relationship("Channel", back_populates="playlists")
 
-    videos = relationship("Video", secondary=video_playlist_table) #DONE
+    videos = relationship("Video", secondary=video_playlist_table)
 
 engine = create_engine(os.environ['SQLALCHEMY_DATABASE_URI'])
 Base.metadata.create_all(engine)
