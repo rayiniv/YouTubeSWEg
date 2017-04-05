@@ -74,10 +74,10 @@
             </div>
             <p class="card-text">
 
-              <p>Senior computer science student. Software Engineer. Interested in building scalable systems.</p>
+              <p>Senior computer science student. Software Engineer. Interested in Software Engineering.</p>
               <p><b>major responsibilities: </b> Slack management, project management, frontend</p>
-              <p><b>no. commits: </b>2</p>
-              <p><b>no. issues: </b>3</p>
+              <p><b>no. commits: </b>5</p>
+              <p><b>no. issues: </b>9</p>
               <p><b>no. unit tests: </b>0</p>
 
             </p>
@@ -245,6 +245,7 @@
 <p><a href="#Frontend">Frontend</a></p>
   <p style="padding-left: 1.8em"><a href="#ContentStructure">Content Structure</a></p>
   <p style="padding-left: 1.8em"><a href="#WebsiteDesign">Website Design</a></p>
+  <p style="padding-left: 1.8em"><a href="#React">React</a></p>
 <p><a href="#Backend">Backend</a></p>
   <p style="padding-left: 1.8em"><a href="#YouTubeDataAPI">YouTube Data API</a></p>
   <p style="padding-left: 1.8em"><a href="#GCP">GCP</a></p>
@@ -312,7 +313,7 @@ Playlists link to Channels, Videos
 <br />
 <br />
 
-The purpose of YouTubeSWEg is to provide very easy access to this information. </p>
+The purpose of YouTubeSWEg is to provide very easy access to this information that is usually hidden on YouTube. </p>
 
 <a name="WebsiteDesign"></a>
 <h2>Website Design</h2>
@@ -342,6 +343,17 @@ Each page also features several clickable elements that cause new pages for each
 <p>On the instances of our models, we take advantage of Bootstrap’s flexbox grid system, that adjusts the pages’ layout according to the size of the user’s device. This system makes the issue of spacing elements in a web page simple to tackle by dividing each page into a number of columns. Elements of the webpage can be placed into these predefined columns. Although this grid system is used throughout Bootstrap to make it responsive to different screen sizes, we only manually place elements using these columns to format side by side tables in the model of a category instance and in the model a channel instance.</p>
 
 <p>Javascript is used to have our web page interact with user input. During this phase of the project, most of our JS use is to highlight the active tab of the navigation bar. At this point, we have the code for our navigation bar in a JS file, which is called by each of the pages to be displayed. Each page also removes the current active tab of the navigation bar and sets the appropriate tab to active.</p>
+
+<a name="React"></a>
+<h2>React</h2>
+
+<p>React is an open-source JavaScript framework for building user interfaces. React allows webpages that use data to change over time without reloading the page. This corresponds to "View" in the Model-View-Controller template. YouTubeSweg uses react to create webpages that are dynamically rendered on the client side. This lets the user filter and search for particular elements that has already been loaded onto the client computer. </p>
+
+<p>React's API can be found here: <a href="https://facebook.github.io/react/docs/react-api.html">https://facebook.github.io/react/docs/react-api.html</a></p>
+<p>A very useful tutorial to react can be found here: <a href="https://facebook.github.io/react/tutorial/tutorial.html">https://facebook.github.io/react/tutorial/tutorial.html</a></p>
+
+<p>React allows YouTubeSweg to be far more responsive than a webpage that always required http requests for all user interactions with the webpage</p>
+
 <br />
 <br />
 
@@ -352,7 +364,17 @@ Each page also features several clickable elements that cause new pages for each
 <a name="YouTubeDataAPI"></a>
 <h2>YouTube Data API</h2>
 
-<p>As the title of the project suggests, we are utilizing the YouTube Data API to collect information. We are collecting information regarding Videos, Channels, Categories, and Playlists. There are several different endpoints present in the YouTube Data API to expose this data. By providing things like category ID’s, video ID’s, region codes, and more, we can find relevant YouTube videos in various scopes.</p>
+<p>As the title of the project suggests, we are utilizing the YouTube Data API to collect information. We are collecting information regarding Videos, Channels, Categories, and Playlists. YouTubeSweg uses the Google APIs Client Library for Python which can be found here: <a href="https://developers.google.com/api-client-library/python/">https://developers.google.com/api-client-library/python/</a></p></p>
+
+
+ <p>There are several different endpoints present in the YouTube Data API to expose this data. By providing things like category ID’s, video ID’s, region codes, and more, we can find relevant YouTube videos in various scopes along with video metadata. An example of an API call is shown here:
+
+<p style="padding-left: 1.8em"><b>video_response = youtube.videos().list(
+    id=video_ids,
+    part='snippet, recordingDetails'
+  ).execute()</b></p>
+
+<p>The above API function lists the locations of the videos specified by the list of ids video_ids. But such calls are not only limited to videos but to channels and playlists as well. Currently we are using the API to populate the videos, channels, categories and playlists on the YouTubeSweg website. This is done using a list of ids for the above scopes that was collected programmatically. These ids are then passed as arguments to API calls as shown above.</p>
 
 <p>The reference for the YouTube Data API can be found here: <a href="https://developers.google.com/youtube/v3/docs/">https://developers.google.com/youtube/v3/docs/</a></p>
 <a name="GCP"></a>
