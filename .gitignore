@@ -2,4 +2,5 @@
 *.DS_Store
 /app/models.pyc
 .pylintrc
+frontend/app.yaml
 *~

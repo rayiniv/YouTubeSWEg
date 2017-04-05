@@ -1,9 +1,15 @@
-runtime: python27
-api_version: 1
-threadsafe: true
+runtime: python
+env: flex
+entrypoint: gunicorn -b :$PORT main:app
 
-handlers:
-- url: /static
-  static_dir: static
-- url: /.*
-  script: main.app
+runtime_config:
+  python_version: 3
+
+env_variables:
+    # Replace user, password, database, and instance connection name with the values obtained
+    # when configuring your Cloud SQL instance.
+    SQLALCHEMY_DATABASE_URI: >-
+      postgresql+psycopg2://{USERNAME}:{PASSWORD}@/{DATABASE}?host=/cloudsql/youtubesweg-163519:us-central1:db
+
+beta_settings:
+    cloud_sql_instances: youtubesweg-163519:us-central1:db       

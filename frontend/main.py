@@ -5,10 +5,27 @@
 # pylint: disable = import-error
 
 import logging
+import os
+import socket
+import datetime
+import sys
 
-from flask import Flask, render_template
+sys.path.append('../app/')
+from models import Video, Channel, Category, Playlist, Base
+
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
+from flask import Flask, render_template, request
+from flask_sqlalchemy import SQLAlchemy
+import sqlalchemy
 
 app = Flask(__name__)
+
+# Environment variables are defined in app.yaml.
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['SQLALCHEMY_DATABASE_URI']
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+# db = SQLAlchemy(app)
 
 video_links = [
     "https://www.youtube.com/embed/SpXw0qiy3Wo?list=PLC1uUM4twa8gQwnAQuwTl17lfzDYElmAn",
@@ -189,6 +206,18 @@ playlist_video_list = [playlist1_videos, playlist2_videos, playlist3_videos]
 
 playlists = [playlist1, playlist2, playlist3]
 
+
+@app.route('/db_testing')
+def db_testing():
+    engine = create_engine(os.environ['SQLALCHEMY_DATABASE_URI'])
+    Base.metadata.bind = engine
+    DBSession = sessionmaker()
+    DBSession.bind = engine
+    session = DBSession()
+    output = ""
+    for channel in session.query(Channel).all():
+        output += channel.title + "<br />"
+    return output
 
 @app.route('/')
 def splash_page():

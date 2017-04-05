@@ -7,7 +7,9 @@ from sqlalchemy.orm import sessionmaker
 
 from models import Base, Video, Channel, Category, Playlist
 
-engine = create_engine('sqlite:///youtubesweg.db')
+import os
+
+engine = create_engine(os.environ['SQLALCHEMY_DATABASE_URI'])
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
@@ -19,27 +21,27 @@ new_channel = Channel(title="channel title", description="channel description",
 new_category = Category(title="category title",
                         num_videos=10, assignable=False)
 new_playlist = Playlist(title="playlist title",
-                        description="playlist description", tags="playlist tags", num_items=10)
+                        description="playlist description", num_items=10)
 
 # Link channel to video
-new_video.channel = new_channel
+new_video.channel = new_channel #DONE
 # Link category to video
-new_video.categories = new_category
+new_video.category = new_category #DONE
 
 # Link video to channel
-new_channel.videos.append(new_video)
+new_channel.videos.append(new_video) #DONE
 # Link playlist to channel
-new_channel.playlists.append(new_playlist)
+new_channel.playlists.append(new_playlist) #DONE
 
 # Link video to category
-new_category.videos.append(new_video)
+new_category.videos.append(new_video) #DONE
 # Link channel to category
-new_category.channels.append(new_channel)
+new_category.channels.append(new_channel) #DONE
 
 # Link channel to playlist
-new_playlist.channel = new_channel
+new_playlist.channel = new_channel #DONE
 # Link video to playlist
-new_playlist.videos.append(new_video)
+new_playlist.videos.append(new_video) #DONE
 
 # Add video, channel, category, and playlist to their respective tables
 session.add(new_video)

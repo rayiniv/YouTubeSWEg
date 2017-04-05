@@ -9,6 +9,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
 
+import os
+
 Base = declarative_base()
 
 video_category_table = Table('video_category', Base.metadata,
@@ -39,16 +41,16 @@ class Video(Base):
     __tablename__ = "video"
     id = Column(Integer, primary_key=True)
 
-    title = Column(String(250), nullable=False)
-    description = Column(String(250), nullable=False)
-    thumbnail = Column(String(250), nullable=False)
-    tags = Column(String(250), nullable=False)
+    title = Column(String(750), nullable=False)
+    description = Column(String(750), nullable=False)
+    thumbnail = Column(String(750), nullable=False)
+    tags = Column(String(750), nullable=False)
 
-    channel_id = Column(Integer, ForeignKey('channel.id'))
-    channel = relationship("Channel", back_populates="videos")
+    channel_id = Column(Integer, ForeignKey('channel.id')) 
+    channel = relationship("Channel", back_populates="videos") #DONE
 
-    category_id = Column(Integer, ForeignKey('category.id'))
-    categories = relationship("Category", back_populates="videos")
+    category_id = Column(Integer, ForeignKey('category.id')) 
+    category = relationship("Category", back_populates="videos") #DONE
 
 
 class Channel(Base):
@@ -61,15 +63,15 @@ class Channel(Base):
     __tablename__ = "channel"
     id = Column(Integer, primary_key=True)
 
-    title = Column(String(250), nullable=False)
-    description = Column(String(250), nullable=False)
+    title = Column(String(750), nullable=False)
+    description = Column(String(750), nullable=False)
     published_date = Column(DateTime, default=None)
-    country = Column(String(250), nullable=False)
+    country = Column(String(750), nullable=False)
     view_count = Column(BigInteger, nullable=False)
     subscriber_count = Column(BigInteger, nullable=False)
 
-    videos = relationship("Video", back_populates="channel")
-    playlists = relationship("Playlist", back_populates="channel")
+    videos = relationship("Video", back_populates="channel") #DONE
+    playlists = relationship("Playlist", back_populates="channel") #DONE
 
 
 class Category(Base):
@@ -82,14 +84,14 @@ class Category(Base):
     __tablename__ = "category"
     id = Column(Integer, primary_key=True)
 
-    title = Column(String(250), nullable=False)
+    title = Column(String(750), nullable=False)
     latest_published_date = Column(DateTime, default=None)
     num_videos = Column(Integer, nullable=False)
     assignable = Column(Boolean, unique=False, default=True)
 
-    videos = relationship("Video", back_populates="categories")
+    videos = relationship("Video", back_populates="category") #DONE
 
-    channels = relationship("Channel", secondary=channel_category_table)
+    channels = relationship("Channel", secondary=channel_category_table) #DONE
 
 
 class Playlist(Base):
@@ -102,16 +104,15 @@ class Playlist(Base):
     __tablename__ = "playlist"
     id = Column(Integer, primary_key=True)
 
-    title = Column(String(250), nullable=False)
-    description = Column(String(250), nullable=False)
-    tags = Column(String(250), nullable=False)
+    title = Column(String(750), nullable=False)
+    description = Column(String(750), nullable=False)
     published_date = Column(DateTime, default=None)
     num_items = Column(Integer, default=None)
 
     channel_id = Column(Integer, ForeignKey('channel.id'))
-    channel = relationship("Channel", back_populates="playlists")
+    channel = relationship("Channel", back_populates="playlists") #DONE
 
-    videos = relationship("Video", secondary=video_playlist_table)
+    videos = relationship("Video", secondary=video_playlist_table) #DONE
 
-engine = create_engine('sqlite:///youtubesweg.db')
+engine = create_engine(os.environ['SQLALCHEMY_DATABASE_URI'])
 Base.metadata.create_all(engine)

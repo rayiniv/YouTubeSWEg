@@ -1,0 +1,103 @@
+{
+    "items": [
+        {
+            "assignable": true, 
+            "title": "Sports", 
+            "num_videos": 161, 
+            "channelsThatLink": [
+                "UCC5cl9t6kt1JIf5vLd-LaaA", 
+                "UCiWLfSweyRNmLpgEHekhoAg"
+            ], 
+            "lastest_published_date": "2017-04-03T01:50:47.000Z", 
+            "categoryId": "17"
+        }, 
+        {
+            "assignable": true, 
+            "title": "Music", 
+            "num_videos": 160, 
+            "channelsThatLink": [
+                "UC9YcTIQuhwgoOQqYMKYqW9A", 
+                "UC1_liDR4fRFJgH4HoJeV8cw"
+            ], 
+            "lastest_published_date": "2017-03-30T23:00:06.000Z", 
+            "categoryId": "10"
+        }, 
+        {
+            "assignable": true, 
+            "title": "Comedy", 
+            "num_videos": 196, 
+            "channelsThatLink": [
+                "UCGt7X90Au6BV8rf49BiM6Dg", 
+                "UC8-Th83bH_thdKZDJCrn88g", 
+                "UCRbOPaGDB_xOQkVM8Rnn62Q", 
+                "UCUsN5ZwHx2kILm84-jPDeXw"
+            ], 
+            "lastest_published_date": "2017-03-31T20:00:05.000Z", 
+            "categoryId": "23"
+        }, 
+        {
+            "assignable": true, 
+            "title": "Entertainment", 
+            "num_videos": 162, 
+            "channelsThatLink": [
+                "UC3XTzVzaHQEd30rQbuvCtTQ", 
+                "UCJ0uqCI0Vqr2Rrt1HseGirg", 
+                "UCgPClNr5VSYC3syrDUIlzLw", 
+                "UCMtFAi84ehTSYSE9XoHefig", 
+                "UCCqEeDAUf4Mg0GgEN658tkA", 
+                "UCMu5gPmKp5av0QCAajKTMhw", 
+                "UCxqV2u6alqV9QDzQsOwbiog", 
+                "UCJFp8uSYCjXOMnkUyb3CQ3Q"
+            ], 
+            "lastest_published_date": "2017-04-03T06:30:00.000Z", 
+            "categoryId": "24"
+        }, 
+        {
+            "assignable": true, 
+            "title": "Film & Animation", 
+            "num_videos": 171, 
+            "channelsThatLink": [
+                "UC3XTzVzaHQEd30rQbuvCtTQ", 
+                "UCCqEeDAUf4Mg0GgEN658tkA", 
+                "UCxqV2u6alqV9QDzQsOwbiog"
+            ], 
+            "lastest_published_date": "2017-03-29T16:00:03.000Z", 
+            "categoryId": "1"
+        }, 
+        {
+            "assignable": true, 
+            "title": "Gaming", 
+            "num_videos": 165, 
+            "channelsThatLink": [
+                "UC6VcWc1rAoWdBCM0JxrRQ3A", 
+                "UCam8T03EOFBsNdR0thrFHdQ", 
+                "UC2t5bjwHdUX4vM2g8TRDq5g", 
+                "UCvqRdlKsE5Q8mf8YXbdIJLw"
+            ], 
+            "lastest_published_date": "2017-04-01T12:30:01.000Z", 
+            "categoryId": "20"
+        }, 
+        {
+            "assignable": true, 
+            "title": "People & Blogs", 
+            "num_videos": 185, 
+            "channelsThatLink": [
+                "UCpko_-a4wgz2u_DgDgd9fqA", 
+                "UCJFp8uSYCjXOMnkUyb3CQ3Q"
+            ], 
+            "lastest_published_date": "2017-04-03T18:21:43.000Z", 
+            "categoryId": "22"
+        }, 
+        {
+            "assignable": true, 
+            "title": "Howto & Style", 
+            "num_videos": 156, 
+            "channelsThatLink": [
+                "UCpko_-a4wgz2u_DgDgd9fqA", 
+                "UCJFp8uSYCjXOMnkUyb3CQ3Q"
+            ], 
+            "lastest_published_date": "2017-04-02T15:00:09.000Z", 
+            "categoryId": "26"
+        }
+    ]
+}

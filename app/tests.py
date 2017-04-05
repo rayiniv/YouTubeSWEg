@@ -8,7 +8,10 @@ from models import Video, Channel, Category, Playlist, Base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-engine = create_engine('sqlite:///youtubesweg.db')
+import os
+
+os.path.prepend('../app/')
+engine = create_engine(os.environ['SQLALCHEMY_DATABASE_URI'])
 Base.metadata.bind = engine
 DBSession = sessionmaker()
 DBSession.bind = engine
