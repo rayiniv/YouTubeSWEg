@@ -11,6 +11,8 @@ RESTful API to expose data regarding YouTube videos presented from youtubesweg.m
 
 Returns videos from the website. If no optional parameters are provided, all the videos will be returned.
 
+Optional Parameters: id, channel\_id, category\_id
+
 Note: the channel_id field and categories field both contain integer values to indicate the channel 
 or category respectively. Query the Channel or Category resource again with the ID in order to receive 
 the respective object.
@@ -68,6 +70,8 @@ the respective object.
 
 Returns channels from the website. If no optional parameters are provided, all the channels will be returned.
 
+Optional Parameters: id, country
+
 Note: the videos field and playlists field both contain an array of integer values to 
 indicate the videos or playlists respectively. Query the Video or Playlist 
 resource again with the ID in order to receive the respective object.
@@ -113,6 +117,8 @@ resource again with the ID in order to receive the respective object.
 
 Returns categories from the website. If no optional parameters are provided, all the categories will be returned.
 
+Optional Parameters: id, channel\_id
+
 Note: the videos field and channels field both contain an array of integer values to 
 indicate the videos or channels respectively. Query the Video or Channel 
 resource again with the ID in order to receive the respective object.
@@ -153,6 +159,8 @@ resource again with the ID in order to receive the respective object.
 ### List Playlists [GET]
 
 Returns playlists from the website. If no optional parameters are provided, all the playlists will be returned.
+
+Optional Parameters: id, video\_id
 
 Note: the channel_id field and videos field both contain integer values to 
 indicate the channel or videos respectively. Query the Channel or Video 
