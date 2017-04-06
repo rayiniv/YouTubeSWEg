@@ -305,10 +305,10 @@ def video_pagination(page_num):
 @app.route('/pagination/channel/<page_num>')
 def channel_pagination(page_num):
   starting_num = (int(page_num) - 1) * num_per_page;
-  if starting_num + num_per_page <= len(channels):
-    return json.dumps(channels[starting_num:starting_num + 6])
+  if starting_num + num_per_page <= len(channels_copy):
+    return json.dumps(channels_copy[starting_num:starting_num + 6])
   else:
-    return json.dumps(channels[starting_num:]) 
+    return json.dumps(channels_copy[starting_num:]) 
 
 @app.route('/pagination/category/<page_num>')
 def category_pagination(page_num):
@@ -380,29 +380,40 @@ def video_sorting(num, option, filter_channel, filter_category):
 
   return str(videos_copy)
 
-# @app.route('/pagination/channel/<page_num>')
-# def channel_pagination(page_num):
-#   starting_num = (int(page_num) - 1) * num_per_page;
-#   if starting_num + num_per_page <= len(channels):
-#     return json.dumps(videos[starting_num:starting_num + 6])
-#   else:
-#     return json.dumps(videos[starting_num:])
+@app.route('/sorting/channel/<num>/<option>/<filter_country>/<filter_none>')
+def channel_sorting(num, option, filter_country, filter_none):
+  global channels_copy
+  channels_copy = list(channels)
 
-# @app.route('/pagination/category/<page_num>')
-# def category_pagination(page_num):
-#   starting_num = (int(page_num) - 1) * num_per_page;
-#   if starting_num + num_per_page <= len(categories):
-#     return json.dumps(videos[starting_num:starting_num + 6])
-#   else:
-#     return json.dumps(videos[starting_num:])
+  if filter_country != "blank":
+    filterCountryOptions = filter_country.split(",")
+    final_results = []
+    for opt in filterCountryOptions:
+      if opt != "":
+        temp = filter_results(channels_copy, "country", opt)
+        for dictionary in temp:
+          final_results.append(dictionary)
+    channels_copy = list(final_results)
 
-# @app.route('/pagination/playlist/<page_num>')
-# def playlist_pagination(page_num):
-#   starting_num = (int(page_num) - 1) * num_per_page;
-#   if starting_num + num_per_page <= len(playlists):
-#     return json.dumps(videos[starting_num:starting_num + 6])
-#   else:
-#     return json.dumps(videos[starting_num:])            
+  if filter_none != "blank":
+    filterCategoryOptions = filter_category.split(",")
+    final_results = []
+    for opt in filterCategoryOptions:
+      if opt != "":
+        temp = filter_results(videos_copy, "category_title", opt)
+        for dictionary in temp:
+          final_results.append(dictionary)
+    videos_copy = list(final_results)
+
+  if option != "blank":
+    if int(num) == 0:
+      channels_copy = list(channels_copy)  
+    elif int(num) == 1:
+      channels_copy = sort_results(channels_copy, option, False)
+    else:
+      channels_copy = sort_results(channels_copy, option, True)
+
+  return str(channels_copy)           
 
 @app.errorhandler(500)
 def server_error(e):
