@@ -43,7 +43,10 @@ def to_arr_dict(objs):
           and not a == "playlists" and not a == "channels"]
 
         for attr in attrs:
-            curr_dict[attr] = getattr(obj, attr)
+            if attr == "published_date":
+                curr_dict[attr] = getattr(obj, attr).strftime("%B %d, %Y")
+            else:
+                curr_dict[attr] = getattr(obj, attr)
         result.append(curr_dict)
     return result
 
@@ -175,6 +178,14 @@ def video_pagination(page_num):
     return json.dumps(videos[starting_num:starting_num + 6])
   else:
     return json.dumps(videos[starting_num:])
+
+@app.route('/pagination/channel/<page_num>')
+def channel_pagination(page_num):
+  starting_num = (int(page_num) - 1) * num_per_page;
+  if starting_num + num_per_page <= len(channels):
+    return json.dumps(channels[starting_num:starting_num + 6])
+  else:
+    return json.dumps(channels[starting_num:])    
 
 # @app.route('/sorting/video/<')
 # def video_pagination(page_num):
