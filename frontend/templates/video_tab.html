@@ -71,12 +71,12 @@
           }
 
           handlePageClick(event) {
-            var num = Number(event.target.id)
-            this.setState({
-              active_page: num
-            });
-            this.state.list = []
-            console.log("page " + num)
+              var num = Number(event.target.id)
+              this.setState({
+                active_page: num
+              });
+              this.state.list = []
+              console.log("page " + num)
           }
             
           handleSortClick(event){
@@ -91,10 +91,9 @@
 
           handleCategoryClick(event){
               this.state.list = []
-              console.log("filter category " + event.target.id)
+              console.log("page " + num)
           }
-
-
+            
           render() {
             if (this.state.list.length == 0) {
                $.getJSON('/pagination/video/' + this.state.active_page).done(function(data) {
