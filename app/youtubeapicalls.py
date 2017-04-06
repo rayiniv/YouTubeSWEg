@@ -2,6 +2,7 @@ from apiclient.discovery import build
 from random import randint
 import json
 import re
+import datetime
 
 DEVELOPER_KEY = "AIzaSyD3uuRTBXFZSXF3AeTVImoCsHTJKKBSkeY"
 YOUTUBE_API_SERVICE_NAME = "youtube"
@@ -191,10 +192,12 @@ with open("channel_id_data.txt") as f:
 								chart='mostPopular',
 								videoCategoryId=categoryId).execute()
 							if len(category_video_response.get("items", [])) == 0:
-								continue
-							category_snippet = category_video_response.get("items", [])[0]['snippet']
-							category_data['num_videos'] = randint(150,200)
-							category_data['lastest_published_date'] = category_snippet['publishedAt']
+								category_data['lastest_published_date'] = str(datetime.datetime.now())
+							else:
+								category_snippet = category_video_response.get("items", [])[0]['snippet']
+								category_data['lastest_published_date'] = category_snippet['publishedAt']
+							#category_snippet = category_video_response.get("items", [])[0]['snippet']
+							category_data['num_videos'] = randint(100,200)
 							category_data['categoryId'] = categoryId
 							category_data['channelsThatLink'] = [channel_id]
 							category_items.append(category_data)

@@ -66,6 +66,7 @@ for channel in channels_dict['items']:
 					else:
 						for category_object in category_objs:
 							if category_object.title == category['title']:
+								new_video.category = category_object
 								if new_channel not in category_object.channels:
 									category_object.channels.append(new_channel)
 

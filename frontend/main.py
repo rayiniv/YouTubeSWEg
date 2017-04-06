@@ -19,6 +19,8 @@ from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 import sqlalchemy
 
+import json
+
 app = Flask(__name__)
 
 # Environment variables are defined in app.yaml.
@@ -27,184 +29,27 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # db = SQLAlchemy(app)
 
-video_links = [
-    "https://www.youtube.com/embed/SpXw0qiy3Wo?list=PLC1uUM4twa8gQwnAQuwTl17lfzDYElmAn",
-    "https://www.youtube.com/embed/zEyEC34MY1A?list=PL36E7A2B75028A3D6",
-    "https://www.youtube.com/embed/Fi37_GYRYCs?list=PLn3nHXu50t5zJPLQFFNGFSHhnsc-xpsnR"]
-
-video_headers = ["Title", "Channel", "Description",
-                 "Thumbnail", "Tags", "Categories"]
-
-video1 = [
-    ("21 Savage & Metro Boomin - X ft Future (Official Music Video)", "/video/1"),
-    ("21 Savage", "/channel/1"),
-    "21 Savage & Metro Boomin deliver a visual for their platinum selling record, 'X' featuring"
-    + " Future",
-    "https://i.ytimg.com/vi/SpXw0qiy3Wo/hqdefault.jpg?custom=true&w=120&h=90&jpg444=true&jpgq=90&sp"
-    + "=68&sigh=DLoxY9SpDoeNH4L0n58Rgl-_Sog",
-    "21 savage x, x 21 savage, 21 savage future x, x 21 savage future, 21 savage metro boomin x",
-    ("Music", "/category/1")]
-video2 = [
-    ("Python Lists", "/video/2"),
-    ("Khan Academy", "/channel/2"),
-    "Understanding the basics of lists in Python",
-    "https://i.ytimg.com/vi/zEyEC34MY1A/hqdefault.jpg?custom=true&w=120&h=90&jpg444=true&jpgq=90&sp"
-    + "=68&sigh=rM9BoXNJo2Gwx6Z_bt08X5s6xWw",
-    "khan academy, academy khan, khan, academy, python, sal, lists",
-    ("Education", "/category/2")]
-video3 = [
-    ("A Dog's Remarkable Journey To Find A Home | SC Featured", "/video/3"),
-    ("ESPN", "/channel/3"),
-    "A distance of 6,455 miles doesn't begin to measure the journey one dog named Arthur made to"
-    + " join a team and find a family.",
-    "https://i.ytimg.com/vi/Fi37_GYRYCs/hqdefault.jpg?custom=true&w=120&h=90&jpg444=true&jpgq=90&sp"
-    + "=68&sigh=qij2LjwL7tKV70TUjNw0pTKY3Jg (4KB)",
-    "arthur the dog, arthur, arthur sc featured, arthur dog espn feature, sportscenter feature dog,"
-    + " dog remarkable journey",
-    ("Sports", "/category/3")]
-
-videos = [video1, video2, video3]
+engine = create_engine(os.environ['SQLALCHEMY_DATABASE_URI'])
+Base.metadata.bind = engine
+DBSession = sessionmaker()
+DBSession.bind = engine
+session = DBSession()
 
 
-channel_headers = ["Title", "Description", "Date of Publication",
-                   "Country", "View Count", "Subscriber Count"]
+def to_arr_dict(objs):
+    result = []
+    for obj in objs:
+        curr_dict = {}
+        attrs = [a for a in dir(obj) if not a.startswith('_') and not a == "metadata"]
+        for attr in attrs:
+            curr_dict[attr] = getattr(obj, attr)
+        result.append(curr_dict)
+    return result
 
-channel1 = [
-    ("21 Savage", "/channel/1"),
-    "21 Savage's official channel! Subscribe for all music videos, behind the scenes and tour" +
-    " videos from 21 as they'll drop here first.",
-    "Feb 8, 2014",
-    "United States",
-    "319,281,006",
-    "734,993"]
-
-channel1_videos = [
-    ("21 Savage & Metro Boomin - X ft Future (Official Music Video)", "/video/1")]
-channel1_playlists = [("21 Savage | Music Videos", "/playlist/1")]
-
-channel2 = [
-    ("Khan Academy", "/channel/2"),
-    "Our mission to provide a world-class education for anyone, anywhere. All Khan Academy" +
-    " content is available for free at www.khanacademy.org.",
-    "Nov 16, 2006",
-    "United States",
-    "1,072,136,706",
-    "3,059,083"]
-
-channel2_videos = [("Python Lists", "/video/2")]
-channel2_playlists = [("Computer Science", "/playlist/2")]
-
-channel3 = [
-    ("ESPN", "/channel/3"),
-    "ESPN on YouTube features the best of shows like SportsCenter, SC6, and First Take, along" +
-    " with the most surprising and inspiring stories in sports. Get all your sports videos," +
-    " sports information, sports news, sports scores, and sports analysis right here.",
-    "Oct 31, 2005",
-    "United States",
-    "5,369,132",
-    "1,657,655"]
-
-channel3_videos = [
-    ("A Dog's Remarkable Journey To Find A Home | SC Featured", "/video/3")]
-channel3_playlists = [("ESPN Originals", "/playlist/3")]
-
-channel_video_list = [channel1_videos, channel2_videos, channel3_videos]
-channel_playlist_list = [channel1_playlists,
-                         channel2_playlists, channel3_playlists]
-
-channels = [channel1, channel2, channel3]
-
-
-category_headers = ["Title", "Latest Published Video Date", "Number of videos",
-                    "Assignable", "Most popular video", "Most popular channel"]
-
-category1 = [
-    ("Music", "/category/1"),
-    "March 20, 2017",
-    "200",
-    "true",
-    ("21 Savage & Metro Boomin - X ft Future (Official Music Video)", "/video/1"),
-    ("21 Savage", "/channel/1")]
-
-category1_videos = [
-    ("21 Savage & Metro Boomin - X ft Future (Official Music Video)", "/video/1")]
-category1_channels = [("21 Savage", "/channel/1")]
-
-category2 = [
-    ("Education", "/category/2"),
-    "March 19, 2017",
-    "174",
-    "true",
-    ("Python Lists", "/video/2"),
-    ("Khan Academy", "/channel/2")]
-
-category2_videos = [("Python Lists", "/video/2")]
-category2_channels = [("Khan Academy", "/channel/2")]
-
-category3 = [
-    ("Sports", "/category/3"),
-    "March 20, 2017",
-    "190",
-    "true",
-    ("A Dog's Remarkable Journey To Find A Home | SC Featured", "/video/3"),
-    ("ESPN", "/channel/3")]
-
-category3_videos = [
-    ("A Dog's Remarkable Journey To Find A Home | SC Featured", "/video/3")]
-category3_channels = [("ESPN", "/channel/3")]
-
-
-category_video_list = [category1_videos, category2_videos, category3_videos]
-category_channel_list = [category1_channels,
-                         category2_channels, category3_channels]
-
-categories = [category1, category2, category3]
-
-
-playlist_headers = ["Title", "Description",
-                    "Associated Tags", "Date of Publication", "Item Count"]
-
-playlist1 = [
-    ("21 Savage | Music Videos", "/playlist/1"),
-    "Music videos by 21 Savage. Various directors. All music can be found here: " +
-    "http://www.livemixtapes.com/main.php?artist=21+savage",
-    "video, sharing, camera phone, video phone, free, upload",
-    "Dec 25, 2016",
-    "14"]
-
-playlist1_channel = ("21 Savage", "/channel/1")
-playlist1_videos = [
-    ("21 Savage & Metro Boomin - X ft Future (Official Music Video)", "/video/1")]
-
-playlist2 = [
-    ("Computer Science", "/playlist/2"),
-    "Introduction to programming and computer science",
-    "khan academy, academy khan, computer science, academy, khan",
-    "Jul 2, 2014",
-    "23"]
-
-playlist2_channel = ("Khan Academy", "/channel/2")
-playlist2_videos = [("Python Lists", "/video/2")]
-
-playlist3 = [
-    ("ESPN Originals", "/playlist/3"),
-    "From '30 For 30' to 'SC Featured,'' these are ESPN's original videos telling some of the" +
-    " greatest stories that transcend sports.",
-    "arthur the dog, arthur, arthur sc featured, arthur dog espn feature, sportscenter feature" +
-    " dog, dog remarkable journey, arthur journey, dog traveled espn, art",
-    "Mar 9 2017",
-    "15"]
-
-playlist3_channel = ("ESPN", "/channel/3")
-playlist3_videos = [
-    ("A Dog's Remarkable Journey To Find A Home | SC Featured", "/video/3")]
-
-
-playlist_channel_list = [playlist1_channel,
-                         playlist2_channel, playlist3_channel]
-playlist_video_list = [playlist1_videos, playlist2_videos, playlist3_videos]
-
-playlists = [playlist1, playlist2, playlist3]
+videos = to_arr_dict(session.query(Video).all())
+channels = to_arr_dict(session.query(Channel).all())
+categories = to_arr_dict(session.query(Category).all())
+playlists = to_arr_dict(session.query(Playlist).all())
 
 
 @app.route('/db_testing')
