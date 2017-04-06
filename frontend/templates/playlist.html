@@ -7,25 +7,28 @@
 
 <div align="center" class="row">
 
-  {% for item in playlist_data %}
   <div>
-    <h3>{{headers[loop.index - 1]}}</h3>
-    <p>
-      {% if item is not string %}
-        <a href={{ item[1] }} > {{ item[0] }} </a>
-      {% else %}
-        {% if 'jpg' in item %}
-          <img src={{item}}>
-        {% else %}
-          {{item}}
-        {% endif %}
-      {% endif %}
-    </p>
+    <h3>Title</h3
+    <p><a href={{playlist_url}}>{{playlist_title}}</a></p>
   </div>
-  {% endfor %}
 
   <div>
-    <h3> Channel </h3>
+    <h3>Description</h3
+    <p>{{description}}</p>
+  </div>
+
+  <div>
+    <h3>Date of Publication</h3
+    <p>{{date_of_publication}}</p>
+  </div>
+
+  <div>
+    <h3>Item Count</h3
+    <p>{{item_count}}</p>
+  </div>
+
+  <div>
+    <h3>Channel </h3>
     <a href={{ playlist_channel[1] }} > {{ playlist_channel[0] }} </a>
   </div>
 
@@ -37,9 +40,9 @@
       </tr>
     </thead>
     <tbody>
-      {% for video in playlist_video_list %}
+      {% for video in video_array %}
       <tr>
-          <td> <a href={{ video[1] }} > {{ video[0] }} </a></td>
+          <td> <a href={{ video['video_url'] }} > {{ video['video_title'] }} </a></td>
       </tr>
       {% endfor %}
     </tbody>

@@ -113,10 +113,16 @@ def playlist_to_dict(objs):
 
 num_per_page = 6
 
-videos = video_to_dict(session.query(Video).all())
-channels = to_arr_dict(session.query(Channel).all())
-categories = category_to_dict(session.query(Category).all())
-playlists = playlist_to_dict(session.query(Playlist).all())
+
+video_all = session.query(Video).all()
+channel_all = session.query(Channel).all()
+category_all = session.query(Category).all()
+playlist_all = session.query(Playlist).all()
+
+videos = video_to_dict(video_all)
+channels = to_arr_dict(channel_all)
+categories = category_to_dict(category_all)
+playlists = playlist_to_dict(playlist_all)
 
 @app.route('/db_testing')
 def db_testing():
@@ -154,45 +160,132 @@ def playlist():
 # def about():
 #     return render_template('about.html')
 
-# @app.route('/video/<num>')
-# def video_instance(num):
-#     return render_template('video.html', headers=video_headers,
-#                            video_link=video_links[int(num) - 1], video_data=videos[int(num) - 1])
+@app.route('/video/<num>')
+def video_instance(num):
+    video_obj = None
+    for video in video_all:
+        if video.id == int(num):
+            video_obj = video
+            break
 
-# @app.route('/channel/<num>')
-# def channel_instance(num):
-#     index = int(num) - 1
-#     kwargs = {'headers': channel_headers,
-#               'channel_video_list': channel_video_list[index],
-#               'channel_playlist_list': channel_playlist_list[index],
-#               'channel_data': channels[index]}
-#     return render_template('channel.html', **kwargs)
-#     # return render_template('channel.html', headers=channel_headers,
-#     # channel_video_list=channel_video_list[int(num) - 1],    
-#     # channel_playlist_list=channel_playlist_list[int(num) - 1],
-#     # channel_data=channels[int(num) - 1])
+    kwargs = {'headers': ['Title', 'Channel', 'Description', 'Thumbnail', 'Tags', 'Categories'],
+              'url': 'https://www.youtube.com/embed/' + video_obj.video_url,
+              'vid_title': video_obj.title,
+              'title_url': '/video/' + num,
+              'channel': video_obj.channel.title,
+              'channel_url': '/channel/' + str(video_obj.channel.id),
+              'description': video_obj.description,
+              'thumbnail': video_obj.thumbnail,
+              'tags': video_obj.tags,
+              'category': video_obj.category.title,
+              'category_url': '/category/' + str(video_obj.category.id)}
+    return render_template('video.html', **kwargs)
 
-# @app.route('/category/<num>')
-# def category_instance(num):
-#     index = int(num) - 1
-#     kwargs = {'headers': category_headers,
-#               'category_video_list': category_video_list[index],
-#               'category_channel_list': category_channel_list[index],
-#               'category_data': categories[index]}
-#     return render_template('category.html', **kwargs)
-#     # return render_template('category.html', headers=category_headers,
-#     # category_data=categories[int(num) - 1])
 
-# @app.route('/playlist/<num>')
-# def playlist_instance(num):
-#     index = int(num) - 1
-#     kwargs = {'headers': playlist_headers,
-#               'playlist_video_list': playlist_video_list[index],
-#               'playlist_channel': playlist_channel_list[index],
-#               'playlist_data': playlists[index]}
-#     return render_template('playlist.html', **kwargs)
-#     # return render_template('playlist.html', headers=playlist_headers,
-#     # playlist_data=playlists[int(num) - 1])
+@app.route('/channel/<num>')
+def channel_instance(num):
+    channel_obj = None
+    for channel in channel_all:
+        if channel.id == int(num):
+            channel_obj = channel
+            break
+
+    video_array = []
+    for video in channel_obj.videos:
+        curr_dict = {}
+        curr_dict['video_title'] = video.title
+        curr_dict['video_url'] = '/video/' + str(video.id)
+        video_array.append(curr_dict)
+
+    playlist_array = []
+    for playlist in channel_obj.playlists:
+        curr_dict = {}
+        curr_dict['playlist_title'] = playlist.title
+        curr_dict['playlist_url'] = '/playlist/' + str(playlist.id)
+        playlist_array.append(curr_dict)
+
+
+    kwargs = {'headers': ['Title', 'Description', 'Date of Publication', 'Country', 'View Count', 'Subscriber Count'],
+              'channel_title': channel_obj.title,
+              'channel_url': '/channel/' + num,
+              'description': channel_obj.description,
+              'date_of_publication': channel.published_date.strftime("%B %d, %Y"),
+              'country': channel_obj.country,
+              'view_count': channel_obj.view_count,
+              'subscriber_count': channel_obj.subscriber_count,
+              'video_array': video_array,
+              'playlist_array': playlist_array}
+
+    return render_template('channel.html', **kwargs)
+
+@app.route('/category/<num>')
+def category_instance(num):
+    category_obj = None
+    for category in category_all:
+        if category.id == int(num):
+            category_obj = category
+            break
+
+    video_array = []
+    for video in category_obj.videos:
+        curr_dict = {}
+        curr_dict['video_title'] = video.title
+        curr_dict['video_url'] = '/video/' + str(video.id)
+        video_array.append(curr_dict)
+
+    channel_array = []
+    for channel in category_obj.channels:
+        curr_dict = {}
+        curr_dict['channel_title'] = channel.title
+        curr_dict['channel_url'] = '/channel/' + str(channel.id)
+        channel_array.append(curr_dict)
+
+
+    kwargs = {'headers': ['Title', 'Latest Published Video Date', 'Number of Videos', 'Assignable', 'Most Popular Video', 'Most Popular Channel'],
+              'category_title': category_obj.title,
+              'category_url': '/category/' + num,
+              'latest_published_video_date': category_obj.latest_published_date.strftime("%B %d, %Y"),
+              'num_videos': category_obj.num_videos,
+              'assignable': str(category_obj.assignable),
+              'most_popular_video': [category_obj.videos[0].title, '/video/' + str(category_obj.videos[0].id)],
+              'most_popular_channel': [category_obj.channels[0].title, '/channel/' + str(category_obj.channels[0].id)],
+              'video_array': video_array,
+              'channel_array': channel_array}
+
+    return render_template('category.html', **kwargs)
+
+@app.route('/playlist/<num>')
+def playlist_instance(num):
+    playlist_obj = None
+    for playlist in playlist_all:
+        if playlist.id == int(num):
+            playlist_obj = playlist
+            break
+
+    video_array = []
+    for video in playlist_obj.videos:
+        curr_dict = {}
+        curr_dict['video_title'] = video.title
+        curr_dict['video_url'] = '/video/' + str(video.id)
+        video_array.append(curr_dict)
+
+    playlist_desc = playlist_obj.description
+    if playlist_desc == '':
+      if playlist_obj.id % 2 != 0:
+        playlist_desc = playlist_obj.channel.description
+      else:
+        playlist_desc = playlist_obj.videos[0].description
+
+    kwargs = {'headers': ['Title', 'Description', 'Date of Publication', 'Item Count', 'Channel'],
+              'playlist_title': playlist_obj.title,
+              'playlist_url': '/playlist/' + num,
+              'description': playlist_desc,
+              'date_of_publication': playlist_obj.published_date.strftime("%B %d, %Y"),
+              'item_count': str(playlist_obj.num_items),
+              'playlist_channel': [playlist_obj.channel.title, '/channel/' + str(playlist_obj.channel.id)],
+              'video_array': video_array}
+
+    return render_template('playlist.html', **kwargs)
 
 # API CALLS
 @app.route('/pagination/video/<page_num>')

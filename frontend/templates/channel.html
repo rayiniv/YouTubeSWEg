@@ -7,22 +7,39 @@
 
 <div align="center" class="row">
 
-  {% for item in channel_data %}
   <div>
-    <h3>{{headers[loop.index - 1]}}</h3>
-    <p>
-      {% if item is not string %}
-        <a href={{ item[1] }} > {{ item[0] }} </a>
-      {% else %}
-        {% if 'jpg' in item %}
-          <img src={{item}}>
-        {% else %}
-          {{item}}
-        {% endif %}
-      {% endif %}
-    </p>
+    <h3>Title</h3
+    <p><a href={{channel_url}}>{{channel_title}}</a></p>
   </div>
-  {% endfor %}
+
+  <div>
+    <h3>Description</h3
+    <p>{{description}}</p>
+  </div>
+
+  <div>
+    <h3>Date of Publication</h3
+    <p>{{date_of_publication}}</p>
+  </div>
+
+  <div>
+    <h3>Country</h3
+    <p>{{country}}</p>
+  </div>
+
+  <div>
+    <h3>View Count</h3
+    <p>{{view_count}}</p>
+  </div>
+
+  <div>
+    <h3>Subscriber Count</h3>
+    <p>{{subscriber_count}}</p>
+    {% if subscriber_count == 0 %}
+    <p>This is not a bug...this channel actually has no subscribers</p>
+    {% endif %}
+  </div>
+
 
   <div class="col-xs-4 col-xs-offset-2">
     <table class="table table-striped">
@@ -32,9 +49,9 @@
       </tr>
     </thead>
     <tbody>
-      {% for video in channel_video_list %}
+      {% for video in video_array %}
       <tr>
-          <td> <a href={{ video[1] }} > {{ video[0] }} </a></td>
+          <td> <a href={{ video['video_url'] }} > {{ video['video_title'] }} </a></td>
       </tr>
       {% endfor %}
     </tbody>
@@ -49,9 +66,9 @@
       </tr>
     </thead>
     <tbody>
-      {% for playlist in channel_playlist_list %}
+      {% for playlist in playlist_array %}
       <tr>
-          <td> <a href={{ playlist[1] }} > {{ playlist[0] }} </a></td>
+          <td> <a href={{ playlist['playlist_url'] }} > {{ playlist['playlist_title'] }} </a></td>
       </tr>
       {% endfor %}
     </tbody>

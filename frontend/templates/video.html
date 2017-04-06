@@ -8,25 +8,40 @@
 <div align="center" class="row">
   <br />
   <div>
-    <iframe width="560" height="315" src={{video_link}} frameborder="0" allowfullscreen></iframe>
+    <iframe width="675" height="350" src={{url}} frameborder="0" allowfullscreen></iframe>
   </div>
 
-  {% for item in video_data %}
+
   <div>
-    <h3>{{headers[loop.index - 1]}}</h3>
-    <p>
-      {% if item is not string %}
-        <a href={{ item[1] }} > {{ item[0] }} </a>
-      {% else %}
-        {% if 'jpg' in item %}
-          <img src={{item}}>
-        {% else %}
-          {{item}}
-        {% endif %}
-      {% endif %}
-    </p>
+    <h3>Title</h3
+    <p><a href={{title_url}}>{{vid_title}}</a></p>
   </div>
-  {% endfor %}
+
+  <div>
+    <h3>Channel</h3
+    <p><a href={{channel_url}}>{{channel}}</a></p>
+  </div>
+
+  <div>
+    <h3>Description</h3
+    <p>{{description}}</p>
+  </div>
+
+  <div>
+    <h3>Thumbnail</h3
+    <p><img src={{thumbnail}}></p>
+  </div>
+
+  <div>
+    <h3>Tags</h3
+    <p>{{tags}}</p>
+  </div>
+
+  <div>
+    <h3>Category</h3
+    <p><a href={{category_url}}>{{category}}</a></p>
+  </div>
+  
 </div>
 
 </body>

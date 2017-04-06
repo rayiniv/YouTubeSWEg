@@ -7,22 +7,36 @@
 
 <div align="center" class="row">
 
-  {% for item in category_data %}
   <div>
-    <h3>{{headers[loop.index - 1]}}</h3>
-    <p>
-      {% if item is not string %}
-        <a href={{ item[1] }} > {{ item[0] }} </a>
-      {% else %}
-        {% if 'jpg' in item %}
-          <img src={{item}}>
-        {% else %}
-          {{item}}
-        {% endif %}
-      {% endif %}
-    </p>
+    <h3>Title</h3
+    <p><a href={{category_url}}>{{category_title}}</a></p>
   </div>
-  {% endfor %}
+
+  <div>
+    <h3>Latest Published Video Date</h3
+    <p>{{latest_published_video_date}}</p>
+  </div>
+
+  <div>
+    <h3>Number of Videos</h3
+    <p>{{num_videos}}</p>
+  </div>
+
+  <div>
+    <h3>Assignable</h3
+    <p>{{assignable}}</p>
+  </div>
+
+  <div>
+    <h3>Most Popular Video</h3
+    <p><a href={{most_popular_video[1]}}>{{most_popular_video[0]}}</a></p>
+  </div>
+
+  <div>
+    <h3>Most Popular Channel</h3
+    <p><a href={{most_popular_channel[1]}}>{{most_popular_channel[0]}}</a></p>
+  </div>
+
 
   <div class="col-xs-4 col-xs-offset-2">
     <table class="table table-striped">
@@ -32,16 +46,16 @@
       </tr>
     </thead>
     <tbody>
-      {% for video in category_video_list %}
+      {% for video in video_array %}
       <tr>
-          <td> <a href={{ video[1] }} > {{ video[0] }} </a></td>
+          <td> <a href={{ video['video_url'] }} > {{ video['video_title'] }} </a></td>
       </tr>
       {% endfor %}
     </tbody>
     </table>
   </div>
 
-  <div class="col-xs-4">
+  <div class="col-xs-4 col-xs-offset-2">
     <table class="table table-striped">
     <thead>
       <tr>
@@ -49,9 +63,9 @@
       </tr>
     </thead>
     <tbody>
-      {% for channel in category_channel_list %}
+      {% for channel in channel_array %}
       <tr>
-          <td> <a href={{ channel[1] }} > {{ channel[0] }} </a></td>
+          <td> <a href={{ channel['channel_url'] }} > {{ channel['channel_title'] }} </a></td>
       </tr>
       {% endfor %}
     </tbody>
