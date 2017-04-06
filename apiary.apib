@@ -5,23 +5,30 @@ HOST: http://youtubesweg.me
 
 RESTful API to expose data regarding YouTube videos presented from youtubesweg.me.
 
-## Video [/video/{?id,channel_id,category_id}]
+## Video [/api/video/{?id,channel_id,category_id}]
 
 ### List Videos [GET]
 
 Returns videos from the website. If no optional parameters are provided, all the videos will be returned.
+
+Supply only one of the following optional parameters:  
+    - id  
+    - channel\_id  
+    - category\_id  
+    
+Providing more than one optional parameter will be considered a malformed request.  
 
 Note: the channel_id field and categories field both contain integer values to indicate the channel 
 or category respectively. Query the Channel or Category resource again with the ID in order to receive 
 the respective object.
 
 + Parameters
-    + id (optional) - [Integer] ID of a specific video. If this parameter is provided, only the specific video 
-        indicated by this ID will be returned in the videos array. There will be at most 1 result.
-    + channel_id (optional) - [Integer] ID of a specific channel. If this parameter is provided, only specific videos 
-        present in the channel indicated by this ID will be returned in the videos array. There may be multiple results.
-    + category_id (optional) - [Integer] ID of a specific category. If this parameter is provided, only specific videos
-        present in the category specified by this ID will be returned in the videos array. There may be multiple results.
+    + id (optional) - [Comma separated list of Integers] IDs of videos. If this parameter is provided, only the specific videos 
+        indicated by this parameter will be returned in the videos array.
+    + channel_id (optional) - [Comma separated list of Integers] IDs of channels. If this parameter is provided, only specific videos 
+        present in the channels indicated by this parameter will be returned in the videos array. There may be multiple results.
+    + category_id (optional) - [Comma separated list of Integers] IDs of categories. If this parameter is provided, only specific videos
+        present in the categories specified by this parameter will be returned in the videos array. There may be multiple results.
         
 + Response 200 (application/json)
 
@@ -39,10 +46,7 @@ the respective object.
                             "tag1",
                             "tag2"
                         ],
-                        "categories": [
-                            1,
-                            2
-                        ],
+                        "category": 5
                     }, {
                         "title": "video2 title",
                         "description": "video2 description",
@@ -53,32 +57,33 @@ the respective object.
                             "tag5",
                             "tag3"
                         ],
-                        "categories": [
-                            3,
-                            4
-                        ],
+                        "category": 3
                     }
                 ]
             }
         ]
         
-## Channel [/channel/{?id,country}]
+## Channel [/api/channel/{?id,country}]
 
 ### List Channels [GET]
 
 Returns channels from the website. If no optional parameters are provided, all the channels will be returned.
+
+Supply only one of the following optional parameters:  
+    - id  
+    - country  
+
+Providing more than one optional parameter will be considered a malformed request.  
 
 Note: the videos field and playlists field both contain an array of integer values to 
 indicate the videos or playlists respectively. Query the Video or Playlist 
 resource again with the ID in order to receive the respective object.
 
 + Parameters
-    + id (optional) - [Integer] ID of a specific channel. If this parameter is provided, only the specific channel 
-        indicated by this ID will be returned in the channels array. There will be at most 1 result.
-    + country (optional) - [String] Country code in the ISO 3166-1 alpha-2 format (ex. US). If this parameter 
-        is provided, only specific channels present in the country indicated by this code will be 
-        returned in the channels array. There may be multiple results.
-    
+    + id (optional) - [Comma separated list of Integers] IDs of channels. If this parameter is provided, only the specific channels 
+        indicated by this parameter will be returned in the channels array.
+    + country (optional) - [Comma separated list of Strings] Country codes in the ISO 3166-1 alpha-2 format (ex. US). If this parameter 
+        is provided, only specific channels present in the countries indicated by this parameter will be  returned in the channels array. There may be multiple results.
 
 + Response 200 (application/json)
 
@@ -107,21 +112,27 @@ resource again with the ID in order to receive the respective object.
             }
         ]
         
-## Category [/category/{?id,channel_id}]
+## Category [/api/category/{?id,channel_id}]
 
 ### List Categories [GET]
 
 Returns categories from the website. If no optional parameters are provided, all the categories will be returned.
+
+Supply only one of the following optional parameters:  
+    - id  
+    - channel\_id  
+
+Providing more than one optional parameter will be considered a malformed request.  
 
 Note: the videos field and channels field both contain an array of integer values to 
 indicate the videos or channels respectively. Query the Video or Channel 
 resource again with the ID in order to receive the respective object.
 
 + Parameters
-    + id (optional) - [Integer] ID of a specific category. If this parameter is provided, only the specific category 
-        indicated by this ID will be returned in the categories array. There will be at most 1 result.
-    + channel_id (optional) - [Integer] ID of a specific channel. If this parameter is provided, only specific categories 
-        present in the channel indicated by this ID will be returned in the categories array. There may be multiple results.
+    + id (optional) - [Comma separated list of Integers] IDs of categories. If this parameter is provided, only the specific categories 
+        indicated by this parameter will be returned in the categories array.
+    + channel_id (optional) - [Comma separated list of Integers] IDs of channels. If this parameter is provided, only specific categories 
+        containing videos from the channels indicated by this parameter will be returned in the categories array. There may be multiple results.
 
 + Response 200 (application/json)
 
@@ -148,21 +159,27 @@ resource again with the ID in order to receive the respective object.
             }
         ]
         
-## Playlist [/playlist/{?id,video_id}]
+## Playlist [/api/playlist/{?id,video_id}]
 
 ### List Playlists [GET]
 
 Returns playlists from the website. If no optional parameters are provided, all the playlists will be returned.
+
+Supply only one of the following optional parameters:  
+    - id  
+    - video\_id  
+
+Providing more than one optional parameter will be considered a malformed request.  
 
 Note: the channel_id field and videos field both contain integer values to 
 indicate the channel or videos respectively. Query the Channel or Video 
 resource again with the ID in order to receive the respective object.
 
 + Parameters
-    + id (optional) - [Integer] ID of a specific playlist. If this parameter is provided, only the specific playlist 
-        indicated by this ID will be returned in the playlists array. There will be at most 1 result.
-    + video_id (optional) - [Integer] ID of a specific video. If this parameter is provided, only specific playlists 
-        containing the video indicated by this ID will be returned in the playlists array. There may be multiple results.
+    + id (optional) - [Comma separated list of Integers] IDs of playlists. If this parameter is provided, only the specific playlists 
+        indicated by this parameter will be returned in the playlists array.
+    + video_id (optional) - [Comma separated list of Integers] IDs of videos. If this parameter is provided, only specific playlists 
+        containing the videos indicated by this parameter will be returned in the playlists array. There may be multiple results.
 
 + Response 200 (application/json)
 
@@ -177,14 +194,10 @@ resource again with the ID in order to receive the respective object.
                         "num_items": 100,
                         "channel_id": 1,
                         "id": 5,
-                        "tags": [
-                            "tag1",
-                            "tag2"
-                        ],
                         "videos": [
                             3,
                             4
-                        ],
+                        ]
                     }
                 ]
             }
