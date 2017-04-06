@@ -8,6 +8,7 @@ import os
 import socket
 import datetime
 import sys
+import operator 
 
 sys.path.append('../app/')
 
@@ -124,6 +125,11 @@ channels = to_arr_dict(channel_all)
 categories = category_to_dict(category_all)
 playlists = playlist_to_dict(playlist_all)
 
+videos_copy = list(videos)
+channels_copy = list(channels)
+categories_copy = list(categories)
+playlists_copy = list(playlists)
+
 @app.route('/db_testing')
 def db_testing():
     engine = create_engine(os.environ['SQLALCHEMY_DATABASE_URI'])
@@ -156,9 +162,9 @@ def category():
 def playlist():
     return render_template('playlist_tab.html')
 
-# @app.route('/about')
-# def about():
-#     return render_template('about.html')
+@app.route('/about')
+def about():
+    return render_template('about_tab.html')
 
 @app.route('/video/<num>')
 def video_instance(num):
@@ -291,10 +297,10 @@ def playlist_instance(num):
 @app.route('/pagination/video/<page_num>')
 def video_pagination(page_num):
   starting_num = (int(page_num) - 1) * 9;
-  if starting_num + 9 <= len(videos):
-    return json.dumps(videos[starting_num:starting_num + 9])
+  if starting_num + 9 <= len(videos_copy):
+    return json.dumps(videos_copy[starting_num:starting_num + 9])
   else:
-    return json.dumps(videos[starting_num:])
+    return json.dumps(videos_copy[starting_num:])
 
 @app.route('/pagination/channel/<page_num>')
 def channel_pagination(page_num):
@@ -320,14 +326,59 @@ def playlist_pagination(page_num):
   else:
     return json.dumps(playlists[starting_num:])    
 
-# @app.route('/sorting/video/<')
-# def video_pagination(page_num):
-#   starting_num = (int(page_num) - 1) * num_per_page;
-#   if starting_num + num_per_page <= len(videos):
-#     return json.dumps(videos[starting_num:starting_num + 6])
-#   else:
-#     return json.dumps(videos[starting_num:])
+def sort_results(dict_list, attr_name, reverse):
+  new_list = list(dict_list)
 
+  # for item in dict_list:
+  #   print(getattr(item, attr_name))
+
+
+  new_list.sort(key=operator.itemgetter(attr_name))
+  if reverse:
+    new_list.reverse()
+  return new_list
+
+def filter_results(dict_list, attr_name, value):
+  new_list = []
+  for d in dict_list:
+    if d[attr_name] == value:
+      new_list.append(d)
+  return new_list
+
+@app.route('/sorting/video/<num>/<option>/<filter_channel>/<filter_category>')
+def video_sorting(num, option, filter_channel, filter_category):
+  global videos_copy
+  videos_copy = list(videos)
+
+  if filter_channel != "blank":
+    filterChannelOptions = filter_channel.split(",")
+    final_results = []
+    for opt in filterChannelOptions:
+      if opt != "":
+        temp = filter_results(videos_copy, "channel_title", opt)
+        for dictionary in temp:
+          final_results.append(dictionary)
+    videos_copy = list(final_results)
+
+  if filter_category != "blank":
+    filterCategoryOptions = filter_category.split(",")
+    final_results = []
+    for opt in filterCategoryOptions:
+      if opt != "":
+        temp = filter_results(videos_copy, "category_title", opt)
+        for dictionary in temp:
+          final_results.append(dictionary)
+    videos_copy = list(final_results)
+
+  if option != "blank":
+    if int(num) == 0:
+      videos_copy = list(videos_copy)  
+    elif int(num) == 1:
+      videos_copy = sort_results(videos_copy, option, False)
+    else:
+      videos_copy = sort_results(videos_copy, option, True)
+
+  return str(videos_copy)
 
 # @app.route('/pagination/channel/<page_num>')
 # def channel_pagination(page_num):
