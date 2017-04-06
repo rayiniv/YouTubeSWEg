@@ -140,6 +140,39 @@ def video_pagination(page_num):
   else:
     return json.dumps(videos[starting_num:])
 
+# @app.route('/sorting/video/<')
+# def video_pagination(page_num):
+#   starting_num = (int(page_num) - 1) * num_per_page;
+#   if starting_num + num_per_page <= len(videos):
+#     return json.dumps(videos[starting_num:starting_num + 6])
+#   else:
+#     return json.dumps(videos[starting_num:])
+
+
+# @app.route('/pagination/channel/<page_num>')
+# def channel_pagination(page_num):
+#   starting_num = (int(page_num) - 1) * num_per_page;
+#   if starting_num + num_per_page <= len(channels):
+#     return json.dumps(videos[starting_num:starting_num + 6])
+#   else:
+#     return json.dumps(videos[starting_num:])
+
+# @app.route('/pagination/category/<page_num>')
+# def category_pagination(page_num):
+#   starting_num = (int(page_num) - 1) * num_per_page;
+#   if starting_num + num_per_page <= len(categories):
+#     return json.dumps(videos[starting_num:starting_num + 6])
+#   else:
+#     return json.dumps(videos[starting_num:])
+
+# @app.route('/pagination/playlist/<page_num>')
+# def playlist_pagination(page_num):
+#   starting_num = (int(page_num) - 1) * num_per_page;
+#   if starting_num + num_per_page <= len(playlists):
+#     return json.dumps(videos[starting_num:starting_num + 6])
+#   else:
+#     return json.dumps(videos[starting_num:])            
+
 @app.errorhandler(500)
 def server_error(e):
     # Log the error and stacktrace.

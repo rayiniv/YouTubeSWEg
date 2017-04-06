@@ -66,7 +66,7 @@
 
       <script type="text/babel">
 
-        var num_pages = 4;
+        var num_pages = 34;
 
         var objects_per_page = 3;
         var d = [{
@@ -205,7 +205,7 @@
             this.state = {
               active_page: 1,
               objects_per_page: 3,
-              list: []
+              list: null
             };
             this.handleClick = this.handleClick.bind(this)
           }
@@ -218,19 +218,28 @@
             console.log(num)
           }
 
+          componentDidMount() {
+
+          }         
 
           render() {
-            $.getJSON('/pagination/video/1', function(data) {
-                console.log(data)
-            });
+            $.getJSON('/pagination/video/' + this.state.active_page).done(function(data) {
+                this.state.list = data
+                this.forceUpdate()                
+            }.bind(this));             
+            // var new_list = [];
+            //code before the pause         
+            
+            // this.state.list = new_list
+            //console.log(this.state.list)
             // this.state.list = 
             //For first time creating
-            if(this.state.list.length == 0) {
-              this.setState({
-                list: this.props.list
-              });
-              // this.state.list = this.props.list;
-            }
+            // if(this.state.list.length == 0) {
+            //   this.setState({
+            //     list: this.props.list
+            //   });
+            //   // this.state.list = this.props.list;
+            // }
 
             const pageNumbers = [];
             for (let i = 1; i <= this.props.num_pages; i++) {
@@ -245,7 +254,10 @@
               );
             });
 
-            return (
+            if (this.state.list) {
+              console.log(this.state.list)
+              return (
+              
               <div>
                 <VideoRows list={this.state.list} size={this.state.list.length} />
 
@@ -258,7 +270,9 @@
                 </div>
                 
               </div>
-            );
+              );            
+            }
+            return <div>loading...</div>
           }
         }
             //    <Pagination active_page={this.state.active_page} size={this.props.num_pages} onClick={(i) =>this.changeActivePage(i)} />
