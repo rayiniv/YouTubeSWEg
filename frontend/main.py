@@ -43,7 +43,7 @@ def to_arr_dict(objs):
           and not a == "playlists" and not a == "channels"]
 
         for attr in attrs:
-            if attr == "published_date":
+            if attr == "published_date" or attr == "latest_published_date":
                 curr_dict[attr] = getattr(obj, attr).strftime("%B %d, %Y")
             else:
                 curr_dict[attr] = getattr(obj, attr)
@@ -71,11 +71,16 @@ def category_to_dict(objs):
     for obj in objs:
         curr_dict = {}
         attrs = [a for a in dir(obj) if not a.startswith('_') and not a == "metadata"
-          and not a == "channel" and not a == "category"]
+          and not a == "channel" and not a == "category" and not a == "videos" 
+          and not a == "playlists" and not a == "channels"]
 
         for attr in attrs:
-            curr_dict[attr] = getattr(obj, attr)
-
+            if attr == "published_date" or attr == "latest_published_date":
+                curr_dict[attr] = getattr(obj, attr).strftime("%B %d, %Y")
+            elif attr == "assignable":
+                curr_dict[attr] = str(getattr(obj, attr))
+            else:
+                curr_dict[attr] = getattr(obj, attr)
         curr_dict["most_popular_video"] = obj.videos[0].title
         curr_dict["most_popular_video_id"] = obj.videos[0].id
 
@@ -83,14 +88,35 @@ def category_to_dict(objs):
         curr_dict["most_popular_channel_id"] = obj.channels[0].id
 
         result.append(curr_dict)
-    return result                  
+    return result     
+
+def playlist_to_dict(objs):
+    result = []
+    for i, obj in enumerate(objs):
+        curr_dict = {}
+        attrs = [a for a in dir(obj) if not a.startswith('_') and not a == "metadata"
+          and not a == "channel" and not a == "category" and not a == "videos" 
+          and not a == "playlists" and not a == "channels"]
+
+        for attr in attrs:
+            if attr == "published_date" or attr == "latest_published_date":
+                curr_dict[attr] = getattr(obj, attr).strftime("%B %d, %Y")
+            else:
+                curr_dict[attr] = getattr(obj, attr)
+        if curr_dict['description'] == '':
+            if i%2==0:
+                curr_dict['description'] = obj.channel.description
+            else:
+                curr_dict['description'] = obj.videos[0].description              
+        result.append(curr_dict)
+    return result    
 
 num_per_page = 6
 
 videos = video_to_dict(session.query(Video).all())
 channels = to_arr_dict(session.query(Channel).all())
 categories = category_to_dict(session.query(Category).all())
-playlists = to_arr_dict(session.query(Playlist).all())
+playlists = playlist_to_dict(session.query(Playlist).all())
 
 @app.route('/db_testing')
 def db_testing():
@@ -116,15 +142,13 @@ def video():
 def channel():
     return render_template('channel_tab.html')
 
-# @app.route('/category')
-# def category():
-#     return render_template('model.html', title="Categories", table_headers=category_headers,
-#                            data=categories)
+@app.route('/category')
+def category():
+    return render_template('category_tab.html')
 
-# @app.route('/playlist')
-# def playlist():
-#     return render_template('model.html', title="Playlists", table_headers=playlist_headers,
-#                            data=playlists)
+@app.route('/playlist')
+def playlist():
+    return render_template('playlist_tab.html')
 
 # @app.route('/about')
 # def about():
@@ -173,9 +197,9 @@ def channel():
 # API CALLS
 @app.route('/pagination/video/<page_num>')
 def video_pagination(page_num):
-  starting_num = (int(page_num) - 1) * num_per_page;
-  if starting_num + num_per_page <= len(videos):
-    return json.dumps(videos[starting_num:starting_num + 6])
+  starting_num = (int(page_num) - 1) * 9;
+  if starting_num + 9 <= len(videos):
+    return json.dumps(videos[starting_num:starting_num + 9])
   else:
     return json.dumps(videos[starting_num:])
 
@@ -185,7 +209,23 @@ def channel_pagination(page_num):
   if starting_num + num_per_page <= len(channels):
     return json.dumps(channels[starting_num:starting_num + 6])
   else:
-    return json.dumps(channels[starting_num:])    
+    return json.dumps(channels[starting_num:]) 
+
+@app.route('/pagination/category/<page_num>')
+def category_pagination(page_num):
+  starting_num = (int(page_num) - 1) * num_per_page;
+  if starting_num + num_per_page <= len(categories):
+    return json.dumps(categories[starting_num:starting_num + 6])
+  else:
+    return json.dumps(categories[starting_num:])
+
+@app.route('/pagination/playlist/<page_num>')
+def playlist_pagination(page_num):
+  starting_num = (int(page_num) - 1) * num_per_page;
+  if starting_num + num_per_page <= len(playlists):
+    return json.dumps(playlists[starting_num:starting_num + 6])
+  else:
+    return json.dumps(playlists[starting_num:])    
 
 # @app.route('/sorting/video/<')
 # def video_pagination(page_num):

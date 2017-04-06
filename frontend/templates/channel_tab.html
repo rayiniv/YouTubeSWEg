@@ -6,47 +6,7 @@
 
   <body>
 
-    <div class="container">
-        <!-- Page Header -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header text-center">Channels</h1>
-            </div>
-        </div>
-
-        <!-- Sort Bar -->
-
-        <div class="row">
-          {% for filter_header in filter_headers %}
-            <button type="button" class="btn btn-danger btn-sm" text="" onclick="sort()">{{filter_header}}<i class="fa fa-chevron-down" aria-hidden="true"></i></button>
-          {% endfor %}
-      </div>
-
-        <!-- Filter -->
-
-        <div class="row">
-          <h4>Channel</h4>
-          <div class="btn-group" data-toggle="buttons">
-          {% for channel_filter in channel_filters %}
-          <label class="btn btn-primary btn-sm">
-                    <input type="checkbox" checked autocomplete="off"> {{channel_filter}}
-                  </label>
-          {% endfor %}
-          </div>
-      </div>
-
-
-        <div class="row">
-          <h4>Category</h4>
-          <div class="btn-group" data-toggle="buttons">
-          {% for category_filter in category_filters %}
-          <label class="btn btn-primary btn-sm">
-                    <input type="checkbox" checked autocomplete="off"> {{category_filter}}
-                  </label>
-          {% endfor %}
-          </div>
-      </div>
-
+   <div class="container">
 
         <!-- Objects -->
         <br>
@@ -68,109 +28,7 @@
 
         var num_pages = 4;
 
-        var objects_per_page = 3;
-        var d = [{
-          title: "value1",
-          channel: "channel!",
-          description: "descript!",
-          img: "img link",
-          tags: "key, tag, whoo, yay",
-          categories: "science other"
-
-        }, {
-          title: "value2",
-          channel: "channel!",
-          description: "descript!",
-          img: "img link",
-          tags: "key, tag, whoo, yay",
-          categories: "science other"
-
-        },{
-          title: "value3",
-          channel: "channel!",
-          description: "descript!",
-          img: "img link",
-          tags: "key, tag, whoo, yay",
-          categories: "science other"
-
-        }, {
-          title: "value4",
-          channel: "channel!",
-          description: "descript!",
-          img: "img link",
-          tags: "key, tag, whoo, yay",
-          categories: "science other"
-
-        },{
-          title: "value5",
-          channel: "channel!",
-          description: "descript!",
-          img: "img link",
-          tags: "key, tag, whoo, yay",
-          categories: "science other"
-
-        },{
-          title: "value5",
-          channel: "channel!",
-          description: "descript!",
-          img: "img link",
-          tags: "key, tag, whoo, yay",
-          categories: "science other"
-
-        }]
-
-        var d2 = [{
-          title: "val",
-          channel: "chanl!",
-          description: "dcript!",
-          img: "imnk",
-          tags: "key, t whoo, yay",
-          categories: "sciece other"
-
-        }, {
-          title: "val2",
-          channel: "chanl!",
-          description: "dcript!",
-          img: "imnk",
-          tags: "key, t whoo, yay",
-          categories: "sciece other"
-
-        }, {
-          title: "val3",
-          channel: "chanl!",
-          description: "dcript!",
-          img: "imnk",
-          tags: "key, t whoo, yay",
-          categories: "sciece other"
-
-        }, {
-          title: "val",
-          channel: "chanl!",
-          description: "dcript!",
-          img: "imnk",
-          tags: "key, t whoo, yay",
-          categories: "sciece other"
-
-        }, {
-          title: "val",
-          channel: "chanl!",
-          description: "dcript!",
-          img: "imnk",
-          tags: "key, t whoo, yay",
-          categories: "sciece other"
-
-        }, {
-          title: "val",
-          channel: "chanl!",
-          description: "dcript!",
-          img: "imnk",
-          tags: "key, t whoo, yay",
-          categories: "sciece other"
-
-        }, ]
-
         function Channel(props) {
-          // console.log("video");
           return (
                 <div className={"col-md-4"}>
                 <div className={"panel panel-default"}>
@@ -191,7 +49,6 @@
         }
 
         function ChannelRows(props) {
-          // console.log("videorow");
           var channel_list = [];
           for(var i = 0; i < props.size; i++) {
             channel_list.push(<Channel dict={props.list[i]} />);
@@ -205,80 +62,139 @@
             this.state = {
               active_page: 1,
               objects_per_page: 3,
-              list: null
+              list: []
             };
-            this.handleClick = this.handleClick.bind(this)
+            this.handlePageClick = this.handlePageClick.bind(this)
+            this.handleSortClick = this.handleSortClick.bind(this)
+            this.handleChannelClick = this.handleChannelClick.bind(this)
+            this.handleCategoryClick = this.handleCategoryClick.bind(this)
           }
 
-          handleClick(event) {
+          handlePageClick(event) {
             var num = Number(event.target.id)
             this.setState({
               active_page: num
             });
-            console.log(num)
+            this.state.list = []
+            console.log("page " + num)
+          }
+            
+          handleSortClick(event){
+              this.state.list = []
+              console.log("sort " + event.target.id)
           }
 
-          componentDidMount() {
+          handleChannelClick(event){
+              this.state.list = []
+              console.log("filter channel " + event.target.id)
+          }
 
-          }         
+          handleCategoryClick(event){
+              this.state.list = []
+              console.log("filter category " + event.target.id)
+          }
+
 
           render() {
-            $.getJSON('/pagination/channel/' + this.state.active_page).done(function(data) {
-                this.state.list = data
-                this.forceUpdate()                
-            }.bind(this));             
-            // var new_list = [];
-            //code before the pause         
-            
-            // this.state.list = new_list
-            //console.log(this.state.list)
-            // this.state.list = 
-            //For first time creating
-            // if(this.state.list.length == 0) {
-            //   this.setState({
-            //     list: this.props.list
-            //   });
-            //   // this.state.list = this.props.list;
-            // }
+            if (this.state.list.length == 0) {
+               $.getJSON('/pagination/channel/' + this.state.active_page).done(function(data) {
+                  this.state.list = data
+                  this.forceUpdate()                
+              }.bind(this));   
+            }
+
+            var sortButtons = ["Title", "Channel", "Description", "Thumbnail", "Tags", "Categories"];
+
+            var channelFilterButtons = ["filter1","filter2","filter3"];
+
+            var categoryFilterButtons = ["filter1","filter2","filter3"]
+
+            const renderSortButtons = sortButtons.map(sortButton => {
+              return (
+                <button type={"button"} className={"btn btn-danger btn-sm"} id={sortButton} onClick={this.handleSortClick}><i className={"fa fa-chevron-down"} aria-hidden={false}></i>{sortButton}
+                </button>
+              );
+            });
+
+            const renderChannelFB = channelFilterButtons.map(sortButton => {
+              return (
+                <button type={"button"} className={"btn btn-primary btn-sm"} id={sortButton} onClick={this.handleChannelClick}><i className={"fa fa-chevron-down"} aria-hidden={false}></i>{sortButton}
+                </button>
+              );
+            }); 
+
+            const renderCategoryFB = categoryFilterButtons.map(sortButton => {
+              return (
+                <button type={"button"} className={"btn btn-primary btn-sm"} id={sortButton} onClick={this.handleCategoryClick}><i className={"fa fa-chevron-down"} aria-hidden={false}></i>{sortButton}
+                </button>
+              );
+            });  
 
             const pageNumbers = [];
             for (let i = 1; i <= this.props.num_pages; i++) {
-              pageNumbers.push(i);
-            } 
+                pageNumbers.push(i);
+            }
 
             const renderPageNumbers = pageNumbers.map(number => {
               return (
                 <li>
-                  <a id={number} onClick={this.handleClick} href={"#"}>{number}</a>
+                  <a id={number} onClick={this.handlePageClick} href={"#"}>{number}</a>
                 </li>
               );
             });
 
+
             if (this.state.list) {
               console.log(this.state.list)
               return (
-              
-              <div>
+
+              <div className={"container"}>
+
+                {/*Page Header*/}
+                <div className={"row"}>
+                  <div className={"col-lg-12"}>
+                      <h1 className={"page-header text-center"}>Channels</h1>
+                  </div>
+                </div>
+
+                {/*Sort Bar*/}
+                <div className={"btn-toolbar"}>
+                  {renderSortButtons}
+                </div>
+                <br></br>
+
+                {/*Filter*/}
+                
+                <h4>Channel</h4>
+                <div className={"btn-group"} data-toggle={"buttons"}>
+                  {renderChannelFB}
+                </div>
+
+                <h4>Category</h4>
+                <div className={"btn-group"} data-toggle={"buttons"}>
+                  {renderCategoryFB}
+                </div>
+                <br></br>
+                <br></br>
+                
+
                 <ChannelRows list={this.state.list} size={this.state.list.length} />
 
                 <div className={"col-lg-12"}>
-                  <ul className={"pagination"}>
-                    <li><a href={"#"}>&laquo;</a></li>
-                      {renderPageNumbers}
-                    <li><a href={"#"}>&raquo;</a></li>
-                  </ul>
-                </div>
-                
+                      <ul className={"pagination"}>
+                        <li><a href={"#"}>&laquo;</a></li>
+                          {renderPageNumbers}
+                        <li><a href={"#"}>&raquo;</a></li>
+                    </ul>
+                </div>    
               </div>
-              );            
-            }
+              );
+              }
             return <div>loading...</div>
           }
         }
-            //    <Pagination active_page={this.state.active_page} size={this.props.num_pages} onClick={(i) =>this.changeActivePage(i)} />
 
-        //database needs to also send in the number of pages to be displayed
-        ReactDOM.render(<Control list={d} num_pages={num_pages}/>, document.getElementById('container'));
+        ReactDOM.render(<Control num_pages={num_pages}/>, document.getElementById('container'));
 
       </script>
   </body>

@@ -1,39 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-	  {% include 'head.html' %}
-	</head>
+  <head>
+    {% include 'head.html' %}
+  </head>
 
-	<body>
+  <body>
 
-		<div class="container">
-		    <!-- Page Header -->
-		    <div class="row">
-		        <div class="col-lg-12">
-		            <h1 class="page-header text-center">Categories
-		            </h1>
-		        </div>
-		    </div>
+   <div class="container">
 
-		    <!-- Filter -->
+        <!-- Objects -->
+        <br>
+        <div class="row" id="container"></div>
 
-		    &nbsp&nbsp&nbsp&nbsp
+        <!-- Pagination -->
+        <br>
+        <div class="row text-center" id="pagin"></div>
 
-		    {% for table_header in table_headers %}
-		      <button type="button" class="btn btn-danger btn-sm" text="" onclick="sortBy()">{{table_header}}<i class="fa fa-chevron-down" aria-hidden="true"></i></button>
-		    {% endfor %}
+      </div>
 
-		    <!-- Sort -->
+      <script type="text/javascript">
+        {% include 'react.jsx' %}
+      </script>
 
-		    <!-- Objects -->
+      <!-- Scripts -->
 
-		    <!-- Pagination -->
+      <script type="text/babel">
+
+        var num_pages = 2;
+
+        function Category(props) {
+          return (
+                <div className={"col-md-4"}>
+                <div className={"panel panel-default"}>
+                  <h3><div className={"wrap"}><a href={"/category/" + props.dict.id}>{props.dict.title}</a></div></h3>
+                  <b>Latest Published Video Date</b><br />
+                  <div className={"wrap"}>{props.dict.published_date}</div><br />
+
+                  <b>Number of Videos</b><br />
+                  <div className={"wrap"}>{props.dict.num_videos}</div><br />
+
+                  <b>Assignable</b><br />
+                  <div className={"wrap"}>{props.dict.assignable}<br /></div><br />
+
+                  <b>Most Popular Video</b><br />
+                  <div className={"wrap"}> <a href={"/video/" + props.dict.most_popular_video_id}>{props.dict.most_popular_video}</a></div><br />
 
 
-		    <!-- Scripts -->
+                  <b>Most Popular Channel</b><br />
+                  <div className={"wrap"}> <a href={"/channel/" + props.dict.most_popular_channel_id}>{props.dict.most_popular_channel}</a></div><br />
 
-  		</div>
+                </div>
+              </div>
+            )
+        }
 
-	</body>
+        function CategoryRows(props) {
+          var category_list = [];
+          for(var i = 0; i < props.size; i++) {
+            category_list.push(<Category dict={props.list[i]} />);
+          }
+          return (<div className={"row"}>{category_list}</div>);
+        }
+
+        class Control extends React.Component {
+          constructor() {
+            super();
+            this.state = {
+              active_page: 1,
+              objects_per_page: 3,
+              list: []
+            };
+            this.handlePageClick = this.handlePageClick.bind(this)
+            this.handleSortClick = this.handleSortClick.bind(this)
+            this.handleChannelClick = this.handleChannelClick.bind(this)
+            this.handleCategoryClick = this.handleCategoryClick.bind(this)
+          }
+
+          handlePageClick(event) {
+            var num = Number(event.target.id)
+            this.setState({
+              active_page: num
+            });
+            this.state.list = []
+            console.log("page " + num)
+          }
+            
+          handleSortClick(event){
+              this.state.list = []
+              console.log("sort " + event.target.id)
+          }
+
+          handleChannelClick(event){
+              this.state.list = []
+              console.log("filter channel " + event.target.id)
+          }
+
+          handleCategoryClick(event){
+              this.state.list = []
+              console.log("filter category " + event.target.id)
+          }
+
+
+          render() {
+            if (this.state.list.length == 0) {
+               $.getJSON('/pagination/category/' + this.state.active_page).done(function(data) {
+                  this.state.list = data
+                  this.forceUpdate()                
+              }.bind(this));   
+            }
+
+            var sortButtons = ["Title", "Channel", "Description", "Thumbnail", "Tags", "Categories"];
+
+            var channelFilterButtons = ["filter1","filter2","filter3"];
+
+            var categoryFilterButtons = ["filter1","filter2","filter3"]
+
+            const renderSortButtons = sortButtons.map(sortButton => {
+              return (
+                <button type={"button"} className={"btn btn-danger btn-sm"} id={sortButton} onClick={this.handleSortClick}><i className={"fa fa-chevron-down"} aria-hidden={false}></i>{sortButton}
+                </button>
+              );
+            });
+
+            const renderChannelFB = channelFilterButtons.map(sortButton => {
+              return (
+                <button type={"button"} className={"btn btn-primary btn-sm"} id={sortButton} onClick={this.handleChannelClick}><i className={"fa fa-chevron-down"} aria-hidden={false}></i>{sortButton}
+                </button>
+              );
+            }); 
+
+            const renderCategoryFB = categoryFilterButtons.map(sortButton => {
+              return (
+                <button type={"button"} className={"btn btn-primary btn-sm"} id={sortButton} onClick={this.handleCategoryClick}><i className={"fa fa-chevron-down"} aria-hidden={false}></i>{sortButton}
+                </button>
+              );
+            });  
+
+            const pageNumbers = [];
+            for (let i = 1; i <= this.props.num_pages; i++) {
+                pageNumbers.push(i);
+            }
+
+            const renderPageNumbers = pageNumbers.map(number => {
+              return (
+                <li>
+                  <a id={number} onClick={this.handlePageClick} href={"#"}>{number}</a>
+                </li>
+              );
+            });
+
+
+            if (this.state.list) {
+              console.log(this.state.list)
+              return (
+
+              <div className={"container"}>
+
+                {/*Page Header*/}
+                <div className={"row"}>
+                  <div className={"col-lg-12"}>
+                      <h1 className={"page-header text-center"}>Categories</h1>
+                  </div>
+                </div>
+
+                {/*Sort Bar*/}
+                <div className={"btn-toolbar"}>
+                  {renderSortButtons}
+                </div>
+                <br></br>
+
+                {/*Filter*/}
+                
+                <h4>Channel</h4>
+                <div className={"btn-group"} data-toggle={"buttons"}>
+                  {renderChannelFB}
+                </div>
+
+                <h4>Category</h4>
+                <div className={"btn-group"} data-toggle={"buttons"}>
+                  {renderCategoryFB}
+                </div>
+                <br></br>
+                <br></br>
+                
+
+                <CategoryRows list={this.state.list} size={this.state.list.length} />
+
+                <div className={"col-lg-12"}>
+                      <ul className={"pagination"}>
+                        <li><a href={"#"}>&laquo;</a></li>
+                          {renderPageNumbers}
+                        <li><a href={"#"}>&raquo;</a></li>
+                    </ul>
+                </div>    
+              </div>
+              );
+              }
+            return <div>loading...</div>
+          }
+        }
+
+        ReactDOM.render(<Control num_pages={num_pages}/>, document.getElementById('container'));
+
+      </script>
+  </body>
 
 </html>
