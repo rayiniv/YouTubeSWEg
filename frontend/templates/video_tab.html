@@ -65,7 +65,10 @@
               list: [],
               sortState: [0, 0, 0],
               filterState: [],
-              filterState2: []
+              filterState2: [],
+              channelFilterButtons: [["LastWeekTonight", "btn btn-primary btn-sm"],["Bloomberg", "btn btn-primary btn-sm"],["Adult Swim", "btn btn-primary btn-sm"],["Tasty", "btn btn-primary btn-sm"],["BuzzFeedVideo", "btn btn-primary btn-sm"]],
+              
+              categoryFilterButtons: [["Sports", "btn btn-primary btn-sm"], ["Entertainment", "btn btn-primary btn-sm"], ["Comedy", "btn btn-primary btn-sm"], ["Gaming", "btn btn-primary btn-sm"] ,["People & Blogs", "btn btn-primary btn-sm"]]
             };
             this.handlePageClick = this.handlePageClick.bind(this)
             this.handleSortClick = this.handleSortClick.bind(this)
@@ -133,6 +136,42 @@
 
           handleChannelClick(event) {
               this.state.list = []
+              if(event.target.id == 'LastWeekTonight') {
+                if(this.state.channelFilterButtons[0][1] == 'btn btn-warning btn-sm') {
+                  this.state.channelFilterButtons[0][1] = 'btn btn-primary btn-sm';
+                }
+                else {
+                  this.state.channelFilterButtons[0][1] = 'btn btn-warning btn-sm';
+                }
+              } else if (event.target.id == 'Bloomberg') {
+                if(this.state.channelFilterButtons[1][1] == 'btn btn-warning btn-sm') {
+                  this.state.channelFilterButtons[1][1] = 'btn btn-primary btn-sm';
+                }
+                else {
+                  this.state.channelFilterButtons[1][1] = 'btn btn-warning btn-sm';
+                }
+              } else if (event.target.id == 'Adult Swim') {
+                if(this.state.channelFilterButtons[2][1] == 'btn btn-warning btn-sm') {
+                  this.state.channelFilterButtons[2][1] = 'btn btn-primary btn-sm';
+                }
+                else {
+                  this.state.channelFilterButtons[2][1] = 'btn btn-warning btn-sm';
+                }
+              } else if (event.target.id == 'Tasty') {
+                if(this.state.channelFilterButtons[3][1] == 'btn btn-warning btn-sm') {
+                  this.state.channelFilterButtons[3][1] = 'btn btn-primary btn-sm';
+                }
+                else {
+                  this.state.channelFilterButtons[3][1] = 'btn btn-warning btn-sm';
+                }
+              } else if (event.target.id == 'BuzzFeedVideo') {
+                if(this.state.channelFilterButtons[4][1] == 'btn btn-warning btn-sm') {
+                  this.state.channelFilterButtons[4][1] = 'btn btn-primary btn-sm';
+                }
+                else {
+                  this.state.channelFilterButtons[4][1] = 'btn btn-warning btn-sm';
+                }
+              }
 
               if (this.state.filterState.indexOf(event.target.id) == -1) {
                 this.state.filterState.push(event.target.id);
@@ -187,6 +226,44 @@
 
           handleCategoryClick(event){
               this.state.list = []
+
+              if(event.target.id == 'Sports') {
+                if(this.state.categoryFilterButtons[0][1] == 'btn btn-warning btn-sm') {
+                  this.state.categoryFilterButtons[0][1] = 'btn btn-primary btn-sm';
+                }
+                else {
+                  this.state.categoryFilterButtons[0][1] = 'btn btn-warning btn-sm';
+                }
+              } else if (event.target.id == 'Entertainment') {
+                if(this.state.categoryFilterButtons[1][1] == 'btn btn-warning btn-sm') {
+                  this.state.categoryFilterButtons[1][1] = 'btn btn-primary btn-sm';
+                }
+                else {
+                  this.state.categoryFilterButtons[1][1] = 'btn btn-warning btn-sm';
+                }
+              } else if (event.target.id == 'Comedy') {
+                if(this.state.categoryFilterButtons[2][1] == 'btn btn-warning btn-sm') {
+                  this.state.categoryFilterButtons[2][1] = 'btn btn-primary btn-sm';
+                }
+                else {
+                  this.state.categoryFilterButtons[2][1] = 'btn btn-warning btn-sm';
+                }
+              } else if (event.target.id == 'Gaming') {
+                if(this.state.categoryFilterButtons[3][1] == 'btn btn-warning btn-sm') {
+                  this.state.categoryFilterButtons[3][1] = 'btn btn-primary btn-sm';
+                }
+                else {
+                  this.state.categoryFilterButtons[3][1] = 'btn btn-warning btn-sm';
+                }
+              } else if (event.target.id == 'People & Blogs') {
+                if(this.state.categoryFilterButtons[4][1] == 'btn btn-warning btn-sm') {
+                  this.state.categoryFilterButtons[4][1] = 'btn btn-primary btn-sm';
+                }
+                else {
+                  this.state.categoryFilterButtons[4][1] = 'btn btn-warning btn-sm';
+                }
+              }
+
 
               if (this.state.filterState2.indexOf(event.target.id) == -1) {
                 this.state.filterState2.push(event.target.id);
@@ -249,9 +326,9 @@
 
             var sortButtons = ["Title", "Channel", "Categories"];
 
-            var channelFilterButtons = ["LastWeekTonight","Bloomberg","Adult Swim","Tasty","BuzzFeedVideo"];
+            // var channelFilterButtons = ["LastWeekTonight","Bloomberg","Adult Swim","Tasty","BuzzFeedVideo"];
 
-            var categoryFilterButtons = ["Sports","Entertainment","Comedy","Gaming","People & Blogs"];
+            // var categoryFilterButtons = ["Sports","Entertainment","Comedy","Gaming","People & Blogs"];
 
             const renderSortButtons = sortButtons.map(sortButton => {
               return (
@@ -260,16 +337,16 @@
               );
             });
 
-            const renderChannelFB = channelFilterButtons.map(sortButton => {
+            const renderChannelFB = this.state.channelFilterButtons.map(sortButton => {
               return (
-                <button type={"button"} className={"btn btn-primary btn-sm"} id={sortButton} onClick={this.handleChannelClick}><i aria-hidden={false}></i>{sortButton}
+                <button type={"button"} className={sortButton[1]} id={sortButton[0]} onClick={this.handleChannelClick}><i aria-hidden={false}></i>{sortButton[0]}
                 </button>
               );
             }); 
 
-            const renderCategoryFB = categoryFilterButtons.map(sortButton => {
+            const renderCategoryFB = this.state.categoryFilterButtons.map(sortButton => {
               return (
-                <button type={"button"} className={"btn btn-primary btn-sm"} id={sortButton} onClick={this.handleCategoryClick}><i aria-hidden={false}></i>{sortButton}
+                <button type={"button"} className={sortButton[1]} id={sortButton[0]} onClick={this.handleCategoryClick}><i aria-hidden={false}></i>{sortButton[0]}
                 </button>
               );
             });  
