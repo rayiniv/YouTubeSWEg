@@ -26,111 +26,9 @@
 
       <script type="text/babel">
 
-        var num_pages = 4;
-
-        var objects_per_page = 3;
-        var d = [{
-          title: "value1",
-          channel: "channel!",
-          description: "descript!",
-          img: "img link",
-          tags: "key, tag, whoo, yay",
-          categories: "science other"
-
-        }, {
-          title: "value2",
-          channel: "channel!",
-          description: "descript!",
-          img: "img link",
-          tags: "key, tag, whoo, yay",
-          categories: "science other"
-
-        },{
-          title: "value3",
-          channel: "channel!",
-          description: "descript!",
-          img: "img link",
-          tags: "key, tag, whoo, yay",
-          categories: "science other"
-
-        }, {
-          title: "value4",
-          channel: "channel!",
-          description: "descript!",
-          img: "img link",
-          tags: "key, tag, whoo, yay",
-          categories: "science other"
-
-        },{
-          title: "value5",
-          channel: "channel!",
-          description: "descript!",
-          img: "img link",
-          tags: "key, tag, whoo, yay",
-          categories: "science other"
-
-        },{
-          title: "value5",
-          channel: "channel!",
-          description: "descript!",
-          img: "img link",
-          tags: "key, tag, whoo, yay",
-          categories: "science other"
-
-        }]
-
-        var d2 = [{
-          title: "val",
-          channel: "chanl!",
-          description: "dcript!",
-          img: "imnk",
-          tags: "key, t whoo, yay",
-          categories: "sciece other"
-
-        }, {
-          title: "val2",
-          channel: "chanl!",
-          description: "dcript!",
-          img: "imnk",
-          tags: "key, t whoo, yay",
-          categories: "sciece other"
-
-        }, {
-          title: "val3",
-          channel: "chanl!",
-          description: "dcript!",
-          img: "imnk",
-          tags: "key, t whoo, yay",
-          categories: "sciece other"
-
-        }, {
-          title: "val",
-          channel: "chanl!",
-          description: "dcript!",
-          img: "imnk",
-          tags: "key, t whoo, yay",
-          categories: "sciece other"
-
-        }, {
-          title: "val",
-          channel: "chanl!",
-          description: "dcript!",
-          img: "imnk",
-          tags: "key, t whoo, yay",
-          categories: "sciece other"
-
-        }, {
-          title: "val",
-          channel: "chanl!",
-          description: "dcript!",
-          img: "imnk",
-          tags: "key, t whoo, yay",
-          categories: "sciece other"
-
-        }, ]
+        var num_pages = 23;
 
         function Video(props) {
-          // console.log("video");
           return (
                 <div className={"col-md-4"}>
                 <div className={"panel panel-default"}>
@@ -151,7 +49,6 @@
         }
 
         function VideoRows(props) {
-          // console.log("videorow");
           var video_list = [];
           for(var i = 0; i < props.size; i++) {
             video_list.push(<Video dict={props.list[i]} />);
@@ -174,31 +71,36 @@
           }
 
           handlePageClick(event) {
-            var num = Number(event.target.id)
-            this.setState({
-              active_page: num
-            });
-            console.log("page " + num)
+              var num = Number(event.target.id)
+              this.setState({
+                active_page: num
+              });
+              this.state.list = []
+              console.log("page " + num)
           }
             
-            handleSortClick(event){
+          handleSortClick(event){
+              this.state.list = []
               console.log("sort " + event.target.id)
           }
 
           handleChannelClick(event){
+              this.state.list = []
               console.log("filter channel " + event.target.id)
           }
 
           handleCategoryClick(event){
-              console.log("filter category " + event.target.id)
+              this.state.list = []
+              console.log("page " + num)
           }
-
-
+            
           render() {
-             $.getJSON('/pagination/video/' + this.state.active_page).done(function(data) {
-                this.state.list = data
-                this.forceUpdate()                
-            }.bind(this));   
+            if (this.state.list.length == 0) {
+               $.getJSON('/pagination/video/' + this.state.active_page).done(function(data) {
+                  this.state.list = data
+                  this.forceUpdate()                
+              }.bind(this));   
+            }
 
             var sortButtons = ["Title", "Channel", "Description", "Thumbnail", "Tags", "Categories"];
 
@@ -291,7 +193,7 @@
           }
         }
 
-        ReactDOM.render(<Control list={d} num_pages={num_pages}/>, document.getElementById('container'));
+        ReactDOM.render(<Control num_pages={num_pages}/>, document.getElementById('container'));
 
       </script>
   </body>
