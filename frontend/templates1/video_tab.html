@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	  {% include 'head.html' %}
+	</head>
+
+	<body>
+
+		<div class="container">
+	    <!-- Page Header -->
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <h1 class="page-header text-center">{{title}}
+	            </h1>
+	        </div>
+	    </div>
+
+	    <!-- Filter -->
+	    &nbsp&nbsp&nbsp&nbsp
+
+	    {% for table_header in table_headers %}
+	      <button type="button" class="btn btn-danger btn-sm" text="" onclick="sortBy()">{{table_header}}<i class="fa fa-chevron-down" aria-hidden="true"></i></button>
+	    {% endfor %}
+
+<!--     <div class="row">
+    &nbsp&nbsp&nbsp&nbsp
+    <h4>&nbsp&nbsp&nbspChannel</h4>
+    &nbsp&nbsp&nbsp&nbsp
+    <div class="btn-group" data-toggle="buttons">
+      <label class="btn btn-primary btn-sm">
+        <input type="checkbox" checked autocomplete="off"> 21 Savage
+      </label>
+      <label class="btn btn-primary btn-sm">
+        <input type="checkbox" autocomplete="off"> Khan Academy
+      </label>
+      <label class="btn btn-primary btn-sm">
+        <input type="checkbox" autocomplete="off"> ESPN
+      </label>              
+    </div> -->
+
+  	</div>
+
+	</body>
+
+  <script type="text/babel">
+
+    {% include 'react.jsx' %}
+
+  	console.log("tytyt"); 
+
+</script>
+
+</html>

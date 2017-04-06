@@ -1,0 +1,33 @@
+{
+	"Videos": {
+				"category_headers": ["Title", "Channel", "Description", "Thumbnail", "Tags", "Categories"],
+				"filter_headers": {
+								"Channel": -1,
+								"Category": -1
+									}
+				},
+	"Channel": {
+				"category_headers": ["Title", "Description", "Date of Publication",
+                   "Country", "View Count", "Subscriber Count"],
+				"filter_headers": {
+								"View Count": ["< 5,000", "5,000 - 5,000,000", "> 5,000,000"],
+								"Subscriber Count": ["< 1,000", "1,000 -1,000,000", "> 1,000,000"]
+									}
+				},
+	"Categories": {
+			"category_headers": ["Title", "Latest Published Video Date", "Number of videos",
+                    "Assignable", "Most popular video", "Most popular channel"],
+			"filter_headers": {
+							"Channel": -1,
+							"Video Count": ["< 50", "50 - 100", "> 100"]
+								}
+			},
+	"Playlists": {
+			"category_headers": ["Title", "Description",
+                    "Associated Tags", "Date of Publication", "Item Count"],
+			"filter_headers": {
+							"Channel": -1,
+							"Video Count": ["< 50", "50 - 100", "> 100"]
+								}
+			}
+}

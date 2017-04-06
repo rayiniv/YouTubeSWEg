@@ -31,3 +31,109 @@ document.getElementById("navMenu").innerHTML =
   '</nav>' +
 '</nav>';
 
+// class Model extends React.Component {
+//   constructor() {
+//     super();
+//     this.state = {
+//       title:null,
+
+//     };
+//   }
+//   render() {
+//     return (
+//       <button className="square" onClick={() => this.props.onClick()}>
+//         {this.state.value}
+//       </button>
+//     );
+//   }
+// }
+
+
+// class Model() extends React.Component {
+//   constructor() {
+//     super();
+//     var model_dict = require('model.json')[this.props.title]
+//     this.state = {
+//       title:null,
+
+//     };
+
+//   render() {
+//     return (
+//         <sort_tabs value=this.props.title />
+//         <filter_tabs value=this.props.title />
+//         <panels value=this.props.data title=this.props.title />
+//     );
+//   }
+
+// }
+
+// var createModel(data, title) {
+//   ReactDOM.render(
+//       <Model value=data title=title />,
+//       document.getElementById('modelContainer')
+//   );
+// }
+
+// class Square extends React.Component {
+//   render() {
+//     return (
+//       <button className="square">
+//         {/* TODO */}
+//       </button>
+//     );
+//   }
+// }
+
+// class Board extends React.Component {
+//   renderSquare(i) {
+//     return <Square />;
+//   }
+//   render() {
+//     const status = 'Next player: X';
+//     return (
+//       <div>
+//         <div className="status">{status}</div>
+//         <div className="board-row">
+//           {this.renderSquare(0)}
+//           {this.renderSquare(1)}
+//           {this.renderSquare(2)}
+//         </div>
+//         <div className="board-row">
+//           {this.renderSquare(3)}
+//           {this.renderSquare(4)}
+//           {this.renderSquare(5)}
+//         </div>
+//         <div className="board-row">
+//           {this.renderSquare(6)}
+//           {this.renderSquare(7)}
+//           {this.renderSquare(8)}
+//         </div>
+//       </div>
+//     );
+//   }
+// }
+
+// class Game extends React.Component {
+//   render() {
+//     return (
+//       <div className="game">
+//         <div className="game-board">
+//           <Board />
+//         </div>
+//         <div className="game-info">
+//           <div>{/* status */}</div>
+//           <ol>{/* TODO */}</ol>
+//         </div>
+//       </div>
+//     );
+//   }
+// }
+
+// // ========================================
+// var createModel() {
+//   ReactDOM.render(
+//     <Game />,
+//     document.getElementById('modelContainer')
+//   );
+// }

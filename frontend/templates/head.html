@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>YouTubeSWEg</title>
+    <link rel=icon href="https://www.youtube.com/yts/img/favicon_144-vflWmzoXw.png">
+
+    <!-- jquery -->
+    <script src="/static/js/jquery.js"></script>
+
+    <!-- Fonts, Bootstrap CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://getbootstrap.com/dist/css/bootstrap.min.css">
+
+
+    <!-- Bootstrap JS -->
+
+    <!-- React -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+
+    <!-- Custom CSS -->
+    <link href= "{{ url_for('static', filename='youtubesweg.css') }}" rel= "stylesheet">
+    <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">YouTubeSWEg</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-left">
+            <li class=active" id="Videos"><a href="/video">Videos</a></li>
+            <li id="Channels"><a href="/channel">Channels</a></li>
+            <li id="Categories"><a href="/category">Categories</a></li>
+            <li id="Playlists"><a href="/playlist">Playlists</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+          <li id="About"><a href="/about">About</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <script type="text/javascript">
+     $(document).ready(function () {
+        $(".nav li").removeClass("active");//this will remove the active class from  
+        $('#{{title}}').addClass('active');
+      });
+    </script>
+  </body>
+</html>

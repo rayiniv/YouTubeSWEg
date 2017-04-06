@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include 'head.html' %}
+  </head>
+
+  <body>
+
+    <div class="container">
+        <!-- Page Header -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header text-center">Videos</h1>
+            </div>
+        </div>
+
+        <!-- Sort Bar -->
+
+        <div class="row">
+          {% for filter_header in filter_headers %}
+            <button type="button" class="btn btn-danger btn-sm" text="" onclick="sort()">{{filter_header}}<i class="fa fa-chevron-down" aria-hidden="true"></i></button>
+          {% endfor %}
+      </div>
+
+        <!-- Filter -->
+
+        <div class="row">
+          <h4>Channel</h4>
+          <div class="btn-group" data-toggle="buttons">
+          {% for channel_filter in channel_filters %}
+          <label class="btn btn-primary btn-sm">
+                    <input type="checkbox" checked autocomplete="off"> {{channel_filter}}
+                  </label>
+          {% endfor %}
+          </div>
+      </div>
+
+
+        <div class="row">
+          <h4>Category</h4>
+          <div class="btn-group" data-toggle="buttons">
+          {% for category_filter in category_filters %}
+          <label class="btn btn-primary btn-sm">
+                    <input type="checkbox" checked autocomplete="off"> {{category_filter}}
+                  </label>
+          {% endfor %}
+          </div>
+      </div>
+
+
+        <!-- Objects -->
+        <br>
+        <div class="row" id="container"></div>
+
+        <!-- Pagination -->
+        <br>
+        <div class="row text-center" id="pagin"></div>
+
+      </div>
+
+      <script type="text/javascript">
+        {% include 'react.jsx' %}
+      </script>
+
+      <!-- Scripts -->
+
+      <script type="text/babel">
+
+        var num_pages = 4;
+
+        var objects_per_page = 3;
+        var d = [{
+          title: "value1",
+          channel: "channel!",
+          description: "descript!",
+          img: "img link",
+          tags: "key, tag, whoo, yay",
+          categories: "science other"
+
+        }, {
+          title: "value2",
+          channel: "channel!",
+          description: "descript!",
+          img: "img link",
+          tags: "key, tag, whoo, yay",
+          categories: "science other"
+
+        },{
+          title: "value3",
+          channel: "channel!",
+          description: "descript!",
+          img: "img link",
+          tags: "key, tag, whoo, yay",
+          categories: "science other"
+
+        }, {
+          title: "value4",
+          channel: "channel!",
+          description: "descript!",
+          img: "img link",
+          tags: "key, tag, whoo, yay",
+          categories: "science other"
+
+        },{
+          title: "value5",
+          channel: "channel!",
+          description: "descript!",
+          img: "img link",
+          tags: "key, tag, whoo, yay",
+          categories: "science other"
+
+        },{
+          title: "value5",
+          channel: "channel!",
+          description: "descript!",
+          img: "img link",
+          tags: "key, tag, whoo, yay",
+          categories: "science other"
+
+        }]
+
+        var d2 = [{
+          title: "val",
+          channel: "chanl!",
+          description: "dcript!",
+          img: "imnk",
+          tags: "key, t whoo, yay",
+          categories: "sciece other"
+
+        }, {
+          title: "val2",
+          channel: "chanl!",
+          description: "dcript!",
+          img: "imnk",
+          tags: "key, t whoo, yay",
+          categories: "sciece other"
+
+        }, {
+          title: "val3",
+          channel: "chanl!",
+          description: "dcript!",
+          img: "imnk",
+          tags: "key, t whoo, yay",
+          categories: "sciece other"
+
+        }, {
+          title: "val",
+          channel: "chanl!",
+          description: "dcript!",
+          img: "imnk",
+          tags: "key, t whoo, yay",
+          categories: "sciece other"
+
+        }, {
+          title: "val",
+          channel: "chanl!",
+          description: "dcript!",
+          img: "imnk",
+          tags: "key, t whoo, yay",
+          categories: "sciece other"
+
+        }, {
+          title: "val",
+          channel: "chanl!",
+          description: "dcript!",
+          img: "imnk",
+          tags: "key, t whoo, yay",
+          categories: "sciece other"
+
+        }, ]
+
+        function Video(props) {
+          // console.log("video");
+          return (
+                <div className={"col-md-4"}>
+                <div className={"panel panel-default"}>
+                  <h3><div className={"wrap"}><a href="#">{props.dict.title}</a></div></h3> <br />
+                  <b>Channel</b><br />
+                  <div className={"wrap"}> <a href="#">{props.dict.channel}</a></div><br />
+                  <b>Description</b><br />
+                  <div className={"wrap"}>{props.dict.description}<br /></div><br />
+                  <b>Thumbnail</b><br />
+                  <img src={props.dict.img} /><br /><br />
+                  <b>Tags</b><br />
+                  <div className={"wrap"}>{props.dict.tags}</div><br />
+                  <b>Categories</b><br />
+                  <div className={"wrap"}> <a href={"#"}>{props.dict.categories}</a></div><br />
+                </div>
+              </div>
+            )
+        }
+
+        function VideoRows(props) {
+          // console.log("videorow");
+          var video_list = [];
+          for(var i = 0; i < props.size; i++) {
+            video_list.push(<Video dict={props.list[i]} />);
+          }
+          return (<div className={"row"}>{video_list}</div>);
+        }
+
+        class Control extends React.Component {
+          constructor() {
+            super();
+            this.state = {
+              active_page: 1,
+              objects_per_page: 3,
+              list: []
+            };
+            this.handleClick = this.handleClick.bind(this)
+          }
+
+          handleClick(event) {
+            var num = Number(event.target.id)
+            this.setState({
+              active_page: num
+            });
+            console.log(num)
+          }
+
+
+          render() {
+            $.getJSON('/pagination/video/1', function(data) {
+                console.log(data)
+            });
+            // this.state.list = 
+            //For first time creating
+            if(this.state.list.length == 0) {
+              this.setState({
+                list: this.props.list
+              });
+              // this.state.list = this.props.list;
+            }
+
+            const pageNumbers = [];
+            for (let i = 1; i <= this.props.num_pages; i++) {
+              pageNumbers.push(i);
+            } 
+
+            const renderPageNumbers = pageNumbers.map(number => {
+              return (
+                <li>
+                  <a id={number} onClick={this.handleClick} href={"#"}>{number}</a>
+                </li>
+              );
+            });
+
+            return (
+              <div>
+                <VideoRows list={this.state.list} size={this.state.list.length} />
+
+                <div className={"col-lg-12"}>
+                  <ul className={"pagination"}>
+                    <li><a href={"#"}>&laquo;</a></li>
+                      {renderPageNumbers}
+                    <li><a href={"#"}>&raquo;</a></li>
+                  </ul>
+                </div>
+                
+              </div>
+            );
+          }
+        }
+            //    <Pagination active_page={this.state.active_page} size={this.props.num_pages} onClick={(i) =>this.changeActivePage(i)} />
+
+        //database needs to also send in the number of pages to be displayed
+        ReactDOM.render(<Control list={d} num_pages={num_pages}/>, document.getElementById('container'));
+
+      </script>
+  </body>
+
+</html>
