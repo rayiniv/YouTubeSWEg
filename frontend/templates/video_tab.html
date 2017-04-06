@@ -174,17 +174,17 @@
           return (
                 <div className={"col-md-4"}>
                 <div className={"panel panel-default"}>
-                  <h3><div className={"wrap"}><a href="#">{props.dict.title}</a></div></h3> <br />
+                  <h3><div className={"wrap"}><a href={"/video/" + props.dict.id}>{props.dict.title}</a></div></h3>
+                  <b>Thumbnail</b><br />
+                  <img src={props.dict.thumbnail} /><br /><br />                  
                   <b>Channel</b><br />
-                  <div className={"wrap"}> <a href="#">{props.dict.channel}</a></div><br />
+                  <div className={"wrap"}> <a href={"/channel/" + props.dict.channel_id}>{props.dict.channel_title}</a></div><br />
                   <b>Description</b><br />
                   <div className={"wrap"}>{props.dict.description}<br /></div><br />
-                  <b>Thumbnail</b><br />
-                  <img src={props.dict.img} /><br /><br />
                   <b>Tags</b><br />
                   <div className={"wrap"}>{props.dict.tags}</div><br />
                   <b>Categories</b><br />
-                  <div className={"wrap"}> <a href={"#"}>{props.dict.categories}</a></div><br />
+                  <div className={"wrap"}> <a href={"/category/" + props.dict.category_id}>{props.dict.category_title}</a></div><br />
                 </div>
               </div>
             )

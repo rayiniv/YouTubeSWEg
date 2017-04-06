@@ -41,15 +41,52 @@ def to_arr_dict(objs):
         attrs = [a for a in dir(obj) if not a.startswith('_') and not a == "metadata"
           and not a == "channel" and not a == "category" and not a == "videos" 
           and not a == "playlists" and not a == "channels"]
+
         for attr in attrs:
             curr_dict[attr] = getattr(obj, attr)
         result.append(curr_dict)
     return result
 
+def video_to_dict(objs):
+    result = []
+    for obj in objs:
+        curr_dict = {}
+        attrs = [a for a in dir(obj) if not a.startswith('_') and not a == "metadata"
+          and not a == "channel" and not a == "category"]
+
+        for attr in attrs:
+            curr_dict[attr] = getattr(obj, attr)
+
+        curr_dict["channel_title"] = obj.channel.title
+        curr_dict["category_title"] = obj.category.title
+
+        result.append(curr_dict)
+    return result    
+
+def category_to_dict(objs):
+    result = []
+    for obj in objs:
+        curr_dict = {}
+        attrs = [a for a in dir(obj) if not a.startswith('_') and not a == "metadata"
+          and not a == "channel" and not a == "category"]
+
+        for attr in attrs:
+            curr_dict[attr] = getattr(obj, attr)
+
+        curr_dict["most_popular_video"] = obj.videos[0].title
+        curr_dict["most_popular_video_id"] = obj.videos[0].id
+
+        curr_dict["most_popular_channel"] = obj.channels[0].title
+        curr_dict["most_popular_channel_id"] = obj.channels[0].id
+
+        result.append(curr_dict)
+    return result                  
+
 num_per_page = 6
-videos = to_arr_dict(session.query(Video).all())
+
+videos = video_to_dict(session.query(Video).all())
 channels = to_arr_dict(session.query(Channel).all())
-categories = to_arr_dict(session.query(Category).all())
+categories = category_to_dict(session.query(Category).all())
 playlists = to_arr_dict(session.query(Playlist).all())
 
 @app.route('/db_testing')
@@ -72,10 +109,9 @@ def splash_page():
 def video():
     return render_template('video_tab.html')
 
-# @app.route('/channel')
-# def channel():
-#     return render_template('model.html', title="Channels", table_headers=channel_headers,
-#                            data=channels)
+@app.route('/channel')
+def channel():
+    return render_template('channel_tab.html')
 
 # @app.route('/category')
 # def category():
