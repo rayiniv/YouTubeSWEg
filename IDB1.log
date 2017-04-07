@@ -1,3 +1,9 @@
+commit b362fb601402147a6d076b32260bbd1c42266b6c
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Apr 6 21:19:15 2017 -0500
+
+    Added all remaining files
+
 commit e7eb56a5e9eb31a18cc50d7ac13c47777b254b25
 Author: hamzamuhammad <hamzamuhammad@utexas.edu>
 Date:   Thu Apr 6 20:36:49 2017 -0500
@@ -5,7 +11,7 @@ Date:   Thu Apr 6 20:36:49 2017 -0500
     Fixed filtering issues, fixed #27
 
 commit 6cb19a783a9a5a661500399706cfbc7ffbd15ba8
-Merge: f4fe064 d521556
+Merge: f4fe064f d521556d
 Author: hamzamuhammad <hamzamuhammad@utexas.edu>
 Date:   Thu Apr 6 19:52:42 2017 -0500
 
@@ -18,7 +24,7 @@ Date:   Thu Apr 6 19:52:38 2017 -0500
     all pagination, filtering, and sorting working website is functional. fixed #27
 
 commit d521556d9a33f3efafdd7c5695506efa0b790ee7
-Merge: a32527d c99be32
+Merge: a32527d7 c99be32d
 Author: Zal Daroga <zaldaroga@yahoo.com>
 Date:   Thu Apr 6 18:42:31 2017 -0500
 
@@ -55,7 +61,7 @@ Date:   Thu Apr 6 10:28:30 2017 -0500
     Added sorted and filtering for the videos page
 
 commit 2f681d3f10476a268581b9d50090da069862a283
-Merge: 495859c e02918b
+Merge: 495859c0 e02918b4
 Author: hamzamuhammad <hamzamuhammad@utexas.edu>
 Date:   Thu Apr 6 06:48:52 2017 -0500
 
@@ -68,7 +74,7 @@ Date:   Thu Apr 6 06:48:43 2017 -0500
     connected all instance pages with tabs, working on sorting and filtering
 
 commit e02918b4496cfff3d391b52ae38293d2194206d4
-Merge: 80cc270 5922bf2
+Merge: 80cc270b 5922bf21
 Author: Pradyumn Pagadala <pradyumn@utexas.edu>
 Date:   Thu Apr 6 06:37:35 2017 -0500
 
@@ -81,7 +87,7 @@ Date:   Thu Apr 6 06:36:45 2017 -0500
     changed about page, added technical documentation
 
 commit 5922bf21b091c8567991d4f86343ff1c5fc4b57f
-Merge: 414e95c 9144b60
+Merge: 414e95c4 9144b602
 Author: hamzamuhammad <hamzamuhammad@utexas.edu>
 Date:   Thu Apr 6 04:39:53 2017 -0500
 
@@ -124,7 +130,7 @@ Date:   Thu Apr 6 00:16:22 2017 -0500
     combined frontend and backend, working on full integration
 
 commit c2a9fcad4621b5b82a262dbd570fe116005111ee
-Merge: 9297cf0 73261a1
+Merge: 9297cf0d 73261a1d
 Author: hamzamuhammad <hamzamuhammad@utexas.edu>
 Date:   Wed Apr 5 19:29:16 2017 -0500
 
@@ -173,7 +179,7 @@ Date:   Tue Apr 4 23:32:05 2017 -0500
     untracked app.yaml
 
 commit d94578b676dca60ea4da6c8ef4024f9d2f42de29
-Merge: 4226359 a4ffd1e
+Merge: 4226359d a4ffd1e9
 Author: hamzamuhammad <hamzamuhammad@utexas.edu>
 Date:   Tue Apr 4 23:27:35 2017 -0500
 
@@ -252,7 +258,7 @@ Date:   Thu Mar 23 16:38:05 2017 -0500
     fixed bugs
 
 commit cfa3a069a4868b038aebb004a7d34cf1dd78a9fc
-Merge: 763383a 0a59484
+Merge: 763383a4 0a594845
 Author: hamzamuhammad <hamzamuhammad@utexas.edu>
 Date:   Thu Mar 23 16:09:05 2017 -0500
 
@@ -265,14 +271,14 @@ Date:   Thu Mar 23 16:08:48 2017 -0500
     added test grid page
 
 commit 0a5948452233362bc4c188cc0633428da86cc8d4
-Merge: 2e893c8 25ac723
+Merge: 2e893c86 25ac7230
 Author: Pradyumn Pagadala <pradyumn@utexas.edu>
 Date:   Thu Mar 23 15:48:43 2017 -0500
 
     merged
 
 commit 25ac7230db440c0fa5243c9dcdad67c06c32415b
-Merge: 4f6e637 f70b393
+Merge: 4f6e6376 f70b3938
 Author: Zal Daroga <zaldaroga@yahoo.com>
 Date:   Thu Mar 23 14:39:52 2017 -0500
 
@@ -315,7 +321,7 @@ Date:   Thu Mar 23 04:53:36 2017 -0500
     ran autopep8, pylint, and pydoc
 
 commit 080fb8db1c405fa9df853643058ed2c557ceb2ce
-Merge: 7e1fd0b 0aba078
+Merge: 7e1fd0b3 0aba0785
 Author: hamzamuhammad <hamzamuhammad@utexas.edu>
 Date:   Thu Mar 23 03:58:55 2017 -0500
 
@@ -334,7 +340,7 @@ Date:   Thu Mar 23 08:17:15 2017 +0000
     Fixed makefile to run pylint on all python files
 
 commit a9948547b59491c60f5f16a9090df52e26efaea0
-Merge: 66e743d f217bf5
+Merge: 66e743de f217bf52
 Author: Zal Daroga <zaldaroga@yahoo.com>
 Date:   Thu Mar 23 03:06:55 2017 -0500
 
@@ -365,7 +371,7 @@ Date:   Thu Mar 23 01:33:37 2017 -0500
     Updated README.md
 
 commit ba43cb72fd14cca5211ddadce8b88b070ea7596f
-Merge: 8b558b5 aac3c59
+Merge: 8b558b50 aac3c596
 Author: hamzamuhammad <hamzamuhammad@utexas.edu>
 Date:   Thu Mar 23 00:24:25 2017 -0500
 
@@ -402,7 +408,7 @@ Date:   Wed Mar 22 23:22:16 2017 -0500
     fixed navbar active tabs
 
 commit c44bac32172420a17afa9ac9c2848300ad37ed09
-Merge: 58016e9 c6f870b
+Merge: 58016e93 c6f870b9
 Author: hamzamuhammad <hamzamuhammad@utexas.edu>
 Date:   Wed Mar 22 22:50:02 2017 -0500
 
@@ -427,7 +433,7 @@ Date:   Wed Mar 22 21:21:49 2017 -0500
     Updated tests
 
 commit 900b3f9e0deb0e271e15dceba563e4517b5f1cbc
-Merge: 20fad4d 191d982
+Merge: 20fad4d5 191d982f
 Author: Vinay Rayini <rayiniv@hotmail.com>
 Date:   Wed Mar 22 21:19:58 2017 -0500
 
@@ -518,7 +524,7 @@ Date:   Mon Mar 20 18:17:25 2017 -0500
     added google cloud starter code
 
 commit 756da055262d3f139f4d797e6873d702eaac732f
-Merge: f4a2612 02d4370
+Merge: f4a2612a 02d4370b
 Author: Voulgaropoulos, Nicole <nvoulgaropoulos@consultant.underarmour.com>
 Date:   Mon Mar 20 00:28:18 2017 -0500
 
