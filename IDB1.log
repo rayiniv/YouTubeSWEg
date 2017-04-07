@@ -1,3 +1,226 @@
+commit e7eb56a5e9eb31a18cc50d7ac13c47777b254b25
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Apr 6 20:36:49 2017 -0500
+
+    Fixed filtering issues, fixed #27
+
+commit 6cb19a783a9a5a661500399706cfbc7ffbd15ba8
+Merge: f4fe064 d521556
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Apr 6 19:52:42 2017 -0500
+
+    Merge branch 'master' of https://github.com/rayiniv/idb
+
+commit f4fe064fa4b80a051a04e1543dd971021378ec12
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Apr 6 19:52:38 2017 -0500
+
+    all pagination, filtering, and sorting working website is functional. fixed #27
+
+commit d521556d9a33f3efafdd7c5695506efa0b790ee7
+Merge: a32527d c99be32
+Author: Zal Daroga <zaldaroga@yahoo.com>
+Date:   Thu Apr 6 18:42:31 2017 -0500
+
+    Merge branch 'master' of https://github.com/rayiniv/idb
+
+commit a32527d7fafa249f8f13aee3ba614e7754eceade
+Author: Zal Daroga <zaldaroga@yahoo.com>
+Date:   Thu Apr 6 18:42:13 2017 -0500
+
+    Finished technical report. Resolves #30
+
+commit c99be32de410fb471699a93d397bf02661dd7daf
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Apr 6 16:44:55 2017 -0500
+
+    halfway done with porting logic
+
+commit 513f603a555578ee70d44be908ea02377d2fefab
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Apr 6 15:49:17 2017 -0500
+
+    Updated CSS and sorting button
+
+commit 553dcd523c5095451fa8d5c85864c79d7fe9deb8
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Apr 6 11:09:36 2017 -0500
+
+    Added visual effects for button pressing on videos page.
+
+commit 3d892da730b163b61b5279345ab4cff2fb6d4b5c
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Apr 6 10:28:30 2017 -0500
+
+    Added sorted and filtering for the videos page
+
+commit 2f681d3f10476a268581b9d50090da069862a283
+Merge: 495859c e02918b
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Apr 6 06:48:52 2017 -0500
+
+    Merge branch 'master' of https://github.com/rayiniv/idb
+
+commit 495859c0fb0155df4b51158ec616639ee29109cd
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Apr 6 06:48:43 2017 -0500
+
+    connected all instance pages with tabs, working on sorting and filtering
+
+commit e02918b4496cfff3d391b52ae38293d2194206d4
+Merge: 80cc270 5922bf2
+Author: Pradyumn Pagadala <pradyumn@utexas.edu>
+Date:   Thu Apr 6 06:37:35 2017 -0500
+
+    changed about page, added technical documentation
+
+commit 80cc270b1b3ed796726f6b617534467952b7488e
+Author: Pradyumn Pagadala <pradyumn@utexas.edu>
+Date:   Thu Apr 6 06:36:45 2017 -0500
+
+    changed about page, added technical documentation
+
+commit 5922bf21b091c8567991d4f86343ff1c5fc4b57f
+Merge: 414e95c 9144b60
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Apr 6 04:39:53 2017 -0500
+
+    added 4 tabs
+
+commit 414e95c46375ad326959abdc770789c1aa1dbd48
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Apr 6 04:34:17 2017 -0500
+
+    setup all tabs for various items, working on intermediate pages
+
+commit 9144b602f3c7e1a96202f01a8c67da4cc6f3e72f
+Author: Pradyumn Pagadala <pradyumn@utexas.edu>
+Date:   Thu Apr 6 03:20:14 2017 -0500
+
+    refactored the front end
+
+commit 073e87f0ac59af82d0dfd63593c33b6f64d6133a
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Apr 6 03:07:00 2017 -0500
+
+    added channel tab
+
+commit 266886f5a51e167b9b76d609a4021b3261912375
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Apr 6 02:45:15 2017 -0500
+
+    got video tab fully working now have to hook up other stuff
+
+commit b2853987e69e127756b97757e553fd69d7ed2da3
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Apr 6 01:32:08 2017 -0500
+
+    Pagination working for video tab
+
+commit 0d4c6da1b4a4d6ed610e9d8da41238a2a462c87e
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Apr 6 00:16:22 2017 -0500
+
+    combined frontend and backend, working on full integration
+
+commit c2a9fcad4621b5b82a262dbd570fe116005111ee
+Merge: 9297cf0 73261a1
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Wed Apr 5 19:29:16 2017 -0500
+
+    Merge branch 'master' of https://github.com/rayiniv/idb
+
+commit 9297cf0d1c2b428a5d66af5fbc323e724eca7ce3
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Wed Apr 5 19:29:00 2017 -0500
+
+    Fixed json files and data in database
+
+commit 73261a1da4e81c1dbb1ae97dc9ade5d26920a372
+Author: Vinay Rayini <rayiniv@hotmail.com>
+Date:   Wed Apr 5 17:23:33 2017 -0500
+
+    Updated API Description
+
+commit 67d5c67d157e24539392b83ff14fb25371c3970b
+Author: Vinay Rayini <rayiniv@hotmail.com>
+Date:   Wed Apr 5 17:06:09 2017 -0500
+
+    Updated API documentation
+
+commit 3c752385cc8b0fd7312c2f194be2d92dff78a4e1
+Author: Vinay Rayini <rayiniv@hotmail.com>
+Date:   Wed Apr 5 16:25:33 2017 -0500
+
+    Updated API Descriptions
+
+commit a9ce8546ee92e05284907fd3f75cc2a8e4efd8dc
+Author: Vinay Rayini <rayiniv@hotmail.com>
+Date:   Wed Apr 5 16:19:29 2017 -0500
+
+    Transferring API Description file from Apiary.io
+
+commit cecd6a8a6b603b075aff0362ce09001445aa0080
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Wed Apr 5 02:00:50 2017 -0500
+
+    fixed db issues
+
+commit aacbc15139843a86cf6729c128edd341961e4287
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Tue Apr 4 23:32:05 2017 -0500
+
+    untracked app.yaml
+
+commit d94578b676dca60ea4da6c8ef4024f9d2f42de29
+Merge: 4226359 a4ffd1e
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Tue Apr 4 23:27:35 2017 -0500
+
+    Merge branch 'master' of https://github.com/rayiniv/idb
+
+commit 4226359d3a7dc4fdfb4f1625daf8e7b968bbdf6a
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Tue Apr 4 23:26:36 2017 -0500
+
+    cleaned up models
+
+commit 0cb4e872ad64e2a9170b5477a0fedeca0e264106
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Tue Apr 4 23:14:48 2017 -0500
+
+    Setup database, and updated data in database. Fixed #23, fixed #24, fixed #25, fixed #26.
+
+commit a4ffd1e95ef92dc347457649bd6d8972a2e80345
+Author: Pradyumn Pagadala <pradyumn@utexas.edu>
+Date:   Tue Apr 4 20:44:12 2017 -0500
+
+    added information about react in the About page
+
+commit 2d7eaef81fb1b9c2fe3d8a88f5503b8dca78887b
+Author: Pradyumn Pagadala <pradyumn@utexas.edu>
+Date:   Tue Apr 4 20:21:40 2017 -0500
+
+    fixed uml diagram
+
+commit baaf8a600e0b3d6ccd7af32f443df4fa7bf777e8
+Author: Pradyumn Pagadala <pradyumn@utexas.edu>
+Date:   Tue Apr 4 20:09:32 2017 -0500
+
+    edited the technical document
+
+commit 5fb71554b94b74503d67dabcaa7b5ab6f578915b
+Author: Pradyumn Pagadala <pradyumn@utexas.edu>
+Date:   Sun Apr 2 19:15:02 2017 -0500
+
+    cleaned up the navbar
+
+commit 0ce76d04bb90cfb6c0cfb804a148c44a3990c371
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Mar 23 20:30:26 2017 -0500
+
+    final commit for phase 1
+
 commit 9250a133c0543ab8b9f58697f504d59d24cfa032
 Author: hamzamuhammad <hamzamuhammad@utexas.edu>
 Date:   Thu Mar 23 20:11:37 2017 -0500

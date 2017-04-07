@@ -31,6 +31,7 @@ channel_category_table = Table('channel_category', Base.metadata,
                                Column('channels_id', Integer,
                                       ForeignKey('channel.id')))
 
+
 class Video(Base):
     """
     Model for a video.
@@ -47,10 +48,10 @@ class Video(Base):
     tags = Column(String(750), nullable=False)
     video_url = Column(String(750), nullable=False)
 
-    channel_id = Column(Integer, ForeignKey('channel.id')) 
+    channel_id = Column(Integer, ForeignKey('channel.id'))
     channel = relationship("Channel", back_populates="videos")
 
-    category_id = Column(Integer, ForeignKey('category.id')) 
+    category_id = Column(Integer, ForeignKey('category.id'))
     category = relationship("Category", back_populates="videos")
 
 

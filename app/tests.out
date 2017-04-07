@@ -1,0 +1,7 @@
+Name                                                                                    Stmts   Miss Branch BrPart  Cover   Missing
+-----------------------------------------------------------------------------------------------------------------------------------
+app/models.py                                                                              53      0      0      0   100%
+/usr/local/lib/python3.5/site-packages/sqlalchemy/__init__.py                              13      0      2      0   100%
+/usr/local/lib/python3.5/site-packages/sqlalchemy/connectors/__init__.py                    2      0      0      0   100%
+/usr/local/lib/python2.7/site-packages/psycopg2/extensions.py                              94     26     24      7    67% 57-58, 114-115, 118, 123-129, 132, 142, 145, 151, 155-156, 161, 169-171, 189, 193, 204-205, 150->151, 154->155, 159->166, 160->161, 168->169, 188->189, 192->193
+

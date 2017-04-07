@@ -48,18 +48,10 @@ IDB1.html: app/models.py
 	mv models.html IDB1.html	
 
 pylint: .pylintrc
-	-$(PYLINT) frontend/main.py
-	-$(PYLINT) frontend/appengine_config.py
 	-$(PYLINT) app/models.py
-	-$(PYLINT) app/db_insert.py
-	-$(PYLINT) app/tests.py  
 
 format:
-	$(AUTOPEP8) -i frontend/main.py
-	$(AUTOPEP8) -i frontend/appengine_config.py
 	$(AUTOPEP8) -i app/models.py
-	$(AUTOPEP8) -i app/db_insert.py
-	$(AUTOPEP8) -i app/tests.py  
 
 config:
 	git config -l
@@ -97,3 +89,8 @@ versions:
 	$(AUTOPEP8) --version
 	@echo
 	$(PIP) list
+
+test: app/models.py
+    $(COVERAGE) run    --branch app/models.py >  app/tests.out 2>&1
+    $(COVERAGE) report -m                      >> app/tests.out
+    cat app/tests.out

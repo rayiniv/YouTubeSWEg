@@ -496,7 +496,7 @@ def video_api():
 
 @app.route('/unit_tests')
 def unit_tests():
-  return str(subprocess.check_output(['python', '../app/tests.py']))
+  return open('tests.out').read()
 
 
 @app.errorhandler(500)
