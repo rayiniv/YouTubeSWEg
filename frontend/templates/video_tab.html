@@ -351,7 +351,7 @@
           }
             
           render() {
-            if (this.state.list.length == 0) {
+            if (this.state.list.length == 0 && this.state.filterState.length == 0 && this.state.filterState2.length == 0) {
                $.getJSON('/pagination/video/' + this.state.active_page).done(function(data) {
                   this.state.list = data
                   this.forceUpdate()                

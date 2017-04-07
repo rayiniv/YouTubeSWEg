@@ -21,6 +21,8 @@ from flask_sqlalchemy import SQLAlchemy
 import sqlalchemy
 import json
 
+import subprocess
+
 app = Flask(__name__)
 
 # Environment variables are defined in app.yaml.
@@ -82,6 +84,7 @@ def category_to_dict(objs):
                 curr_dict[attr] = str(getattr(obj, attr))
             else:
                 curr_dict[attr] = getattr(obj, attr)
+
         curr_dict["most_popular_video"] = obj.videos[0].title
         curr_dict["most_popular_video_id"] = obj.videos[0].id
 
@@ -114,7 +117,6 @@ def playlist_to_dict(objs):
 
 num_per_page = 6
 
-
 video_all = session.query(Video).all()
 channel_all = session.query(Channel).all()
 category_all = session.query(Category).all()
@@ -132,14 +134,8 @@ playlists_copy = list(playlists)
 
 @app.route('/db_testing')
 def db_testing():
-    engine = create_engine(os.environ['SQLALCHEMY_DATABASE_URI'])
-    Base.metadata.bind = engine
-    DBSession = sessionmaker()
-    DBSession.bind = engine
-    session = DBSession()
-    output = ""
-    for video in session.query(Video).all():
-        output += video.video_url + "<br />"
+    category_to_dict(category_all)
+    output = "hi"
     return output
 
 @app.route('/')
@@ -313,18 +309,18 @@ def channel_pagination(page_num):
 @app.route('/pagination/category/<page_num>')
 def category_pagination(page_num):
   starting_num = (int(page_num) - 1) * num_per_page;
-  if starting_num + num_per_page <= len(categories):
-    return json.dumps(categories[starting_num:starting_num + 6])
+  if starting_num + num_per_page <= len(categories_copy):
+    return json.dumps(categories_copy[starting_num:starting_num + 6])
   else:
-    return json.dumps(categories[starting_num:])
+    return json.dumps(categories_copy[starting_num:])
 
 @app.route('/pagination/playlist/<page_num>')
 def playlist_pagination(page_num):
   starting_num = (int(page_num) - 1) * num_per_page;
-  if starting_num + num_per_page <= len(playlists):
-    return json.dumps(playlists[starting_num:starting_num + 6])
+  if starting_num + num_per_page <= len(playlists_copy):
+    return json.dumps(playlists_copy[starting_num:starting_num + 6])
   else:
-    return json.dumps(playlists[starting_num:])    
+    return json.dumps(playlists_copy[starting_num:])    
 
 def sort_results(dict_list, attr_name, reverse):
   new_list = list(dict_list)
@@ -413,7 +409,101 @@ def channel_sorting(num, option, filter_country, filter_none):
     else:
       channels_copy = sort_results(channels_copy, option, True)
 
-  return str(channels_copy)           
+  return str(channels_copy)     
+
+@app.route('/sorting/category/<num>/<option>/<filter_channel>/<filter_none>')
+def category_sorting(num, option, filter_channel, filter_none):
+  global categories_copy
+  categories_copy = list(categories)
+
+  if filter_channel != "blank":
+    filterChannelOptions = filter_channel.split(",")
+    final_results = []
+    for opt in filterChannelOptions:
+      if opt != "":
+        temp = filter_results(categories_copy, "most_popular_channel", opt)
+        for dictionary in temp:
+          final_results.append(dictionary)
+    categories_copy = list(final_results)
+
+  if filter_none != "blank":
+    filterCategoryOptions = filter_category.split(",")
+    final_results = []
+    for opt in filterCategoryOptions:
+      if opt != "":
+        temp = filter_results(videos_copy, "category_title", opt)
+        for dictionary in temp:
+          final_results.append(dictionary)
+    videos_copy = list(final_results)
+
+  if option != "blank":
+    if int(num) == 0:
+      categories_copy = list(categories_copy)  
+    elif int(num) == 1:
+      categories_copy = sort_results(categories_copy, option, False)
+    else:
+      categories_copy = sort_results(categories_copy, option, True)
+
+  return str(categories_copy)    
+
+@app.route('/sorting/playlist/<num>/<option>/<filter_none1>/<filter_none2>')
+def playlist_sorting(num, option, filter_none1, filter_none2):
+  global playlists_copy
+  playlists_copy = list(playlists)
+
+  if option != "blank":
+    if int(num) == 0:
+      playlists_copy = list(playlists_copy)  
+    elif int(num) == 1:
+      playlists_copy = sort_results(playlists_copy, option, False)
+    else:
+      playlists_copy = sort_results(playlists_copy, option, True)
+
+  return str(playlists_copy)    
+
+
+@app.route('/api/video')  
+def video_api():
+  response = []
+  response_inner = {}
+  videos_arr = []
+  video_id_arg = request.args.get("id")
+  channel_id_arg = request.args.get("channel_id")
+  category_id_arg = request.args.get("category_id")
+  if video_id_arg != None:
+    video_ids = video_id_arg.split(',')
+    for video in video_all:
+      if str(video.id) in video_ids:
+        videos_arr.append(video)
+  elif channel_id_arg != None:
+    channel_ids = channel_id_arg.split(',')
+    for video in video_all:
+      if str(video.channel.id) in channel_ids:
+        videos_arr.append(video)
+  elif category_id_arg != None:
+    category_ids = category_id_arg.split(',')
+    for video in video_all:
+      if str(video.category.id) in category_ids:
+        videos_arr.append(video)
+  else:
+    for video in video_all:
+      videos_arr.append(video)
+
+  videos_dict_arr = []
+  for video in videos_arr:
+    for video_dict in videos:
+      if video_dict['id'] == video.id:
+        videos_dict_arr.append(video_dict)
+
+  response_inner['num_videos'] = len(videos_dict_arr)
+  response_inner['videos'] = videos_dict_arr
+  response.append(response_inner)
+  return json.dumps(response)
+
+@app.route('/unit_tests')
+def unit_tests():
+  return str(subprocess.check_output(['python', '../app/tests.py']))
+
 
 @app.errorhandler(500)
 def server_error(e):

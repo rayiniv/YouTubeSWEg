@@ -68,12 +68,15 @@
             this.state = {
               active_page: 1,
               objects_per_page: 3,
-              list: []
+              list: [],
+              sortState: [0, 0],
+              filterState: [],
+              channelFilterButtons: [["LastWeekTonight", "btn btn-primary btn-sm"], ["BuzzFeedVideo", "btn btn-primary btn-sm"]],
+              sortButtons: [["Title", ""], ["Number of Videos", ""]]  
             };
             this.handlePageClick = this.handlePageClick.bind(this)
             this.handleSortClick = this.handleSortClick.bind(this)
             this.handleChannelClick = this.handleChannelClick.bind(this)
-            this.handleCategoryClick = this.handleCategoryClick.bind(this)
           }
 
           handlePageClick(event) {
@@ -87,19 +90,119 @@
             
           handleSortClick(event){
               this.state.list = []
-              console.log("sort " + event.target.id)
+              if(event.target.id == "Title") {
+                this.state.sortButtons[1][1] = "";
+                if(this.state.sortButtons[0][1] == "") {
+                  this.state.sortButtons[0][1] = "\u25B2";
+                } else if (this.state.sortButtons[0][1] == "\u25B2") {
+                  this.state.sortButtons[0][1] = "\u25BC";
+                } else {
+                  this.state.sortButtons[0][1] = "";
+                }
+              } else {
+                this.state.sortButtons[0][1] = "";
+                if(this.state.sortButtons[1][1] == "") {
+                  this.state.sortButtons[1][1] = "\u25B2";
+                } else if (this.state.sortButtons[1][1] == "\u25B2") {
+                  this.state.sortButtons[1][1] = "\u25BC";
+                } else {
+                  this.state.sortButtons[1][1] = "";
+                }
+              }
+
+              var filterStateString = "";              
+              for (var i = 0; i < this.state.filterState.length; i++) {
+                filterStateString += this.state.filterState[i] + ",";
+              }
+
+              var filterStateString2 = "blank";           
+
+              if (filterStateString == "") {
+                filterStateString = "blank";
+              }
+
+              var finalStateString = filterStateString + '/' + filterStateString2;
+
+              if (event.target.id == "Title") {
+                var currSortVal = this.state.sortState[0];
+                this.state.sortState = [(currSortVal + 1) % 3, 0];
+                $.get('/sorting/category/' + ((currSortVal + 1) % 3) + '/title/' + finalStateString).done(function() {
+                    this.state.list = []
+                    this.state.active_page = 1
+                    this.forceUpdate()                
+                }.bind(this));
+              }
+              else {
+                var currSortVal = this.state.sortState[1];
+                this.state.sortState = [0, (currSortVal + 1) % 3];
+                $.get('/sorting/category/' + ((currSortVal + 1) % 3) + '/num_videos/' + finalStateString).done(function() {
+                    this.state.list = []
+                    this.state.active_page = 1
+                    this.forceUpdate()                
+                }.bind(this)); 
+              }           
           }
 
           handleChannelClick(event){
               this.state.list = []
-              console.log("filter channel " + event.target.id)
-          }
+              if(event.target.id == 'LastWeekTonight') {
+                if(this.state.channelFilterButtons[0][1] == 'btn btn-warning btn-sm') {
+                  this.state.channelFilterButtons[0][1] = 'btn btn-primary btn-sm';
+                }
+                else {
+                  this.state.channelFilterButtons[0][1] = 'btn btn-warning btn-sm';
+                }
+              } else {
+                if(this.state.channelFilterButtons[1][1] == 'btn btn-warning btn-sm') {
+                  this.state.channelFilterButtons[1][1] = 'btn btn-primary btn-sm';
+                }
+                else {
+                  this.state.channelFilterButtons[1][1] = 'btn btn-warning btn-sm';
+                }
+              }
 
-          handleCategoryClick(event){
-              this.state.list = []
-              console.log("filter category " + event.target.id)
-          }
+              if (this.state.filterState.indexOf(event.target.id) == -1) {
+                this.state.filterState.push(event.target.id);
+              }
+              else {
+                var index = this.state.filterState.indexOf(event.target.id);
+                this.state.filterState.splice(index, 1);
+              }
 
+              var filterStateString = "";              
+              for (var i = 0; i < this.state.filterState.length; i++) {
+                filterStateString += this.state.filterState[i] + ",";
+              }
+
+              var filterStateString2 = "blank";           
+
+              if (filterStateString == "") {
+                filterStateString = "blank";
+              }
+
+              var finalStateString = filterStateString + '/' + filterStateString2;
+
+              var nonZeroElementIndex = 0;
+              var option = "blank";
+              for (var i = 0; i < this.state.sortState.length; i++) {
+                if (this.state.sortState[i] != 0) {
+                  nonZeroElementIndex = i;
+                  if (nonZeroElementIndex == 0) {
+                    option = "title";
+                  }
+                  else if (nonZeroElementIndex == 1) {
+                    option = "num_videos";
+                  }
+                  break;
+                }
+              }
+
+              $.get('/sorting/category/' + this.state.sortState[nonZeroElementIndex] + '/' + option + '/' + finalStateString).done(function() {
+                  this.state.list = []
+                  this.state.active_page = 1
+                  this.forceUpdate()                
+              }.bind(this));
+          }
 
           render() {
             if (this.state.list.length == 0) {
@@ -109,29 +212,18 @@
               }.bind(this));   
             }
 
-            var sortButtons = ["Title", "Channel", "Description", "Thumbnail", "Tags", "Categories"];
+            // var sortButtons = ["Title", "Channel", "Description", "Thumbnail", "Tags", "Categories"];
 
-            var channelFilterButtons = ["filter1","filter2","filter3"];
-
-            var categoryFilterButtons = ["filter1","filter2","filter3"]
-
-            const renderSortButtons = sortButtons.map(sortButton => {
+            const renderSortButtons = this.state.sortButtons.map(sortButton => {
               return (
-                <button type={"button"} className={"btn btn-danger btn-sm"} id={sortButton} onClick={this.handleSortClick}><i className={"fa fa-chevron-down"} aria-hidden={false}></i>{sortButton}
+                <button type={"button"} className={"btn btn-danger btn-sm"} id={sortButton[0]} onClick={this.handleSortClick}><i aria-hidden={false}></i>{sortButton[0]}{sortButton[1]}
                 </button>
               );
             });
 
-            const renderChannelFB = channelFilterButtons.map(sortButton => {
+            const renderChannelFB = this.state.channelFilterButtons.map(sortButton => {
               return (
-                <button type={"button"} className={"btn btn-primary btn-sm"} id={sortButton} onClick={this.handleChannelClick}><i className={"fa fa-chevron-down"} aria-hidden={false}></i>{sortButton}
-                </button>
-              );
-            }); 
-
-            const renderCategoryFB = categoryFilterButtons.map(sortButton => {
-              return (
-                <button type={"button"} className={"btn btn-primary btn-sm"} id={sortButton} onClick={this.handleCategoryClick}><i className={"fa fa-chevron-down"} aria-hidden={false}></i>{sortButton}
+                <button type={"button"} className={sortButton[1]} id={sortButton[0]} onClick={this.handleChannelClick}><i aria-hidden={false}></i>{sortButton[0]}
                 </button>
               );
             });  
@@ -176,10 +268,6 @@
                   {renderChannelFB}
                 </div>
 
-                <h4>Category</h4>
-                <div className={"btn-group"} data-toggle={"buttons"}>
-                  {renderCategoryFB}
-                </div>
                 <br></br>
                 <br></br>
                 
