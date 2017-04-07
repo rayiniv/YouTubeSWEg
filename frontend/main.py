@@ -132,12 +132,6 @@ channels_copy = list(channels)
 categories_copy = list(categories)
 playlists_copy = list(playlists)
 
-@app.route('/db_testing')
-def db_testing():
-    category_to_dict(category_all)
-    output = "hi"
-    return output
-
 @app.route('/')
 def splash_page():
     return render_template('splash_page.html')
