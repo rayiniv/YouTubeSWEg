@@ -39,25 +39,25 @@ the respective object.
                     {
                         "title": "video1 title",
                         "description": "video1 description",
+                        "video_url": "video1 url",
                         "thumbnail": "https://i.ytimg.com/vi/xwf08LmchUY/default.jpg",
                         "channel_id": 1,
+                        "channel_title": "video1 title"
                         "id": 1,
-                        "tags": [
-                            "tag1",
-                            "tag2"
-                        ],
-                        "category": 5
+                        "tags": "video1 comma separated tags",
+                        "category_id": 5,
+                        "category_title": "video1 category title"
                     }, {
                         "title": "video2 title",
                         "description": "video2 description",
-                        "thumbnail": "https://i.ytimg.com/vi/sIQ4ng0e1GU/default.jpg",
+                        "video_url": "video2 url",
+                        "thumbnail": "https://i.ytimg.com/vi/xwf08LmchUY/default.jpg",
+                        "channel_id": 3,
+                        "channel_title": "video2 title"
                         "id": 2,
-                        "channel_id": 2,
-                        "tags": [
-                            "tag5",
-                            "tag3"
-                        ],
-                        "category": 3
+                        "tags": "video2 comma separated tags",
+                        "category_id": 4,
+                        "category_title": "video2 category title"
                     }
                 ]
             }
@@ -94,7 +94,7 @@ resource again with the ID in order to receive the respective object.
                     {
                         "title": "channel title",
                         "description": "channel description",
-                        "published_date": "2017-03-17T01:00:03.000Z",
+                        "published_date": "channel published date",
                         "country": "US",
                         "view_count": 10000,
                         "subscriber_count": 100,
@@ -142,14 +142,18 @@ resource again with the ID in order to receive the respective object.
                 "categories": [
                     {
                         "title": "category title",
-                        "published_date": "2017-03-17T01:00:03.000Z",
+                        "latest_published_date": "published date of latest video",
                         "num_videos": 100,
                         "assignable": false,
                         "id": 3,
+                        "most_popular_video_id": "most popular vid id",
+                        "most_popular_video": "title of most popular video",
                         "videos": [
                             1,
                             2
                         ],
+                        "most_popular_channel_id": "most popular channel id",
+                        "most_popular_channel": "title of most popular channel",
                         "channels": [
                             3,
                             4
