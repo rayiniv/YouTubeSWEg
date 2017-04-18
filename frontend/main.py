@@ -330,7 +330,6 @@ def search(query):
     for key, value in video.items():
       for q in queries:
         if q in str(value).lower():
-          app.logger.warning(str(key))
           video[key] = str(value).lower().replace(q, "<mark>" + q + "</mark>")
           if q not in check_all:
             check_all.append(q)
@@ -351,7 +350,6 @@ def search(query):
     for key, value in channel.items():
       for q in queries:
         if q in str(value).lower():
-          app.logger.warning(str(key))
           channel[key] = str(value).lower().replace(q, "<mark>" + q + "</mark>")
           if q not in check_all:
             check_all.append(q)
@@ -737,6 +735,15 @@ def playlist_api():
 def unit_tests():
   return open('tests.out').read()
 
+@app.route('/visualization')
+def visualization():
+  return render_template('simulation.html')
+
+@app.route("/data.json")
+def dataReturn():
+  with open("data.json") as f:
+    data = json.load(f)
+    return json.dumps(data)
 
 @app.errorhandler(500)
 def server_error(e):
