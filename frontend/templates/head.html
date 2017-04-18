@@ -59,7 +59,7 @@
     <li><div class="input-group">
       <input id="searchText" type="text" class="form-control" placeholder="Search for...">
       <span class="input-group-btn">
-        <button id="searchButton" class="btn btn-default" type="button">Go!</button>
+        <button id="searchButton" class="btn btn-default" type="button" onClick="search_func()">Go!</button>
       </span>
     </div><!-- /input-group --></li>
           <li id="About"><a href="/about">About</a></li>
@@ -69,14 +69,20 @@
     </nav>
 
     <script type="text/javascript">
-     $(document).ready(function () {
+      $(document).ready(function () {
         $(".nav li").removeClass("active");//this will remove the active class from  
         $('#{{title}}').addClass('active');
         $('#searchButton').on('click', function() {
           var text = $('#searchText').val();
           window.location.href = "/search/" + text;
-      })
+          });
+        $('#searchText').keypress(function(e){
+          if(e.which == 13) { //Enter key pressed
+              $('#searchButton').click(); //Trigger search button click event
+          }
+          });        
       });
+   
     </script>
   </body>
 </html>

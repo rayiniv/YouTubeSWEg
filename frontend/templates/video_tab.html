@@ -361,10 +361,13 @@
               console.log("hi")
                $.getJSON('/pagination/video/' + this.state.active_page).done(function(data) {
                   this.state.list = data
+                  console.log(data)
+                  this.state.num_pages = data[data.length - 1]
                   this.forceUpdate()                
               }.bind(this));   
             }
 
+            //console.log(this.state.num_pages);
             // var sortButtons = ["Title", "Channel", "Categories"];
 
             // var channelFilterButtons = ["LastWeekTonight","Bloomberg","Adult Swim","Tasty","BuzzFeedVideo"];
@@ -445,9 +448,7 @@
 
                 <div className={"col-lg-12"}>
                       <ul className={"pagination"}>
-                        <li><a href={"#"}>&laquo;</a></li>
                           {renderPageNumbers}
-                        <li><a href={"#"}>&raquo;</a></li>
                     </ul>
                 </div>    
               </div>
