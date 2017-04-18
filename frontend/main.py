@@ -10,6 +10,7 @@ import datetime
 import sys
 import operator 
 import math
+import copy
 
 sys.path.append('../app/')
 
@@ -322,12 +323,14 @@ def search(query):
   union_list = []
   single_list = []
 
-  for video in videos:
+  copy_of_videos = copy.deepcopy(videos)
 
+  for video in copy_of_videos:
     check_all = []
     for key, value in video.items():
       for q in queries:
         if q in str(value).lower():
+          video[key] = value.lower().replace(q, "<mark>" + q + "</mark>")
           if q not in check_all:
             check_all.append(q)
 
@@ -345,7 +348,7 @@ def search(query):
   if len(search_results) == 0:
     search_results.append([-1])
 
-  return render_template('search.html', total_pages=math.ceil(len(search_results) / 9.0))
+  return render_template('search.html', total_pages=math.ceil(len(search_results) / 9.0), query=query)
 
 @app.route('/pagination/search/<page_num>')
 def search_pagination(page_num):

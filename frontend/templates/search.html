@@ -31,21 +31,23 @@
         function Video(props) {
           if (!(props.dict instanceof Array)) {
           return (
+            {% raw %}
                 <div className={"col-md-4"}>
-                <div className={"video-panel-container text-center"}>                
-                  <h3><div className={"wrap"}><a href={"/video/" + props.dict.id}>{props.dict.title}</a></div></h3>
+                <div className={"video-panel-container text-center"}>      
+                  <h3><div className={"wrap"}><a href={"/video/" + props.dict.id} dangerouslySetInnerHTML={{__html: props.dict.title}} ></a></div></h3>
                   <b>Thumbnail</b><br />
                   <img src={props.dict.thumbnail} /><br /><br />                  
                   <b>Channel</b><br />
-                  <div className={"wrap"}> <a href={"/channel/" + props.dict.channel_id}>{props.dict.channel_title}</a></div><br />
+                  <div className={"wrap"}> <a href={"/channel/" + props.dict.channel_id} dangerouslySetInnerHTML={{__html: props.dict.channel_title}}></a></div><br />
                   <b>Description</b><br />
-                  <div className={"wrap"}>{props.dict.description}<br /></div><br />
+                  <div className={"wrap"} dangerouslySetInnerHTML={{__html: props.dict.description}}></div><br /><br />
                   <b>Tags</b><br />
-                  <div className={"wrap"}>{props.dict.tags}</div><br />
+                  <div className={"wrap"} dangerouslySetInnerHTML={{__html: props.dict.tags}}></div><br />
                   <b>Categories</b><br />
-                  <div className={"wrap"}> <a href={"/category/" + props.dict.category_id}>{props.dict.category_title}</a></div><br />
+                  <div className={"wrap"}> <a href={"/category/" + props.dict.category_id} dangerouslySetInnerHTML={{__html: props.dict.category_title}}></a></div><br />
               </div>
               </div>
+            {% endraw %} 
             )
           }
           else {
@@ -141,7 +143,9 @@
 
         ReactDOM.render(<Control num_pages={num_pages}/>, document.getElementById('container'));
 
+
       </script>
+
   </body>
 
 </html>
