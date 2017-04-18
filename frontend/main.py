@@ -9,6 +9,7 @@ import socket
 import datetime
 import sys
 import operator 
+import math
 
 sys.path.append('../app/')
 
@@ -37,7 +38,7 @@ DBSession = sessionmaker()
 DBSession.bind = engine
 session = DBSession()
 
-def to_arr_dict(objs):
+def channel_to_dict(objs):
     result = []
     for obj in objs:
         curr_dict = {}
@@ -50,6 +51,17 @@ def to_arr_dict(objs):
                 curr_dict[attr] = getattr(obj, attr).strftime("%B %d, %Y")
             else:
                 curr_dict[attr] = getattr(obj, attr)
+
+        video_arr = []
+        for video in obj.videos:
+          video_arr.append(video.id)
+        curr_dict["videos"] = video_arr
+
+        playlist_arr = []
+        for playlist in obj.playlists:
+          playlist_arr.append(playlist.id)
+        curr_dict["playlists"] = playlist_arr
+
         result.append(curr_dict)
     return result
 
@@ -91,6 +103,16 @@ def category_to_dict(objs):
         curr_dict["most_popular_channel"] = obj.channels[0].title
         curr_dict["most_popular_channel_id"] = obj.channels[0].id
 
+        channel_arr = []
+        for channel in obj.channels:
+          channel_arr.append(channel.id)
+        curr_dict["channels"] = channel_arr
+
+        video_arr = []
+        for video in obj.videos:
+          video_arr.append(video.id)
+        curr_dict["videos"] = video_arr
+
         result.append(curr_dict)
     return result     
 
@@ -111,7 +133,13 @@ def playlist_to_dict(objs):
             if i%2==0:
                 curr_dict['description'] = obj.channel.description
             else:
-                curr_dict['description'] = obj.videos[0].description              
+                curr_dict['description'] = obj.videos[0].description
+
+        video_arr = []
+        for video in obj.videos:
+          video_arr.append(video.id)
+        curr_dict["videos"] = video_arr
+
         result.append(curr_dict)
     return result    
 
@@ -123,7 +151,7 @@ category_all = session.query(Category).all()
 playlist_all = session.query(Playlist).all()
 
 videos = video_to_dict(video_all)
-channels = to_arr_dict(channel_all)
+channels = channel_to_dict(channel_all)
 categories = category_to_dict(category_all)
 playlists = playlist_to_dict(playlist_all)
 
@@ -131,6 +159,8 @@ videos_copy = list(videos)
 channels_copy = list(channels)
 categories_copy = list(categories)
 playlists_copy = list(playlists)
+
+search_results = []
 
 @app.route('/')
 def splash_page():
@@ -283,6 +313,48 @@ def playlist_instance(num):
 
     return render_template('playlist.html', **kwargs)
 
+
+@app.route('/search/<query>')
+def search(query):
+  queries = query.lower().split(' ')
+  global search_results
+  search_results = []
+  union_list = []
+  single_list = []
+
+  for video in videos:
+
+    check_all = []
+    for key, value in video.items():
+      for q in queries:
+        if q in str(value).lower():
+          if q not in check_all:
+            check_all.append(q)
+
+    if len(check_all) == len(queries):
+      union_list.append(video)
+    elif len(check_all) > 0:
+      single_list.append(video)
+
+  for u in union_list:
+    search_results.append(u)
+
+  for s in single_list:
+    search_results.append(s)
+
+  if len(search_results) == 0:
+    search_results.append([-1])
+
+  return render_template('search.html', total_pages=math.ceil(len(search_results) / 9.0))
+
+@app.route('/pagination/search/<page_num>')
+def search_pagination(page_num):
+  starting_num = (int(page_num) - 1) * 9;
+  if starting_num + 9 <= len(search_results):
+    return json.dumps(search_results[starting_num:starting_num + 9])
+  else:
+    return json.dumps(search_results[starting_num:])
+
 # API CALLS
 @app.route('/pagination/video/<page_num>')
 def video_pagination(page_num):
@@ -360,13 +432,16 @@ def video_sorting(num, option, filter_channel, filter_category):
           final_results.append(dictionary)
     videos_copy = list(final_results)
 
-  if option != "blank":
-    if int(num) == 0:
-      videos_copy = list(videos_copy)  
-    elif int(num) == 1:
-      videos_copy = sort_results(videos_copy, option, False)
-    else:
-      videos_copy = sort_results(videos_copy, option, True)
+  if filter_channel != "blank" and filter_category != "blank" and len(videos_copy) == 0:
+    videos_copy.append([-1])     
+  else:
+    if option != "blank":
+      if int(num) == 0:
+        videos_copy = list(videos_copy)  
+      elif int(num) == 1:
+        videos_copy = sort_results(videos_copy, option, False)
+      else:
+        videos_copy = sort_results(videos_copy, option, True)
 
   return str(videos_copy)
 
@@ -491,6 +566,106 @@ def video_api():
 
   response_inner['num_videos'] = len(videos_dict_arr)
   response_inner['videos'] = videos_dict_arr
+  response.append(response_inner)
+  return json.dumps(response)
+
+@app.route('/api/channel')  
+def channel_api():
+  response = []
+  response_inner = {}
+  channel_arr = []
+  channel_id_arg = request.args.get("id")
+  country_arg = request.args.get("country")
+  if channel_id_arg != None:
+    channel_ids = channel_id_arg.split(',')
+    for channel in channel_all:
+      if str(channel.id) in channel_ids:
+        channel_arr.append(channel)
+  elif country_arg != None:
+    countries = country_arg.split(',')
+    for channel in channel_all:
+      if str(channel.country) in countries:
+        channel_arr.append(channel)
+  else:
+    for channel in channel_all:
+      channel_arr.append(channel)
+
+  channel_dict_arr = []
+  for channel in channel_arr:
+    for channel_dict in channels:
+      if channel_dict['id'] == channel.id:
+        channel_dict_arr.append(channel_dict)
+
+  response_inner['num_channels'] = len(channel_dict_arr)
+  response_inner['channels'] = channel_dict_arr
+  response.append(response_inner)
+  return json.dumps(response)
+
+@app.route('/api/category')  
+def category_api():
+  response = []
+  response_inner = {}
+  categories_arr = []
+  category_id_arg = request.args.get("id")
+  channel_id_arg = request.args.get("channel_id")
+  if category_id_arg != None:
+    category_ids = category_id_arg.split(',')
+    for category in category_all:
+      if str(category.id) in category_ids:
+        categories_arr.append(category)
+  elif channel_id_arg != None:
+    channel_ids = channel_id_arg.split(',')
+    for category in category_all:
+      for channel in category.channels:
+        if str(channel.id) in channel_ids:
+          categories_arr.append(category)
+          break
+  else:
+    for category in category_all:
+      categories_arr.append(category)
+
+  categories_dict_arr = []
+  for category in categories_arr:
+    for category_dict in categories:
+      if category_dict['id'] == category.id:
+        categories_dict_arr.append(category_dict)
+
+  response_inner['num_categories'] = len(categories_dict_arr)
+  response_inner['categories'] = categories_dict_arr
+  response.append(response_inner)
+  return json.dumps(response)
+
+@app.route('/api/playlist')  
+def playlist_api():
+  response = []
+  response_inner = {}
+  playlists_arr = []
+  playlist_id_arg = request.args.get("id")
+  video_id_arg = request.args.get("video_id")
+  if playlist_id_arg != None:
+    playlist_ids = playlist_id_arg.split(',')
+    for playlist in playlist_all:
+      if str(playlist.id) in playlist_ids:
+        playlists_arr.append(playlist)
+  elif video_id_arg != None:
+    video_ids = video_id_arg.split(',')
+    for playlist in playlist_all:
+      for video in playlist.videos:
+        if str(video.id) in video_ids:
+          playlists_arr.append(playlist)
+          break
+  else:
+    for playlist in playlist_all:
+      playlists_arr.append(playlist)
+
+  playlists_dict_arr = []
+  for playlist in playlists_arr:
+    for playlist_dict in playlists:
+      if playlist_dict['id'] == playlist.id:
+        playlists_dict_arr.append(playlist_dict)
+
+  response_inner['num_playlists'] = len(playlists_dict_arr)
+  response_inner['playlists'] = playlists_dict_arr
   response.append(response_inner)
   return json.dumps(response)
 

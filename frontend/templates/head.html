@@ -56,6 +56,12 @@
             <li id="Playlists"><a href="/playlist">Playlists</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
+    <li><div class="input-group">
+      <input id="searchText" type="text" class="form-control" placeholder="Search for...">
+      <span class="input-group-btn">
+        <button id="searchButton" class="btn btn-default" type="button">Go!</button>
+      </span>
+    </div><!-- /input-group --></li>
           <li id="About"><a href="/about">About</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
@@ -66,6 +72,10 @@
      $(document).ready(function () {
         $(".nav li").removeClass("active");//this will remove the active class from  
         $('#{{title}}').addClass('active');
+        $('#searchButton').on('click', function() {
+          var text = $('#searchText').val();
+          window.location.href = "/search/" + text;
+      })
       });
     </script>
   </body>

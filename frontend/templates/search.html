@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include 'head.html' %}
+  </head>
+
+  <body>
+
+   <div class="container">
+
+        <!-- Objects -->
+        <br>
+        <div class="row" id="container"></div>
+
+        <!-- Pagination -->
+        <br>
+        <div class="row text-center" id="pagin"></div>
+
+      </div>
+
+      <script type="text/javascript">
+        {% include 'react.jsx' %}
+      </script>
+
+      <!-- Scripts -->
+
+      <script type="text/babel">
+
+        var num_pages = {{total_pages}};
+
+        function Video(props) {
+          if (!(props.dict instanceof Array)) {
+          return (
+                <div className={"col-md-4"}>
+                <div className={"video-panel-container text-center"}>                
+                  <h3><div className={"wrap"}><a href={"/video/" + props.dict.id}>{props.dict.title}</a></div></h3>
+                  <b>Thumbnail</b><br />
+                  <img src={props.dict.thumbnail} /><br /><br />                  
+                  <b>Channel</b><br />
+                  <div className={"wrap"}> <a href={"/channel/" + props.dict.channel_id}>{props.dict.channel_title}</a></div><br />
+                  <b>Description</b><br />
+                  <div className={"wrap"}>{props.dict.description}<br /></div><br />
+                  <b>Tags</b><br />
+                  <div className={"wrap"}>{props.dict.tags}</div><br />
+                  <b>Categories</b><br />
+                  <div className={"wrap"}> <a href={"/category/" + props.dict.category_id}>{props.dict.category_title}</a></div><br />
+              </div>
+              </div>
+            )
+          }
+          else {
+            return (<div>No results found!</div>)
+          }
+        }
+
+        function VideoRows(props) {
+          var video_list = [];
+          for(var i = 0; i < props.size; i++) {
+            video_list.push(<Video dict={props.list[i]} />);
+          }
+          return (<div className={"row"}>{video_list}</div>);
+        }
+
+        class Control extends React.Component {
+          constructor() {
+            super();
+            this.state = {
+              active_page: 1,
+              objects_per_page: 3,
+              list: []
+            };
+            this.handlePageClick = this.handlePageClick.bind(this)
+          }
+
+          handlePageClick(event) {
+              var num = Number(event.target.id)
+              this.setState({
+                active_page: num
+              });
+              this.state.list = []
+          }
+            
+          render() {
+
+            if (this.state.list.length == 0) {
+              console.log("hi")
+               $.getJSON('/pagination/search/' + this.state.active_page).done(function(data) {
+                  this.state.list = data
+                  this.forceUpdate()                
+              }.bind(this));   
+            }
+
+            // var sortButtons = ["Title", "Channel", "Categories"];
+
+            // var channelFilterButtons = ["LastWeekTonight","Bloomberg","Adult Swim","Tasty","BuzzFeedVideo"];
+
+            // var categoryFilterButtons = ["Sports","Entertainment","Comedy","Gaming","People & Blogs"]; 
+
+            const pageNumbers = [];
+            for (let i = 1; i <= this.props.num_pages; i++) {
+                pageNumbers.push(i);
+            }
+
+            const renderPageNumbers = pageNumbers.map(number => {
+              return (
+                <li>
+                  <a id={number} onClick={this.handlePageClick} href={"#"}>{number}</a>
+                </li>
+              );
+            });
+
+
+            if (this.state.list) {
+              console.log(this.state.list)
+              return (
+
+              <div className={"container"}>
+
+                {/*Page Header*/}
+                <div className={"row"}>
+                  <div className={"col-lg-12"}>
+                      <h1 className={"page-header text-center"}>Search Results</h1>
+                  </div>
+                </div>
+                
+                <VideoRows list={this.state.list} size={this.state.list.length} />
+
+                <div className={"col-lg-12"}>
+                      <ul className={"pagination"}>
+                        <li><a href={"#"}>&laquo;</a></li>
+                          {renderPageNumbers}
+                        <li><a href={"#"}>&raquo;</a></li>
+                    </ul>
+                </div>    
+              </div>
+              );
+              }
+            return <div>loading...</div>
+          }
+        }
+
+        ReactDOM.render(<Control num_pages={num_pages}/>, document.getElementById('container'));
+
+      </script>
+  </body>
+
+</html>

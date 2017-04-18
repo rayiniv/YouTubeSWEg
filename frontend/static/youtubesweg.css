@@ -110,6 +110,11 @@ header img {
   background-color: #cc181e;
 }
 
+.input-group {
+  width: 250px;
+  padding-top: 7px;
+}
+
 /*.navbar-custom .navbar-brand {
   color: white;
   background: #e52d27;

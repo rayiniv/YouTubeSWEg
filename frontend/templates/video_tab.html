@@ -29,6 +29,7 @@
         var num_pages = 23;
 
         function Video(props) {
+          if (!(props.dict instanceof Array)) {
           return (
                 <div className={"col-md-4"}>
                 <div className={"video-panel-container text-center"}>                
@@ -46,6 +47,10 @@
               </div>
               </div>
             )
+          }
+          else {
+            return (<div></div>)
+          }
         }
 
         function VideoRows(props) {
@@ -251,7 +256,7 @@
                 }
               }
 
-              $.get('/sorting/video/' + this.state.sortState[nonZeroElementIndex] + '/' + option + '/' + finalStateString).done(function() {
+              $.get('/sorting/video/' + this.state.sortState[nonZeroElementIndex] + '/' + option + '/' + finalStateString).done(function(data) {
                   this.state.list = []
                   this.state.active_page = 1
                   this.forceUpdate()                
@@ -343,7 +348,7 @@
                 }
               }
 
-              $.get('/sorting/video/' + this.state.sortState[nonZeroElementIndex] + '/' + option + '/' + finalStateString).done(function() {
+              $.get('/sorting/video/' + this.state.sortState[nonZeroElementIndex] + '/' + option + '/' + finalStateString).done(function(data) {
                   this.state.list = []
                   this.state.active_page = 1
                   this.forceUpdate()                
@@ -351,7 +356,9 @@
           }
             
           render() {
+
             if (this.state.list.length == 0) {
+              console.log("hi")
                $.getJSON('/pagination/video/' + this.state.active_page).done(function(data) {
                   this.state.list = data
                   this.forceUpdate()                
