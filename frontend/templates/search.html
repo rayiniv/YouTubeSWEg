@@ -30,29 +30,104 @@
 
         function Video(props) {
           if (!(props.dict instanceof Array)) {
-          return (
-            {% raw %}
-                <div className={"col-md-4"}>
-                <div className={"video-panel-container text-center"}>      
-                  <h3><div className={"wrap"}><a href={"/video/" + props.dict.id} dangerouslySetInnerHTML={{__html: props.dict.title}} ></a></div></h3>
-                  <b>Thumbnail</b><br />
-                  <img src={props.dict.thumbnail} /><br /><br />                  
-                  <b>Channel</b><br />
-                  <div className={"wrap"}> <a href={"/channel/" + props.dict.channel_id} dangerouslySetInnerHTML={{__html: props.dict.channel_title}}></a></div><br />
-                  <b>Description</b><br />
-                  <div className={"wrap"} dangerouslySetInnerHTML={{__html: props.dict.description}}></div><br /><br />
-                  <b>Tags</b><br />
-                  <div className={"wrap"} dangerouslySetInnerHTML={{__html: props.dict.tags}}></div><br />
-                  <b>Categories</b><br />
-                  <div className={"wrap"}> <a href={"/category/" + props.dict.category_id} dangerouslySetInnerHTML={{__html: props.dict.category_title}}></a></div><br />
-              </div>
-              </div>
-            {% endraw %} 
-            )
+
+            if ("thumbnail" in props.dict) {
+              return (
+                {% raw %}
+                    <div className={"col-md-4"}>
+                    <div className={"video-panel-container text-center"}>      
+                      <h3><div className={"wrap"}><a href={"/video/" + props.dict.id} dangerouslySetInnerHTML={{__html: props.dict.title}} ></a></div></h3>
+                      <b>Thumbnail</b><br />
+                      <img src={props.dict.thumbnail} /><br /><br />                  
+                      <b>Channel</b><br />
+                      <div className={"wrap"}> <a href={"/channel/" + props.dict.channel_id} dangerouslySetInnerHTML={{__html: props.dict.channel_title}}></a></div><br />
+                      <b>Description</b><br />
+                      <div className={"wrap"} dangerouslySetInnerHTML={{__html: props.dict.description}}></div><br /><br />
+                      <b>Tags</b><br />
+                      <div className={"wrap"} dangerouslySetInnerHTML={{__html: props.dict.tags}}></div><br />
+                      <b>Categories</b><br />
+                      <div className={"wrap"}> <a href={"/category/" + props.dict.category_id} dangerouslySetInnerHTML={{__html: props.dict.category_title}}></a></div><br />
+                  </div>
+                  </div>
+                {% endraw %} 
+                )
+            }
+            else if ("country" in props.dict) {
+              return (
+                {% raw %}
+                  <div className={"col-md-4"}>
+                    <div className={"video-panel-container text-center"}>                
+                    <h3><div className={"wrap"}><a href={"/channel/" + props.dict.id} dangerouslySetInnerHTML={{__html: props.dict.title}}></a></div></h3>  
+                    <b>Description</b><br />
+                    <div className={"wrap"} dangerouslySetInnerHTML={{__html: props.dict.description}}></div><br /><br />
+                    <b>Date of Publication</b><br />
+                    <div className={"wrap"} dangerouslySetInnerHTML={{__html: props.dict.published_date}}></div><br />
+                    <b>Country</b><br />
+                    <div className={"wrap"} dangerouslySetInnerHTML={{__html: props.dict.country}}></div><br />
+                    <b>View Count</b><br />
+                    <div className={"wrap"} dangerouslySetInnerHTML={{__html: props.dict.view_count}}></div><br />
+                    <b>Subscriber Count</b><br />
+                    <div className={"wrap"} dangerouslySetInnerHTML={{__html: props.dict.subscriber_count}}></div><br />
+                  </div>
+                </div>
+                {% endraw %}
+              )
+            }
+            else if ("assignable" in props.dict) {
+              return (              
+                {% raw %}
+                  <div className={"col-md-4"}>
+                    <div className={"video-panel-container text-center"}>                
+                    <h3><div className={"wrap"}><a href={"/category/" + props.dict.id} dangerouslySetInnerHTML={{__html: props.dict.title}}></a></div></h3>
+                    <b>Latest Published Video Date</b><br />
+                    <div className={"wrap"} dangerouslySetInnerHTML={{__html: props.dict.latest_published_date}}></div><br />
+
+                    <b>Number of Videos</b><br />
+                    <div className={"wrap"} dangerouslySetInnerHTML={{__html: props.dict.num_videos}}></div><br />
+
+                    <b>Assignable</b><br />
+                    <div className={"wrap"} dangerouslySetInnerHTML={{__html: props.dict.assignable}}></div><br /><br />
+
+                    <b>Most Popular Video</b><br />
+                    <div className={"wrap"}> <a href={"/video/" + props.dict.most_popular_video_id} dangerouslySetInnerHTML={{__html: props.dict.most_popular_video}}></a></div><br />
+
+
+                    <b>Most Popular Channel</b><br />
+                    <div className={"wrap"}> <a href={"/channel/" + props.dict.most_popular_channel_id} dangerouslySetInnerHTML={{__html: props.dict.most_popular_channel}}></a></div><br />
+
+                  </div>
+                </div>
+              {% endraw %}
+              )
+            }
+            else {
+              return (
+                {% raw %}
+                  <div className={"col-md-4"}>
+                    <div className={"video-panel-container text-center"}>                
+                    <h3><div className={"wrap"}><a href={"/playlist/" + props.dict.id} dangerouslySetInnerHTML={{__html: props.dict.title}}></a></div></h3>
+
+                    <b>Description</b><br />
+                    <div className={"wrap"} dangerouslySetInnerHTML={{__html: props.dict.description}}></div><br />
+
+                    <b>Date of Publication</b><br />
+                    <div className={"wrap"} dangerouslySetInnerHTML={{__html: props.dict.published_date}}></div><br />
+
+                    <b>Total Item Count</b><br />
+                    <div className={"wrap"} dangerouslySetInnerHTML={{__html: props.dict.num_items}}></div><br /><br />
+
+                  </div>
+                </div>
+              {% endraw %}
+              )
+            }
+
+
+
           }
           else {
             return (<div>No results found!</div>)
-          }
+          }            
         }
 
         function VideoRows(props) {

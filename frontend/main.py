@@ -330,7 +330,8 @@ def search(query):
     for key, value in video.items():
       for q in queries:
         if q in str(value).lower():
-          video[key] = value.lower().replace(q, "<mark>" + q + "</mark>")
+          app.logger.warning(str(key))
+          video[key] = str(value).lower().replace(q, "<mark>" + q + "</mark>")
           if q not in check_all:
             check_all.append(q)
 
@@ -338,6 +339,66 @@ def search(query):
       union_list.append(video)
     elif len(check_all) > 0:
       single_list.append(video)
+
+
+
+
+
+  copy_of_channels = copy.deepcopy(channels)
+
+  for channel in copy_of_channels:
+    check_all = []
+    for key, value in channel.items():
+      for q in queries:
+        if q in str(value).lower():
+          app.logger.warning(str(key))
+          channel[key] = str(value).lower().replace(q, "<mark>" + q + "</mark>")
+          if q not in check_all:
+            check_all.append(q)
+
+    if len(check_all) == len(queries):
+      union_list.append(channel)
+    elif len(check_all) > 0:
+      single_list.append(channel)
+
+
+
+
+  copy_of_playlists = copy.deepcopy(playlists)
+
+  for playlist in copy_of_playlists:
+    check_all = []
+    for key, value in playlist.items():
+      for q in queries:
+        if q in str(value).lower():
+          playlist[key] = str(value).lower().replace(q, "<mark>" + q + "</mark>")
+          if q not in check_all:
+            check_all.append(q)
+
+    if len(check_all) == len(queries):
+      union_list.append(playlist)
+    elif len(check_all) > 0:
+      single_list.append(playlist)
+
+
+
+
+  copy_of_categories = copy.deepcopy(categories)
+
+  for category in copy_of_categories:
+    check_all = []
+    for key, value in category.items():
+      for q in queries:
+        if q in str(value).lower():
+          category[key] = str(value).lower().replace(q, "<mark>" + q + "</mark>")
+          if q not in check_all:
+            check_all.append(q)
+
+    if len(check_all) == len(queries):
+      union_list.append(category)
+    elif len(check_all) > 0:
+      single_list.append(category)            
+
 
   for u in union_list:
     search_results.append(u)
