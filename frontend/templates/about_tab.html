@@ -41,9 +41,9 @@
 
               <p>Senior CS student. Software Engineer. Interested in SWE and YouTube but most interested in YouTubeSWEg.</p>
               <p><b>major responsibilities: </b> Slack management, Project management, React Magic, Documentation</p>
-              <p><b>no. commits: </b>8</p>
+              <p><b>no. commits: </b>10</p>
               <p><b>no. issues: </b>10</p>
-              <p><b>no. unit tests: </b>0</p>
+              <p><b>no. unit tests: </b>2</p>
 
             </p>
           </div>
@@ -58,9 +58,9 @@
               
              <p>I'm a computer science junior at UT Austin. I'm a fan of Steph Curry, and I like cheesecake.</p>
              <p><b>major responsibilities: </b>setup GCP, designed backend, RESTful API development, frontend implementation, workflow integrity, overall team morale</p>
-             <p><b>no. commits: </b>20</p>
+             <p><b>no. commits: </b>22</p>
              <p><b>no. issues: </b>5</p>
-             <p><b>no. unit tests: </b>0</p>
+             <p><b>no. unit tests: </b>3</p>
 
             </p>
           </div>
@@ -74,9 +74,9 @@
             <p class="card-text">
               <p>I'm a junior studying Computer Science at UT Austin. I hope this website gets me a job at Facebook.</p>
               <p><b>major responsibilities: </b>backend model/database design, RESTful API documentation, frontend HTML/CSS and Flask, pair programming</p>
-              <p><b>no. commits: </b>16</p>
+              <p><b>no. commits: </b>19</p>
               <p><b>no. issues: </b>4</p>
-              <p><b>no. unit tests: </b>15</p>
+              <p><b>no. unit tests: </b>2</p>
             </p>
           </div>
 
@@ -90,9 +90,9 @@
             <p class="card-text">
               <p>I'm a computer science junior at UT Austin. I'm also a fan of James Harden, and chicken wings are my favorite food.</p>
                <p><b>major responsibilities: </b>frontend HTML, Flask, pair programmer, UML design, report content</p>
-               <p><b>no. commits: </b>6</p>
+               <p><b>no. commits: </b>25</p>
                <p><b>no. issues: </b>7</p>
-               <p><b>no. unit tests: </b>0</p>
+               <p><b>no. unit tests: </b>3</p>
             </p>
           </div>
           <div class="card">
@@ -105,9 +105,9 @@
             <p class="card-text">
               <p>Computer Science major at UT Austin, planning on getting the Business Foundations Certificate. I do competitive club gymnastics at UT and will be interning at Facebook over the summer. </p>
               <p><b>major responsibilities: </b>frontend design, report structure, report content, creating UML design, pair programming</p>
-              <p><b>no. commits: </b>8</p>
-               <p><b>no. issues: </b>2</p>
-               <p><b>no. unit tests: </b>0</p>
+              <p><b>no. commits: </b>20</p>
+               <p><b>no. issues: </b>10</p>
+               <p><b>no. unit tests: </b>2</p>
             </p>
           </div>
           <div class="card">
@@ -120,9 +120,9 @@
             <p class="card-text">
               <p>I'm a computer science junior at UT Austin. I'm a fan of James Harden, and I like sushi.</p>
               <p><b>major responsibilities: </b>report structure, report content, creating UML design, pair programming</p>
-              <p><b>no. commits: </b>1</p>
-              <p><b>no. issues: </b>1</p>
-              <p><b>no. unit tests: </b>0</p>
+              <p><b>no. commits: </b>13</p>
+              <p><b>no. issues: </b>9</p>
+              <p><b>no. unit tests: </b>3</p>
             </p>
           </div>
         </div>
@@ -134,11 +134,11 @@
       <h2 class="text-center">
         Statistics
               <h4 class="text-center">
-                <b>total no. commits: </b>64   
+                <b>total no. commits: </b>109
               </h4>
 
               <h4 class="text-center">
-                <b>total no. issues: </b> 22          
+                <b>total no. issues: </b> 45       
               </h4>
 
               <h4 class="text-center">
@@ -160,6 +160,10 @@
               <h4 class="text-center">
                 <b>Unit tests: </b><a href="/unit_tests">Run</a>
               </h4>
+
+              <h4 class="text-center">
+                <b>Presentation: </b><a href="https://docs.google.com/presentation/d/1h8qL43j9W4DnZqLRsGgsiaPswnpOpwwpYCUp31MPADU/edit?usp=sharing">Google Slides</a>
+              </h4>              
 
       </h2>
     </div>
@@ -239,6 +243,9 @@
   <p style="padding-left: 1.8em"><a href="#UnitTests">Unit Tests</a></p>
 <p><a href="#ApplicationProgrammingInterface(API)">Application Programming Interface (API)</a></p>
 <p><a href="#UMLDiagram">UML Diagram</a></p>
+<p><a href="#Search Bar">Search Bar</a></p>
+<p><a href="#PlanITPoker">PlanITPoker</a></p>
+<p><a href="#Visualization">Visualization</a></p>
 </p>
 
 
@@ -459,6 +466,69 @@ We encountered some difficulties while setting up the configuration for remote a
 <h1>UML Diagram</h1>
 
 <p>We have prepared a UML diagram of our models in order to lay out the general behavior of each of our models and their interactions with each other. Each model is drawn with their respective attributes, and each of the models have an arrow with cardinalities to represent the relationships between the models. For example, Channel is pointed to by all three of the other models, Video, Playlist, and Category, because each of these point to an instance or instances of Channel. The UML diagram can be found in the Github Repository <a href="https://github.com/rayiniv/idb/blob/master/IDB1.pdf">here</a> along with other metadata and additional information about the YouTubeSweg Project.</p>
+<br />
+<br />
+
+<a name="Search Bar"></a>
+
+<h1>Search Bar</h1>
+
+<p>We continued using React to implement the search feature in our website. After the user types in a word or a series of words into our search bar, they will be redirected to a page that pulls up all videos, channels, playlists, and/or categories in our database that contain the queried word(s). React receives a list of dictionaries to display with the results of the search and dynamically displays the results in grid form. Along with the dictionaries, the React code also receives the number of pages for the pagination to display and the search query. Our page uses this information to dynamically create pagination with the correct number of pages. Each list received has the set length of results to show on each page, in our case this number is 12. When the nth page is clicked, React asks the backend for the appropriate list of dictionaries that corresponds to the nth page, which React then displays. The list of dictionaries that react receives from flask has &#60mark&#62 tags surrounding the appropriate queried words. In order to have the HTML correctly display these tags and highlight the queried words, Jinja2 is turned off during these methods using escape tags, raw and endraw. There is an attribute set in the HTML that allows React to properly display the string (with the HTML tags included) properly when the page is rendered.
+
+Much like our sort and filter methods, once the user hits the "Go!" button on the search bar, the frontend will make a call to Flask to redirect to the new page with the appropriate objects. The frontend will send in the query to the backend during this call. The backend then handles creating the results. It sifts through the database for results that match the searched words. In order to display results with all words searched first, we create separate lists of dictionaries that each hold the results that contain a specific number of words matched from the query. The final list of dictionaries that will be rendered on the search results page will be combined from two dictionaries (one with results containing all search terms and one with results containing at least one search term) built from the four resources (video, channel, playlist, and category).
+
+We decided on adding a nice feature that was missing from the initial implementation (when we simply copied the Bootstrap starter code for a search bar). Whenever a user has already typed in any sort of text in the text field, they can press the Enter key and complete the search request. This was accomplished using JavaScript that would attach a listener to the textbox and call the method representing the enter button (which makes an API call as well) and eventually creates a search request.</p>
+
+<br />
+<br />
+
+<a name="PlanITPoker"></a>
+
+<h1>PlanITPoker</h1>
+
+<p>Our PlanITPoker contains ten user stories which helped us delegate tasks in an agile manner as if we were on Team Litty or a real world software development team. The time estimates aided in fairly distributing tasks to our fantastic teammates. Giving each team member a similar amount of work was essential to our success and satisfaction as a team. This tool kept us on track to effectively accomplish our goals and finish in a very timely manner without having any one teammate carrying the load. If we discovered that one task was longer or shorter than previously expected, we were able to pivot our assignments in an agile manner. This often times involved splitting a story into multiple, smaller stories. For example, we discovered that creating the visualization in D3 was a more time consuming task than originally estimated, so we then divided the task into 1) Parsing the data from Eklogi.me, the website we are visualizing and 2) Building the actual visualization of the data from step one.
+
+Below are recounts of each story:
+<br />
+<p>1) Create a search bar. Purely front end work; the search bar does not need functionality yet.</p>
+    <p style="padding-left: 1.8em">Expected time: 45 minutes</p>
+    <p style="padding-left: 1.8em">Real time: 10 minutes</p>
+<p>2) Implement back end search functionality. Return relevant results given a query.</p>
+    <p style="padding-left: 1.8em">Expected time: 1 hr 30 minutes</p>
+    <p style="padding-left: 1.8em">Real time: 2 hours</p>
+<p>3) Create data visualization of the other group's data.</p>
+    <p style="padding-left: 1.8em">Expected time: 1 hour</p>
+    <p style="padding-left: 1.8em">Real time: 1 hour and 32 minutes</p>
+<p>4) Parse data for visualization.</p>
+    <p style="padding-left: 1.8em">Expected time: 45 minutes</p>
+    <p style="padding-left: 1.8em">Real time: 45 minutes</p>
+<p>5) Integrate data visualization into website.</p>
+    <p style="padding-left: 1.8em">Expected time: 15 minutes</p>
+    <p style="padding-left: 1.8em">Real time: 20 minutes</p>
+<p>6) Create search results page.</p>
+    <p style="padding-left: 1.8em">Expected time: 1 hour</p>
+    <p style="padding-left: 1.8em">Real time: 50 minutes</p>
+<p>7) Fix bug on search results page with results displaying strangely. Perhaps need to enforce minimum height.</p> 
+    <p style="padding-left: 1.8em">Expected time: 15 minutes</p>
+    <p style="padding-left: 1.8em">Real time: 10 minutes</p>
+<p>8) Implement highlighting of search terms on search results page.</p>
+    <p style="padding-left: 1.8em">Expected time: 45 minutes</p>
+    <p style="padding-left: 1.8em">Real time: 2 hours</p>
+<p>9) Parts of data visualization fly off the screen shortly after animation begins. Need to stay on page.</p> 
+    <p style="padding-left: 1.8em">Expected time: 30 minutes</p>
+    <p style="padding-left: 1.8em">Real time: 30 minutes</p>
+<p>10) Extend technical report to reach 5,000 words.</p>
+    <p style="padding-left: 1.8em">Expected time: 1 hour 30 minutes</p>
+    <p style="padding-left: 1.8em">Real time: 1 hours 30 minutes</p></p>
+
+<br />
+<br />
+
+<a name="Visualization"></a>
+
+<h1>Visualization</h1>
+
+<p>Youtubesweg.me provides a visualization of another CS373 IDB project. The visualization is dedicated to Group 8 - Eklogi.me. Eklogi.me features a variety of information regarding the political landscape in the US. Information regarding members of the United States House of Representatives, members of the United States Senate, committees in the House of Representatives and Senate, bills in the House of Representatives and Senate, and finally, votes on bills and actions in both the House of Representatives and Senate. We utilize all of this information on our visualization page. We acquire the data from Eklogi.me through their RESTful API. The API provides information on all of the resources mentioned above in JSON format. We make the REST API calls in our flask application and consolidate the data in a way that is visually informative. After making the RESTful API calls, we traversed each individual resource in order to scour for connections between the resources. We consolidated this information into a JSON file so that the data is usable on the JavaScript front end. Our JSON simply looks at the information in terms of objects (circles) and connections (lines). We represent these separately in two different dictionaries in our JSON. Our visualization presents the data mentioned through a plethora of connected spheres. Each sphere represents either a member of the House of Representatives or Senate, a committee, a bill, or a vote. The connections between the spheres represents a connection between those resources. The connections were formed by analyzing the data retrieved from the REST API. The circles present data to the user as the user hovers over the circles. The data presented is respective to the circle itself, i.e. the object presented is different depending on the object the circle is representing. The circles are color coded so that the user can more easily see the different types of objects. The members are presented in blue, the committees are represented in light blue, the bills are represented in orange, and the votes are represented in light orange. The visualization is also interactive in that the user can click and drag the circles in the visualization. This provides the ability to focus in on certain objects and their respective connections. An interesting effect that is seen in the visualization is the presence of several members connected to one committee alone. This shows that there are several members of the house and senate that are solely dedicated to working on a single committee. Obviously, this is not the case for all the members of congress as there are several others that are present in multiple committees. Another interesting property is that the bubbles of members and committees split into two separate bubbles. This implies that there are two separate sets of committees, A and B, in which no inherent member is present in both sets A and B at the same time. This conclusion could not readily be arrived at without the visualization as the amount of data is tremendous.</p>
 
     </div> <!-- /container -->
 

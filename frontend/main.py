@@ -329,7 +329,7 @@ def search(query):
     check_all = []
     for key, value in video.items():
       for q in queries:
-        if q in str(value).lower():
+        if q in str(value).lower() and "http" not in str(value).lower():
           video[key] = str(value).lower().replace(q, "<mark>" + q + "</mark>")
           if q not in check_all:
             check_all.append(q)
@@ -338,10 +338,6 @@ def search(query):
       union_list.append(video)
     elif len(check_all) > 0:
       single_list.append(video)
-
-
-
-
 
   copy_of_channels = copy.deepcopy(channels)
 
@@ -358,9 +354,6 @@ def search(query):
       union_list.append(channel)
     elif len(check_all) > 0:
       single_list.append(channel)
-
-
-
 
   copy_of_playlists = copy.deepcopy(playlists)
 
@@ -407,13 +400,13 @@ def search(query):
   if len(search_results) == 0:
     search_results.append([-1])
 
-  return render_template('search.html', total_pages=math.ceil(len(search_results) / 9.0), query=query)
+  return render_template('search.html', total_pages=math.ceil(len(search_results) / 12.0), query=query)
 
 @app.route('/pagination/search/<page_num>')
 def search_pagination(page_num):
-  starting_num = (int(page_num) - 1) * 9;
-  if starting_num + 9 <= len(search_results):
-    return json.dumps(search_results[starting_num:starting_num + 9])
+  starting_num = (int(page_num) - 1) * 12;
+  if starting_num + 12 <= len(search_results):
+    return json.dumps(search_results[starting_num:starting_num + 12])
   else:
     return json.dumps(search_results[starting_num:])
 
