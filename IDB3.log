@@ -1,3 +1,63 @@
+commit 330b02c2f6ef0d6b2b2e70803536c40f1f5a3129
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Wed Apr 19 22:20:28 2017 -0500
+
+    updated about page and number of search results on search page
+
+commit 3711eeca33327cfd73e96d90c4ffe5c5bed91c59
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Tue Apr 18 02:08:47 2017 -0500
+
+    press enter works and removed pagination buttons
+
+commit 6059039088e0a1bee9fe46a488bfe5b70cc7175a
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Mon Apr 17 23:18:14 2017 -0500
+
+    Added visualization to the about page and corresponding route in main.py
+
+commit 8a3c70650280a1df0871a3ce42863a0ab8434140
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Mon Apr 17 22:44:53 2017 -0500
+
+    finished search bar
+
+commit 648a4500f827cc0cce113b26c5a308f8e4f137ca
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Mon Apr 17 22:02:33 2017 -0500
+
+    Added highlighting on search
+
+commit 3d1ee7c64e1fd90c6f0e5c92f2e3793089d0be32
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Mon Apr 17 20:20:03 2017 -0500
+
+    Added basic search capability for videos.
+
+commit a64f425793e716ca350fc66c0137920a5186f944
+Author: Vinay Rayini <rayiniv@hotmail.com>
+Date:   Mon Apr 10 14:36:43 2017 -0500
+
+    Transferring API Description file from Apiary.io
+
+commit 7f5d0398a23252deff902731d191850b452b0ff7
+Author: Vinay Rayini <rayiniv@hotmail.com>
+Date:   Mon Apr 10 13:38:12 2017 -0500
+
+    Updated descriptions
+
+commit 3a77846a443685a4f30abb58f82d8c95f02de30e
+Author: Vinay Rayini <rayiniv@hotmail.com>
+Date:   Mon Apr 10 13:18:06 2017 -0500
+
+    Updated endpoint URLs
+
+commit 0dac9a0c5b20a421d86d94709baaab3c1c990689
+Author: hamzamuhammad <hamzamuhammad@utexas.edu>
+Date:   Thu Apr 6 21:25:51 2017 -0500
+
+    Fixed tests.out, final commit
+
 commit b362fb601402147a6d076b32260bbd1c42266b6c
 Author: hamzamuhammad <hamzamuhammad@utexas.edu>
 Date:   Thu Apr 6 21:19:15 2017 -0500
